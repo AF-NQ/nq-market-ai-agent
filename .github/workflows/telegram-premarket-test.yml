@@ -27,20 +27,117 @@ jobs:
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-
           MARKET_TIMEZONE: America/New_York
 
-          # Force the current time into the premarket window
-          PREOPEN_MINUTES: '1440'
-          PREOPEN_WINDOW_MINUTES: '1440'
-
-          # Separate test state — does not touch production state
-          STATE_PATH: data/test-state.json
+          # Use a completely separate state file.
+          STATE_PATH: data/test-premarket-state.json
 
         run: |
-          echo "=== REAL PREMARKET TEST ==="
-          echo "Collecting live news..."
-          echo "Running the same src.main pipeline as production..."
+          echo "=== REAL TELEGRAM PREMARKET TEST ==="
+          echo "Collecting real market news..."
+          echo "Building the same report used by production..."
+          echo "Sending report to Telegram..."
           echo ""
 
-          python -m src.main --once
+          python - <<'PY'
+          from datetime import datetime
+          from zoneinfo import ZoneInfo
+
+          from src.config import CONFIG
+          from src.sources import collect
+          from src.verify import relevance
+          from src.storage import Store
+          from src.calendar import next_open
+          from src.analyzer import analyze, report, urgent_messages
+          from src.earnings import upcoming_earnings
+          from src.hedge_funds import collect_13f
+          from src.telegram import send
+
+          print("1. Collecting news...")
+          store = Store(CONFIG.database_path)
+
+          raw = collect()
+          print(f"   Collected: {len(raw)}")
+
+          print("2. Applying relevance checks...")
+          for x in raw:
+              s, level, reasons = relevance(x)
+              x.update(score=s, level=level, reasons=reasons)
+
+          new = store.new_events(raw)
+          print(f"   New events: {len(new)}")
+
+          print("3. Ranking events...")
+          ranked = analyze(new)
+          print(f"   Ranked events: {len(ranked)}")
+
+          print("4. Getting next US market open...")
+          now = datetime.now(ZoneInfo(CONFIG.timezone))
+          op = next_open(now)
+
+          minutes_to_open = (op - now).total_seconds() / 60
+
+          print(f"   Current time: {now}")
+          print(f"   Next open: {op}")
+          print(f"   Minutes to open: {minutes_to_open:.1f}")
+
+          print("5. Building REAL premarket report...")
+
+          msg = report(
+              ranked,
+              op,
+              minutes_to_open,
+              "source-check"
+          )
+
+          earnings = upcoming_earnings()
+          if earnings:
+              msg += (
+                  "\n\n📅 MEGA-CAP EARNINGS TODAY\n"
+                  + "\n".join(
+                      f'{e["symbol"]} {e["company"]} — {e["time"] or "time n/a"}'
+                      for e in earnings
+                  )
+              )
+
+          funds = collect_13f()
+          if funds:
+              msg += (
+                  "\n\n🏦 13F / HEDGE-FUND DISCOVERY\n"
+                  + "\n".join(
+                      f'• {x["title"]}\n {x["link"]}'
+                      for x in funds[:5]
+                  )
+              )
+
+          print("6. Sending REAL report to Telegram...")
+          print(f"   Message length: {len(msg)} characters")
+
+          ok = send(
+              CONFIG.telegram_token,
+              CONFIG.telegram_chat_id,
+              msg
+          )
+
+          if not ok:
+              raise RuntimeError("Telegram send() returned False")
+
+          print("   ✅ MAIN PREMARKET REPORT SENT")
+
+          print("7. Checking urgent alerts...")
+
+          alerts = urgent_messages(ranked)
+
+          print(f"   Urgent alerts: {len(alerts)}")
+
+          for alert in alerts:
+              send(
+                  CONFIG.telegram_token,
+                  CONFIG.telegram_chat_id,
+                  alert
+              )
+              print("   ✅ Urgent alert sent")
+
+          print("")
+          print("=== TEST COMPLETED SUCCESSFULLY ===")
+          PY
