@@ -7,7 +7,6 @@ from .verify import relevance
 
 
 def analyze(items):
-    # Keep the legacy relevance fields for compatibility with storage/tests.
     for x in items:
         s, l, r = relevance(x)
         x["legacy_score"] = s
@@ -18,66 +17,69 @@ def analyze(items):
 
 def _direction_label(direction):
     return {
-        "BULLISH": "BULLISH PRESSURE",
-        "BEARISH": "BEARISH PRESSURE",
-        "MIXED": "MIXED",
-        "NEUTRAL": "NEUTRAL",
+        "BULLISH": "BULLISH PRESSURE", "BEARISH": "BEARISH PRESSURE",
+        "MIXED": "MIXED", "NEUTRAL": "NEUTRAL",
     }.get(direction, "NEUTRAL")
 
 
 def _spx_directness(item):
-    """Estimate broad S&P 500 relevance on the same 0-25 scale used for NQ directness."""
     text = (item.get("title", "") + " " + item.get("summary", "")).lower()
     direct_terms = [
         "s&p 500", "s&p500", "spx", "spy", "dow", "wall street", "u.s. stocks",
-        "us stocks", "equities", "stock market", "stocks", "index futures",
+        "us stocks", "equities", "stock market", "index futures", "stocks",
     ]
     macro_terms = [
         "fed", "federal reserve", "fomc", "interest rate", "inflation", "cpi",
         "ppi", "payroll", "jobs report", "unemployment", "treasury", "yield",
         "dollar", "oil", "crude", "tariff", "trade war", "geopolitics",
     ]
-    if any(k in text for k in direct_terms):
-        return 25
-    if any(k in text for k in macro_terms):
-        return 21
-    # Large-cap/semiconductor news can move SPX, but is generally less broad than NQ.
-    if any(k in text for k in ["nvidia", "nvda", "apple", "microsoft", "amazon", "meta", "amd", "broadcom"]):
-        return 18
+    if any(k in text for k in direct_terms): return 25
+    if any(k in text for k in macro_terms): return 21
+    if any(k in text for k in ["nvidia", "nvda", "apple", "microsoft", "amazon", "meta", "amd", "broadcom"]): return 18
     return 10
 
 
 def _index_relevance(item, index):
     base = int(item.get("score", 0))
-    if index == "NQ":
-        return max(0, min(100, base))
+    if index == "NQ": return max(0, min(100, base))
     nq_component = int(item.get("nq_directness", nq_directness(item)))
     spx_component = _spx_directness(item)
     return max(0, min(100, base - nq_component + spx_component))
 
 
 def _short_source_link(item):
-    """Return a compact clickable Telegram link instead of exposing a raw URL."""
     link = (item.get("link") or "").strip()
-    if not link:
-        return ""
-    try:
-        host = urlparse(link).netloc.lower().replace("www.", "")
-    except Exception:
-        host = ""
+    if not link: return ""
+    try: host = urlparse(link).netloc.lower().replace("www.", "")
+    except Exception: host = ""
     label = "Read article"
-    if "reuters" in host:
-        label = "Read Reuters"
-    elif "cnbc" in host:
-        label = "Read CNBC"
-    elif "yahoo" in host:
-        label = "Read Yahoo Finance"
-    elif "economictimes" in host:
-        label = "Read Economic Times"
+    if "reuters" in host: label = "Read Reuters"
+    elif "cnbc" in host: label = "Read CNBC"
+    elif "yahoo" in host: label = "Read Yahoo Finance"
+    elif "economictimes" in host: label = "Read Economic Times"
+    elif "motleyfool" in host: label = "Read Motley Fool"
     return f'<a href="{escape(link, quote=True)}">{label}</a>'
 
 
-def report(items, open_time, minutes_to_open, confirmed_label):
+def _earnings_block(earnings):
+    if not earnings:
+        return []
+    grouped = {}
+    for e in earnings:
+        grouped.setdefault(e.get("date", ""), []).append(e)
+    lines = ["", "━━━━━━━━━━━━━━━━━━━━", "<b>📅 EARNINGS — NQ / S&amp;P 500</b>"]
+    for date, rows in sorted(grouped.items()):
+        try: label = datetime.strptime(date, "%Y-%m-%d").strftime("%a %b %d")
+        except Exception: label = date
+        lines.append(f"<b>{escape(label)}</b>")
+        for e in rows:
+            timing = e.get("time") or "time n/a"
+            lines.append(f'• <b>{escape(e["symbol"])}</b> {escape(e["company"])} — {escape(timing)}')
+    lines.append("Times/calendar dates are from the free public calendar and should be treated as indicative until company-confirmed.")
+    return lines
+
+
+def report(items, open_time, minutes_to_open, confirmed_label, earnings=None):
     now = datetime.now(open_time.tzinfo) if open_time.tzinfo else datetime.now()
     now_text = now.strftime("%Y-%m-%d %H:%M %Z")
     lines = [
@@ -85,10 +87,8 @@ def report(items, open_time, minutes_to_open, confirmed_label):
         f"Generated: {escape(now_text)}",
         f"US regular open: {escape(open_time.strftime('%Y-%m-%d %H:%M %Z'))}",
         f"Approx. minutes to open: {minutes_to_open:.1f}",
-        "",
-        "<b>🔥 KEY CATALYSTS</b>",
+        "", "<b>🔥 KEY CATALYSTS</b>",
     ]
-
     if not items:
         lines.append("No new material catalysts detected in the latest collection.")
     else:
@@ -102,8 +102,6 @@ def report(items, open_time, minutes_to_open, confirmed_label):
             nq = _index_relevance(x, "NQ")
             spx = _index_relevance(x, "SPX")
             link = _short_source_link(x)
-
-            # Deliberate blank lines make each catalyst visually separable in Telegram.
             lines += [
                 "",
                 f"<b>{i}. [{escape(str(x['level']))}] {escape(str(x['title']))}</b>",
@@ -111,32 +109,23 @@ def report(items, open_time, minutes_to_open, confirmed_label):
                 f"<b>Impact:</b> NQ <b>{nq}/100</b> | S&amp;P 500 <b>{spx}/100</b> | {escape(direction)}",
                 f"Sources: {escape(sources)} | {source_status} | {escape(age)}",
             ]
-            if link:
-                lines.append(link)
+            if link: lines.append(link)
 
     lines += [
-        "",
-        "━━━━━━━━━━━━━━━━━━━━",
-        "<b>🧭 NEWS ENGINE</b>",
+        "", "━━━━━━━━━━━━━━━━━━━━", "<b>🧭 NEWS ENGINE</b>",
         "Clusters duplicate/syndicated headlines into catalysts and weights direct NQ relevance, publisher quality, freshness and cross-source coverage.",
         "Multi-publisher coverage does not necessarily mean independent confirmation; syndicated wire stories can appear under multiple publishers.",
         "Direction is descriptive of the event/headline language, not a price forecast.",
-        "",
-        "⚠️ Verification: public-source collection and rule-based checks only. Absence of confirmation is not proof of falsity.",
+        "", "⚠️ Verification: public-source collection and rule-based checks only. Absence of confirmation is not proof of falsity.",
     ]
+    lines.extend(_earnings_block(earnings or []))
     return "\n".join(lines)
 
 
 def urgent_messages(items):
-    """Intraday alerts only: very fresh, high-impact and directly relevant catalysts."""
     out = []
     for x in items:
-        if (
-            x.get("level") == "HIGH"
-            and x.get("score", 0) >= 88
-            and x.get("nq_directness", 0) >= 14
-            and freshness_hours(x) <= 3
-        ):
+        if x.get("level") == "HIGH" and x.get("score", 0) >= 88 and x.get("nq_directness", 0) >= 14 and freshness_hours(x) <= 3:
             sources = ", ".join(x.get("sources", [])[:4]) or "Unknown"
             link = _short_source_link(x)
             msg = (
@@ -146,7 +135,6 @@ def urgent_messages(items):
                 f"<b>Impact:</b> NQ <b>{_index_relevance(x, 'NQ')}/100</b> | S&amp;P 500 <b>{_index_relevance(x, 'SPX')}/100</b> | {escape(_direction_label(x.get('direction', 'NEUTRAL')))}\n"
                 f"Sources: {escape(sources)}"
             )
-            if link:
-                msg += f"\n{link}"
+            if link: msg += f"\n{link}"
             out.append(msg)
     return out
