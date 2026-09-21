@@ -29,14 +29,19 @@ CATEGORY_RULES = {
     "LABOR": ["payroll", "nonfarm", "jobs report", "jobless claims", "unemployment", "employment", "jolts", "wage growth"],
     "TREASURIES / YIELDS": ["treasury", "yield", "yields", "10-year", "2-year", "bond auction", "real yield"],
     "USD": ["dollar", "dxy", "usd", "greenback"],
-    "OIL / ENERGY": ["oil", "crude", "brent", "wti", "opec", "energy"],
-    "GEOPOLITICS": ["iran", "israel", "ukraine", "russia", "china", "taiwan", "war", "ceasefire", "missile", "strike", "sanction", "geopolit"],
+    "GLOBAL FX": ["yen", "jpy", "yuan", "renminbi", "cny", "euro", "eur", "sterling", "gbp", "australian dollar", "aud", "rupee", "inr", "fx", "foreign exchange", "currency intervention"],
+    "JAPAN / BOJ": ["japan", "nikkei", "topix", "boj", "bank of japan", "jgb", "japanese stocks", "japanese shares"],
+    "CHINA / PBOC": ["china", "shanghai composite", "shenzhen", "hang seng", "csi 300", "pboc", "people's bank of china", "chinese stocks", "chinese shares", "yuan", "renminbi"],
+    "ASIA / SEMICONDUCTORS": ["kospi", "south korea", "samsung", "sk hynix", "taiex", "taiwan", "tsmc", "taiwan semiconductor", "asia chip", "asian semiconductor"],
+    "EUROPE / ECB": ["europe", "eurozone", "dax", "stoxx", "cac", "ftse", "ecb", "european central bank", "european stocks", "european shares"],
+    "OIL / ENERGY": ["oil", "crude", "brent", "wti", "opec", "energy", "strait of hormuz", "shipping route"],
+    "GEOPOLITICS": ["iran", "israel", "ukraine", "russia", "china", "taiwan", "war", "ceasefire", "missile", "strike", "sanction", "geopolit", "taiwan strait", "middle east", "red sea", "hormuz"],
     "AI / SEMICONDUCTORS": ["nvidia", "nvda", "amd", "broadcom", "avgo", "semiconductor", "chip", "ai", "artificial intelligence", "tsmc", "micron", "intel", "arm"],
     "MEGA-CAP": ["apple", "aapl", "microsoft", "msft", "amazon", "amzn", "alphabet", "google", "meta", "tesla", "tsla"],
     "EARNINGS": ["earnings", "revenue", "profit", "eps", "guidance", "forecast", "quarterly results", "outlook"],
-    "TARIFFS / TRADE": ["tariff", "trade war", "import duty", "export control", "trade restriction"],
+    "TARIFFS / TRADE": ["tariff", "trade war", "import duty", "export control", "trade restriction", "export restriction", "rare earth", "rare-earth"],
     "REGULATION": ["sec", "antitrust", "regulator", "regulation", "lawsuit", "investigation", "approval", "ban"],
-    "INDEX / FUTURES": ["nasdaq", "nasdaq futures", "s&p 500", "spx", "qqq", "nq futures", "stock futures", "index futures"],
+    "INDEX / FUTURES": ["nasdaq", "nasdaq futures", "s&p 500", "spx", "qqq", "nq futures", "stock futures", "index futures", "nikkei", "topix", "kospi", "taiex", "dax", "stoxx", "cac", "ftse", "hang seng", "shanghai composite", "csi 300"],
 }
 
 BULLISH_WORDS = ["rise", "rises", "rally", "rallies", "jump", "jumps", "surge", "surges", "gain", "gains", "lower yields", "rate cut", "eases", "cooling inflation"]
@@ -49,12 +54,18 @@ ANCHORS = {
     "payroll": "JOBS", "nonfarm": "JOBS", "unemployment": "JOBS", "treasury": "YIELDS", "yield": "YIELDS",
     "oil": "OIL", "crude": "OIL", "iran": "IRAN", "tariff": "TARIFFS", "nasdaq": "NQ", "s&p": "SPX",
     "trump": "TRUMP", "xi": "XI", "china": "CHINA", "rare earth": "RARE_EARTHS",
+    "nikkei": "NIKKEI", "topix": "NIKKEI", "boj": "BOJ", "yen": "JPY", "jpy": "JPY", "jgb": "JGB",
+    "hang seng": "HANG_SENG", "shanghai": "CHINA_EQ", "shenzhen": "CHINA_EQ", "csi 300": "CHINA_EQ", "pboc": "PBOC", "yuan": "CNY", "renminbi": "CNY",
+    "kospi": "KOSPI", "samsung": "KOREA_SEMIs", "sk hynix": "KOREA_SEMIs", "taiex": "TAIEX", "tsmc": "TSMC",
+    "dax": "DAX", "stoxx": "EUROPE_EQ", "cac": "EUROPE_EQ", "ftse": "EUROPE_EQ", "ecb": "ECB", "euro": "EUR",
+    "rbi": "RBI", "nifty": "NIFTY", "sensex": "SENSEX", "rba": "RBA", "asx": "ASX",
 }
 
 DIRECT_NQ_TERMS = [
     "nasdaq", "nasdaq 100", "nq futures", "qqq", "stock futures", "index futures",
     "technology stocks", "tech stocks", "ai stocks", "semiconductor stocks",
     "nvidia", "nvda", "amd", "broadcom", "avgo", "micron", "intel", "meta",
+    "tsmc", "taiwan semiconductor", "sk hynix", "samsung", "asian semiconductor",
 ]
 US_EQUITY_CONTEXT = [
     "wall street", "u.s. stocks", "us stocks", "s&p 500", "dow", "equities", "stocks",
@@ -132,7 +143,7 @@ def categories(item):
     out = []
     for cat, keys in CATEGORY_RULES.items():
         if any(k in title for k in keys): out.append(cat)
-    for cat in ("FED / RATES", "INFLATION / MACRO", "LABOR", "TREASURIES / YIELDS", "USD", "OIL / ENERGY", "TARIFFS / TRADE", "GEOPOLITICS", "INDEX / FUTURES"):
+    for cat in ("FED / RATES", "INFLATION / MACRO", "LABOR", "TREASURIES / YIELDS", "USD", "GLOBAL FX", "JAPAN / BOJ", "CHINA / PBOC", "ASIA / SEMICONDUCTORS", "EUROPE / ECB", "OIL / ENERGY", "TARIFFS / TRADE", "GEOPOLITICS", "INDEX / FUTURES"):
         if cat not in out and _category_hits(summary, CATEGORY_RULES[cat]) >= 2: out.append(cat)
     return out[:3] or ["OTHER"]
 
@@ -167,6 +178,9 @@ def nq_directness(item):
     text = (item.get("title", "") + " " + item.get("summary", "")).lower()
     if any(k in text for k in DIRECT_NQ_TERMS): return 25
     if any(k in text for k in US_EQUITY_CONTEXT): return 14
+    # International events get a smaller baseline; the stronger transmission
+    # signals above (semiconductors, NQ, US equities) still dominate.
+    if any(k in text for k in ["nikkei", "topix", "boj", "japan", "hang seng", "shanghai", "pboc", "china", "kospi", "taiex", "tsmc", "dax", "stoxx", "ecb", "euro", "yen", "yuan", "taiwan strait", "geopolit"]): return 10
     return 5
 
 
@@ -177,7 +191,11 @@ def _similar(a, b):
     j = len(ta & tb) / max(1, len(ta | tb))
     shared = len(ta & tb)
     if j >= 0.50 or (shared_anchors and shared >= 3 and j >= 0.25): return True
-    for group in ({"TRUMP", "XI"}, {"FED", "YIELDS"}, {"OIL", "IRAN"}):
+    for group in (
+        {"TRUMP", "XI"}, {"FED", "YIELDS"}, {"OIL", "IRAN"},
+        {"BOJ", "JPY"}, {"PBOC", "CNY"}, {"TSMC", "TAIEX"},
+        {"KOSPI", "KOREA_SEMIs"}, {"ECB", "EUR"},
+    ):
         if group.issubset(shared_anchors): return True
     return False
 
@@ -201,13 +219,15 @@ def score_item(item, cluster_size=1):
     cats = categories(item)
     cat_weights = {
         "FED / RATES": 18, "INFLATION / MACRO": 16, "LABOR": 16, "TREASURIES / YIELDS": 15,
-        "AI / SEMICONDUCTORS": 18, "MEGA-CAP": 17, "EARNINGS": 16, "GEOPOLITICS": 8,
-        "OIL / ENERGY": 8, "TARIFFS / TRADE": 9, "REGULATION": 9, "INDEX / FUTURES": 18,
+        "AI / SEMICONDUCTORS": 18, "MEGA-CAP": 17, "EARNINGS": 16, "GEOPOLITICS": 10,
+        "OIL / ENERGY": 8, "TARIFFS / TRADE": 10, "REGULATION": 9, "INDEX / FUTURES": 18,
+        "GLOBAL FX": 11, "JAPAN / BOJ": 10, "CHINA / PBOC": 11, "ASIA / SEMICONDUCTORS": 14,
+        "EUROPE / ECB": 10,
     }
     relevance = min(30, sum(cat_weights.get(cat, 3) for cat in cats))
     direct = nq_directness(item)
     text = (item.get("title", "") + " " + item.get("summary", "")).lower()
-    impact_terms = ["unexpected", "emergency", "surprise", "beats", "misses", "guidance", "ceasefire", "strike", "tariff", "sanction", "default", "halt", "decision"]
+    impact_terms = ["unexpected", "emergency", "surprise", "beats", "misses", "guidance", "ceasefire", "strike", "tariff", "sanction", "default", "halt", "decision", "intervention", "capital controls", "export ban", "export restriction"]
     impact = min(20, sum(4 for x in impact_terms if x in text))
     quality_score = source_quality(item)
     quality = round(quality_score * 0.18)
@@ -217,58 +237,3 @@ def score_item(item, cluster_size=1):
     score = min(100, max(0, relevance + direct + impact + quality + fresh + confirmation - low_quality_penalty))
     level = "HIGH" if score >= 75 else "MEDIUM" if score >= 55 else "LOW"
     return score, level
-
-
-def _event_key(item):
-    anchors = _anchors(item.get("title", "") + " " + item.get("summary", ""))
-    if {"TRUMP", "XI"}.issubset(anchors): return "TRUMP-XI"
-    if {"FED", "YIELDS"}.issubset(anchors): return "FED-YIELDS"
-    if {"OIL", "IRAN"}.issubset(anchors): return "OIL-IRAN"
-    return ""
-
-
-def build_catalysts(items):
-    fresh_items = [x for x in items if freshness_hours(x) <= MAX_CATALYST_AGE_HOURS]
-    clusters = cluster_items(fresh_items)
-    catalysts = []
-    for cluster in clusters:
-        ranked = sorted(cluster, key=lambda x: (freshness_hours(x), -source_quality(x)))
-        lead = ranked[0].copy()
-        pubs = []
-        for x in cluster:
-            p = publisher(x)
-            if p != "Unknown" and p not in pubs: pubs.append(p)
-        cats = categories(lead)
-        score, level = score_item(lead, len(cluster))
-        lead.update({
-            "publisher": publisher(lead), "categories": cats, "direction": direction(lead), "score": score,
-            "level": level, "sources": pubs[:6], "source_count": len(pubs), "cluster_size": len(cluster),
-            "nq_directness": nq_directness(lead), "event_key": _event_key(lead),
-        })
-        catalysts.append(lead)
-    return diversified_rank(catalysts)
-
-
-def diversified_rank(items):
-    remaining = sorted(items, key=lambda x: (x.get("score", 0), source_quality(x)), reverse=True)
-    out, used_categories, used_events = [], Counter(), Counter()
-    while remaining:
-        best = None; best_value = None
-        for x in remaining:
-            primary = x.get("categories", ["OTHER"])[0]
-            event = x.get("event_key", "")
-            quality = source_quality(x)
-            category_penalty = min(18, used_categories[primary] * 7)
-            event_penalty = min(20, used_events[event] * 14) if event else 0
-            low_quality_penalty = 12 if quality < 70 else 0
-            value = x.get("score", 0) - category_penalty - event_penalty - low_quality_penalty
-            if best is None or value > best_value: best, best_value = x, value
-        remaining.remove(best)
-        used_categories[best.get("categories", ["OTHER"])[0]] += 1
-        if best.get("event_key"): used_events[best["event_key"]] += 1
-        out.append(best)
-    return out
-
-
-def catalyst_summary(items, limit=8):
-    return build_catalysts(items)[:limit]
