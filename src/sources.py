@@ -5,7 +5,7 @@ import feedparser
 
 UA = "NQ-Market-AI-Free/5.0 (+https://github.com/)"
 
-# Public RSS/search feeds. Reuters is deliberately represented through Google News RSS
+# Public RSS/search feeds. Reuters is represented through Google News RSS
 # discovery rather than bypassing Reuters controls or a paid API.
 FEEDS = [
     ("Reuters Markets", "https://news.google.com/rss/search?q=" + quote_plus("site:reuters.com markets Nasdaq stocks futures") + "&hl=en-US&gl=US&ceid=US:en", 100),
@@ -34,6 +34,16 @@ def _publisher(entry, fallback):
     return fallback
 
 
+def _entry_time(entry, field):
+    value = getattr(entry, field, None)
+    if value:
+        return value
+    parsed = getattr(entry, field + "_parsed", None)
+    if parsed:
+        return datetime.fromtimestamp(time.mktime(parsed), tz=timezone.utc).isoformat()
+    return ""
+
+
 def collect():
     out = []
     for source, url, priority in FEEDS:
@@ -44,11 +54,12 @@ def collect():
                 link = (getattr(e, "link", "") or "").strip()
                 if not title or not link:
                     continue
-                published = getattr(e, "published_parsed", None) or getattr(e, "updated_parsed", None)
-                if published:
-                    ts = datetime.fromtimestamp(time.mktime(published), tz=timezone.utc).isoformat()
-                else:
-                    ts = datetime.now(timezone.utc).isoformat()
+
+                published = _entry_time(e, "published")
+                updated = _entry_time(e, "updated")
+                if not published:
+                    published = updated or datetime.now(timezone.utc).isoformat()
+
                 summary = (getattr(e, "summary", "") or "").strip()
                 out.append({
                     "id": _id(title, link),
@@ -58,11 +69,13 @@ def collect():
                     "title": title,
                     "summary": summary,
                     "link": link,
-                    "published": ts,
+                    "published": published,
+                    "updated": updated,
                 })
         except Exception:
             # A failed source must never stop the agent.
             continue
+
     # Exact deduplication. Semantic clustering happens later in news_engine.py.
     seen = set()
     unique = []
