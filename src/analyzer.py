@@ -42,20 +42,21 @@ def report(items, open_time, minutes_to_open, confirmed_label):
             cats = ", ".join(x.get("categories", ["OTHER"])[:3])
             direction = _direction_label(x.get("direction", "NEUTRAL"))
             sources = ", ".join(x.get("sources", [])[:4]) or "Unknown"
-            confirmation = "CONFIRMED" if x.get("source_count", 1) >= 2 else "SINGLE SOURCE"
+            source_status = "MULTI-PUBLISHER" if x.get("source_count", 1) >= 2 else "SINGLE PUBLISHER"
             freshness = freshness_hours(x)
             age = f"{freshness:.1f}h old" if freshness < 48 else f"{freshness:.0f}h old"
             lines.append(f"{i}. [{x['level']}] {x['title']}")
             lines.append(f"   Category: {cats}")
             lines.append(f"   NQ relevance: {x['score']}/100 | {direction}")
-            lines.append(f"   Sources: {sources} | {confirmation} | {age}")
+            lines.append(f"   Sources: {sources} | {source_status} | {age}")
             lines.append(f"   {x['link']}")
 
     lines += [
         "",
         "━━━━━━━━━━━━━━━━━━━━",
         "🧭 NEWS ENGINE",
-        "Clusters duplicate/syndicated headlines into catalysts and weights direct NQ relevance, publisher quality, freshness and cross-source confirmation.",
+        "Clusters duplicate/syndicated headlines into catalysts and weights direct NQ relevance, publisher quality, freshness and cross-source coverage.",
+        "Multi-publisher coverage does not necessarily mean independent confirmation; syndicated wire stories can appear under multiple publishers.",
         "Direction is descriptive of the event/headline language, not a price forecast.",
         "",
         "⚠️ Verification: public-source collection and rule-based checks only. Absence of confirmation is not proof of falsity.",
