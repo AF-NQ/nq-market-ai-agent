@@ -72,6 +72,6 @@ def test_format_radar_has_event_level_strength_and_full_market_map():
     assert "VOLATILITY WATCH — MOVE POTENTIAL" in report
     assert "Catalyst Strength:" in report
     assert "CME MARKET MAP — BENCHMARK FUTURES" in report
-    assert "ES — E-mini S&P 500" in report
-    assert "CL — WTI Crude Oil" in report
+    assert "<b>ES</b> — E-mini S&P 500" in report
+    assert "<b>CL</b> — WTI Crude Oil" in report
     assert "Catalyst <b>" not in report
