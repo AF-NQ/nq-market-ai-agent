@@ -23,20 +23,23 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Run real premarket test
+      - name: Run unit tests
+        run: pytest -q
+
+      - name: Run real premarket news test
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           MARKET_TIMEZONE: America/New_York
-
-          # Use a completely separate state file.
+          PREOPEN_MINUTES: '1440'
+          PREOPEN_WINDOW_MINUTES: '1440'
           STATE_PATH: data/test-premarket-state.json
-
         run: |
-          echo "=== REAL TELEGRAM PREMARKET TEST ==="
-          echo "Collecting real market news..."
+          echo "=== REAL NQ NEWS ENGINE TELEGRAM TEST ==="
+          echo "Collecting live public market news..."
+          echo "Clustering duplicate headlines into catalysts..."
           echo "Building the same report used by production..."
-          echo "Sending report to Telegram..."
+          echo "Sending the report to Telegram..."
           echo ""
 
           python - <<'PY'
@@ -53,42 +56,36 @@ jobs:
           from src.hedge_funds import collect_13f
           from src.telegram import send
 
-          print("1. Collecting news...")
+          print("1. Collecting live news...")
           store = Store(CONFIG.database_path)
-
           raw = collect()
-          print(f"   Collected: {len(raw)}")
+          print(f"   Collected raw items: {len(raw)}")
 
-          print("2. Applying relevance checks...")
+          print("2. Applying compatibility relevance checks...")
           for x in raw:
               s, level, reasons = relevance(x)
-              x.update(score=s, level=level, reasons=reasons)
+              x.update(legacy_score=s, legacy_level=level, reasons=reasons)
 
           new = store.new_events(raw)
-          print(f"   New events: {len(new)}")
+          print(f"   New items in test state: {len(new)}")
 
-          print("3. Ranking events...")
+          print("3. Building catalyst clusters and ranking...")
           ranked = analyze(new)
-          print(f"   Ranked events: {len(ranked)}")
+          print(f"   Final catalysts: {len(ranked)}")
 
-          print("4. Getting next US market open...")
+          for i, x in enumerate(ranked[:10], 1):
+              print(f"   {i}. [{x['level']}] {x['title']} | {x['score']}/100 | {x.get('sources', [])}")
+
+          print("4. Resolving next US cash open (display only; no production gate)...")
           now = datetime.now(ZoneInfo(CONFIG.timezone))
           op = next_open(now)
-
           minutes_to_open = (op - now).total_seconds() / 60
-
           print(f"   Current time: {now}")
           print(f"   Next open: {op}")
           print(f"   Minutes to open: {minutes_to_open:.1f}")
 
-          print("5. Building REAL premarket report...")
-
-          msg = report(
-              ranked,
-              op,
-              minutes_to_open,
-              "source-check"
-          )
+          print("5. Building REAL NQ premarket-format report...")
+          msg = report(ranked, op, minutes_to_open, "source-check")
 
           earnings = upcoming_earnings()
           if earnings:
@@ -105,39 +102,28 @@ jobs:
               msg += (
                   "\n\n🏦 13F / HEDGE-FUND DISCOVERY\n"
                   + "\n".join(
-                      f'• {x["title"]}\n {x["link"]}'
+                      f'• {x["title"]}\n  {x["link"]}'
                       for x in funds[:5]
                   )
               )
 
+          print("\n===== TELEGRAM MESSAGE PREVIEW =====")
+          print(msg)
+          print("===== END TELEGRAM MESSAGE PREVIEW =====\n")
+
           print("6. Sending REAL report to Telegram...")
-          print(f"   Message length: {len(msg)} characters")
-
-          ok = send(
-              CONFIG.telegram_token,
-              CONFIG.telegram_chat_id,
-              msg
-          )
-
+          ok = send(CONFIG.telegram_token, CONFIG.telegram_chat_id, msg)
           if not ok:
               raise RuntimeError("Telegram send() returned False")
-
           print("   ✅ MAIN PREMARKET REPORT SENT")
 
-          print("7. Checking urgent alerts...")
-
+          print("7. Checking urgent catalyst alerts...")
           alerts = urgent_messages(ranked)
-
           print(f"   Urgent alerts: {len(alerts)}")
-
           for alert in alerts:
-              send(
-                  CONFIG.telegram_token,
-                  CONFIG.telegram_chat_id,
-                  alert
-              )
+              if not send(CONFIG.telegram_token, CONFIG.telegram_chat_id, alert):
+                  raise RuntimeError("Telegram urgent alert send() returned False")
               print("   ✅ Urgent alert sent")
 
-          print("")
-          print("=== TEST COMPLETED SUCCESSFULLY ===")
+          print("\n=== TEST COMPLETED SUCCESSFULLY ===")
           PY
