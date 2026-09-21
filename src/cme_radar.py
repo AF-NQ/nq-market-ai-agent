@@ -69,15 +69,65 @@ def _text(item):
 
 
 def _direction(item, contract: Contract):
-    direction = str(item.get("direction", "NEUTRAL") or "NEUTRAL").upper()
-    if direction not in {"BULLISH", "BEARISH", "MIXED", "NEUTRAL"}:
-        direction = "NEUTRAL"
-    return {
-        "BULLISH": "BULLISH PRESSURE",
-        "BEARISH": "BEARISH PRESSURE",
-        "MIXED": "MIXED",
-        "NEUTRAL": "NEUTRAL",
-    }[direction]
+    """Infer catalyst direction for the specific contract, not just the headline."""
+    raw = str(item.get("direction", "NEUTRAL") or "NEUTRAL").upper()
+    title, text = _text(item)
+
+    bull = ("rise", "rises", "rally", "rallies", "jump", "jumps", "surge", "surges", "gain", "gains", "higher", "recovery", "recover", "optimism", "lower yields", "yields retreat", "yields ease", "rate cut", "dovish", "cooling inflation")
+    bear = ("fall", "falls", "drop", "drops", "plunge", "plunges", "selloff", "sell-off", "lower", "higher yields", "yields rise", "yields jump", "rate hike", "hawkish", "hotter inflation", "inflation rises", "tariff escalation")
+
+    def has_any(terms):
+        return any(term in text for term in terms)
+
+    # Rates futures move opposite to Treasury yields; SOFR futures are also rate-sensitive.
+    if contract.group == "INTEREST RATES":
+        if has_any(("yields retreat", "yields ease", "lower yields", "yield falls", "yields fall", "yields decline")):
+            return "BULLISH PRESSURE"
+        if has_any(("higher yields", "yields rise", "yields jump", "yield rises", "yield climbs", "yields climb")):
+            return "BEARISH PRESSURE"
+
+    # Broad equities generally benefit from falling yields / easier policy and are pressured by rising yields.
+    if contract.group == "EQUITY INDEX":
+        if has_any(("rally", "rallies", "gain", "gains", "higher", "recovery", "recover", "optimism", "lower yields", "yields retreat", "rate cut", "dovish")):
+            return "BULLISH PRESSURE"
+        if has_any(("selloff", "sell-off", "fall", "falls", "drop", "drops", "higher yields", "yields rise", "rate hike", "hawkish")):
+            return "BEARISH PRESSURE"
+
+    # Energy: price direction and supply/demand shocks are contract-specific.
+    if contract.group == "ENERGY":
+        if contract.symbol == "CL" and has_any(("oil rises", "oil rise", "oil jumps", "oil surges", "crude rises", "crude jumps", "supply disruption", "supply cut", "opec cut", "production cut")):
+            return "BULLISH PRESSURE"
+        if contract.symbol == "CL" and has_any(("oil eases", "oil falls", "oil drops", "crude falls", "crude drops", "demand weakens")):
+            return "BEARISH PRESSURE"
+        if contract.symbol in {"RB", "HO"} and has_any(("oil eases", "oil falls", "crude falls", "refinery outage", "refinery shutdown")):
+            return "MIXED"
+
+    # Precious metals are generally helped by lower yields / weaker dollar, but geopolitics can be mixed.
+    if contract.group == "METALS":
+        if has_any(("lower yields", "yields retreat", "yields ease", "dollar falls", "dollar weakens", "usd falls")):
+            return "BULLISH PRESSURE"
+        if has_any(("higher yields", "yields rise", "yields jump", "dollar rises", "dollar strengthens", "usd rises")):
+            return "BEARISH PRESSURE"
+
+    # Direct currency catalysts should be directional; intervention/watch headlines remain mixed unless a move is explicit.
+    if contract.group == "FX":
+        if contract.symbol == "6J" and has_any(("yen intervention", "intervention watch", "intervention risk")):
+            return "MIXED"
+        if contract.symbol == "6E" and has_any(("euro rises", "euro gains", "euro strengthens")):
+            return "BULLISH PRESSURE"
+        if contract.symbol == "6E" and has_any(("euro falls", "euro drops", "euro weakens")):
+            return "BEARISH PRESSURE"
+        if contract.symbol == "6C" and has_any(("oil rises", "oil jumps", "crude rises")):
+            return "BULLISH PRESSURE"
+        if contract.symbol == "6C" and has_any(("oil falls", "oil drops", "crude falls", "oil eases")):
+            return "BEARISH PRESSURE"
+        if contract.symbol == "NKD" and has_any(("nikkei rises", "nikkei gains", "japan stocks rise", "japanese stocks rise")):
+            return "BULLISH PRESSURE"
+
+    # Use the engine direction only when it is genuinely directional.
+    if raw in {"BULLISH", "BEARISH", "MIXED"}:
+        return {"BULLISH": "BULLISH PRESSURE", "BEARISH": "BEARISH PRESSURE", "MIXED": "MIXED"}[raw]
+    return "NEUTRAL"
 
 
 def catalyst_strength(item):
@@ -109,7 +159,6 @@ def score_contract(item, contract: Contract):
     if not title_hits and not specific_hits:
         return 0, 0, []
 
-    # Prevent generic market-context mentions from becoming false contract catalysts.
     if contract.symbol == "CL":
         oil_specific = {"wti", "brent", "opec", "opec+", "iran", "israel", "middle east", "hormuz", "supply", "inventory", "eia"}
         if not any(k in {h.lower() for h in specific_hits} for k in oil_specific):
@@ -198,23 +247,27 @@ def format_radar(items, limit=18):
     grouped = _group_by_catalyst(rows)
     for group_rows in grouped:
         title = group_rows[0]["title"]
+        strength = max(r["catalyst_strength"] for r in group_rows)
+        lines += ["", f"<b>⚡ CATALYST — {title}</b>", f"<i>Catalyst Strength: {strength}/100</i>"]
         group_names = sorted({r["group"] for r in group_rows}, key=lambda g: GROUPS.index(g))
-        lines += ["", f"<b>⚡ CATALYST — {title}</b>"]
         for group_name in group_names:
             lines.append(f"<b>{group_name}</b>")
             for row in sorted((r for r in group_rows if r["group"] == group_name), key=lambda r: r["move_potential"], reverse=True):
                 lines.append(
                     f'<b>{row["symbol"]}</b> — {row["name"]} | '
-                    f'Impact <b>{row["impact"]}</b> | Move <b>{row["move_potential"]}</b> | '
-                    f'Catalyst <b>{row["catalyst_strength"]}</b> | {row["direction"]}'
+                    f'Impact <b>{row["impact"]}</b> | Move <b>{row["move_potential"]}</b> | {row["direction"]}'
                 )
 
-    material_groups = {r["group"] for r in all_material}
-    missing = [g for g in GROUPS if g not in material_groups]
-    if missing:
-        lines += ["", "<b>NO MATERIAL CATALYST</b>"]
-        for group in missing:
-            lines.append(f"• {group}")
+    lines += ["", "<b>📊 CME MARKET MAP — BENCHMARK FUTURES</b>"]
+    by_symbol = {r["symbol"]: r for r in all_material}
+    for group in GROUPS:
+        lines.append(f"<b>{group}</b>")
+        for contract in [c for c in CONTRACTS if c.group == group]:
+            row = by_symbol.get(contract.symbol)
+            if row:
+                lines.append(f'<b>{contract.symbol}</b> — {contract.name} | Impact {row["impact"]} | Move {row["move_potential"]} | {row["direction"]}')
+            else:
+                lines.append(f"<b>{contract.symbol}</b> — {contract.name} | — no material catalyst")
 
     lines += ["", "<i>Universe focuses on major liquid CME Group benchmark futures across equity indexes, rates, FX, energy, metals, agriculture and crypto; it is not an exhaustive contract directory.</i>"]
     return "\n".join(lines)
