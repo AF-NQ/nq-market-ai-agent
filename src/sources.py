@@ -3,14 +3,28 @@ from datetime import datetime, timezone
 from urllib.parse import quote_plus
 import feedparser
 
-UA = "NQ-Market-AI-Free/5.0 (+https://github.com/)"
+UA = "NQ-Market-AI-Free/5.1 (+https://github.com/)"
 
 # Public RSS/search feeds. Reuters is represented through Google News RSS
 # discovery rather than bypassing Reuters controls or a paid API.
+# The Global Markets layer deliberately watches major international markets,
+# central banks, FX and geopolitical risk because these can transmit into NQ/SPX.
 FEEDS = [
     ("Reuters Markets", "https://news.google.com/rss/search?q=" + quote_plus("site:reuters.com markets Nasdaq stocks futures") + "&hl=en-US&gl=US&ceid=US:en", 100),
     ("Reuters Trump", "https://news.google.com/rss/search?q=" + quote_plus("site:reuters.com Trump tariffs markets") + "&hl=en-US&gl=US&ceid=US:en", 100),
     ("Reuters Global", "https://news.google.com/rss/search?q=" + quote_plus("site:reuters.com global markets Fed oil yields") + "&hl=en-US&gl=US&ceid=US:en", 100),
+
+    # Global Markets — Japan / China / Korea / Taiwan / Europe / India / Australia.
+    ("Japan Markets", "https://news.google.com/rss/search?q=" + quote_plus("Japan Nikkei TOPIX BOJ yen JGB markets") + "&hl=en-US&gl=US&ceid=US:en", 90),
+    ("China Markets", "https://news.google.com/rss/search?q=" + quote_plus("China Shanghai Shenzhen Hang Seng CSI 300 PBOC yuan markets") + "&hl=en-US&gl=US&ceid=US:en", 90),
+    ("Korea Markets", "https://news.google.com/rss/search?q=" + quote_plus("South Korea KOSPI Samsung SK Hynix exports markets") + "&hl=en-US&gl=US&ceid=US:en", 85),
+    ("Taiwan Markets", "https://news.google.com/rss/search?q=" + quote_plus("Taiwan TAIEX TSMC semiconductor markets") + "&hl=en-US&gl=US&ceid=US:en", 90),
+    ("Europe Markets", "https://news.google.com/rss/search?q=" + quote_plus("Europe DAX STOXX CAC FTSE ECB euro markets") + "&hl=en-US&gl=US&ceid=US:en", 85),
+    ("India Markets", "https://news.google.com/rss/search?q=" + quote_plus("India Nifty Sensex RBI rupee markets") + "&hl=en-US&gl=US&ceid=US:en", 75),
+    ("Australia Markets", "https://news.google.com/rss/search?q=" + quote_plus("Australia ASX RBA Australian dollar markets") + "&hl=en-US&gl=US&ceid=US:en", 70),
+    ("Global FX Central Banks", "https://news.google.com/rss/search?q=" + quote_plus("BOJ PBOC ECB Fed yen yuan euro dollar central banks markets") + "&hl=en-US&gl=US&ceid=US:en", 90),
+    ("Global Geopolitics", "https://news.google.com/rss/search?q=" + quote_plus("Taiwan Strait China US Iran Israel Russia Ukraine sanctions war markets") + "&hl=en-US&gl=US&ceid=US:en", 95),
+
     ("Fed", "https://www.federalreserve.gov/feeds/press_all.xml", 100),
     ("SEC", "https://www.sec.gov/news/pressreleases.rss", 100),
     ("BLS", "https://www.bls.gov/feed/bls_latest.rss", 95),
