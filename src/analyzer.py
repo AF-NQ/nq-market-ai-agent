@@ -2,51 +2,56 @@ from datetime import datetime
 from html import escape
 
 from .news_engine import catalyst_summary, freshness_hours, nq_directness, publisher
+from .scoring import score_event
 from .verify import relevance
+
+
+def _apply_event_scores(items):
+    """Attach explainable public metrics without changing source collection."""
+    for x in items:
+        metrics = score_event(x)
+        x.update(metrics)
+        # Keep the old score for backwards compatibility/debugging only.
+        x["legacy_score"] = x.get("score", 0)
+        x["legacy_level"] = x.get("level", "LOW")
+        # Public catalyst level is based on event impact + NQ relevance,
+        # not publisher quality or freshness.
+        materiality = round(0.55 * x["market_impact"] + 0.45 * x["nq_relevance"])
+        x["public_materiality"] = materiality
+        x["public_level"] = "HIGH" if materiality >= 75 else "MEDIUM" if materiality >= 55 else "LOW"
+    return items
 
 
 def analyze(items):
     for x in items:
         s, l, r = relevance(x)
-        x["legacy_score"] = s
-        x["legacy_level"] = l
+        x["verification_score"] = s
+        x["verification_level"] = l
         x["reasons"] = r
     catalysts = catalyst_summary(items, limit=20)
-    # KEY CATALYSTS should contain material events only. A low-scoring article
-    # may still be useful as background, but should not occupy a premarket slot.
-    return [x for x in catalysts if x.get("score", 0) >= 55]
+    _apply_event_scores(catalysts)
+    # Rank for display with the new explainable score. Low-materiality articles
+    # remain available to the engine but do not occupy key premarket slots.
+    catalysts.sort(key=lambda x: x.get("ranking_score", 0), reverse=True)
+    return [x for x in catalysts if x.get("public_materiality", 0) >= 55]
 
 
 def _direction_label(direction):
     return {
-        "BULLISH": "BULLISH PRESSURE", "BEARISH": "BEARISH PRESSURE",
-        "MIXED": "MIXED", "NEUTRAL": "NEUTRAL",
+        "BULLISH": "BULLISH PRESSURE",
+        "BEARISH": "BEARISH PRESSURE",
+        "MIXED": "MIXED PRESSURE",
+        "NEUTRAL": "NEUTRAL",
     }.get(direction, "NEUTRAL")
 
 
-def _spx_directness(item):
-    text = (item.get("title", "") + " " + item.get("summary", "")).lower()
-    direct_terms = [
-        "s&p 500", "s&p500", "spx", "spy", "dow", "wall street", "u.s. stocks",
-        "us stocks", "equities", "stock market", "index futures", "stocks",
-    ]
-    macro_terms = [
-        "fed", "federal reserve", "fomc", "interest rate", "inflation", "cpi",
-        "ppi", "payroll", "jobs report", "unemployment", "treasury", "yield",
-        "dollar", "oil", "crude", "tariff", "trade war", "geopolitics",
-    ]
-    if any(k in text for k in direct_terms): return 25
-    if any(k in text for k in macro_terms): return 21
-    if any(k in text for k in ["nvidia", "nvda", "apple", "microsoft", "amazon", "meta", "amd", "broadcom"]): return 18
-    return 10
-
-
 def _index_relevance(item, index):
-    base = int(item.get("score", 0))
-    if index == "NQ": return max(0, min(100, base))
-    nq_component = int(item.get("nq_directness", nq_directness(item)))
-    spx_component = _spx_directness(item)
-    return max(0, min(100, base - nq_component + spx_component))
+    # New explicit index relevance replaces the old reuse of the internal
+    # news-engine ranking score. Keep a safe fallback for older callers/tests.
+    key = "nq_relevance" if index == "NQ" else "spx_relevance"
+    if key in item:
+        return int(item[key])
+    return int(item.get("score", 0))
 
 
 def _source_link_label(item):
@@ -135,6 +140,21 @@ def _finviz_insider_block(insiders):
     return lines
 
 
+def _catalyst_metrics_line(x):
+    nq = _index_relevance(x, "NQ")
+    spx = _index_relevance(x, "SPX")
+    impact = int(x.get("market_impact", x.get("score", 0)))
+    direction = _direction_label(x.get("equity_direction", x.get("direction", "NEUTRAL")))
+    confidence = int(x.get("direction_confidence", 0))
+    return (
+        f"<b>Market Impact:</b> <b>{impact}/100</b> | "
+        f"<b>NQ Relevance:</b> <b>{nq}/100</b> | "
+        f"<b>S&amp;P 500 Relevance:</b> <b>{spx}/100</b> | "
+        f"<b>Direction:</b> {escape(direction)} | "
+        f"<b>Direction Confidence:</b> <b>{confidence}/100</b>"
+    )
+
+
 def report(items, open_time, minutes_to_open, confirmed_label, earnings=None, finviz=None):
     now = datetime.now(open_time.tzinfo) if open_time.tzinfo else datetime.now()
     now_text = now.strftime("%Y-%m-%d %H:%M %Z")
@@ -151,28 +171,26 @@ def report(items, open_time, minutes_to_open, confirmed_label, earnings=None, fi
     else:
         for i, x in enumerate(items[:8], 1):
             cats = ", ".join(x.get("categories", ["OTHER"])[:3])
-            direction = _direction_label(x.get("direction", "NEUTRAL"))
             sources = ", ".join(x.get("sources", [])[:4]) or "Unknown"
             source_status = "MULTI-PUBLISHER" if x.get("source_count", 1) >= 2 else "SINGLE PUBLISHER"
             freshness = freshness_hours(x)
             age = f"{freshness:.1f}h old" if freshness < 48 else f"{freshness:.0f}h old"
-            nq = _index_relevance(x, "NQ")
-            spx = _index_relevance(x, "SPX")
             link = _short_source_link(x)
+            level = x.get("public_level", x.get("level", "MEDIUM"))
             lines += [
                 "",
-                f"<b>{i}. [{escape(str(x['level']))}] {escape(str(x['title']))}</b>",
+                f"<b>{i}. [{escape(str(level))}] {escape(str(x['title']))}</b>",
                 f"<b>Category:</b> {escape(cats)}",
-                f"<b>Impact:</b> NQ <b>{nq}/100</b> | S&amp;P 500 <b>{spx}/100</b> | {escape(direction)}",
+                _catalyst_metrics_line(x),
                 f"Sources: {escape(sources)} | {source_status} | {escape(age)}",
             ]
             if link: lines.append(link)
 
     lines += [
         "", "━━━━━━━━━━━━━━━━━━━━", "<b>🧭 NEWS ENGINE</b>",
-        "<i>Clusters duplicate/syndicated headlines into catalysts and weights direct NQ relevance, publisher quality, freshness and cross-source coverage.</i>",
+        "<i>Market Impact = intrinsic significance of the event. NQ/SPX Relevance = estimated transmission to the index. Direction = descriptive equity pressure, not a price forecast.</i>",
+        "<i>Source quality, freshness and cross-source coverage affect confidence/ranking; they do not inflate the event's Market Impact.</i>",
         "<i>Multi-publisher coverage does not necessarily mean independent confirmation; syndicated wire stories can appear under multiple publishers.</i>",
-        "<i>Direction is descriptive of the event/headline language, not a price forecast.</i>",
         "", "<i>⚠️ Verification: public-source collection and rule-based checks only. Absence of confirmation is not proof of falsity.</i>",
     ]
     lines.extend(_earnings_block(earnings or [], finviz.get("earnings", [])))
@@ -183,14 +201,16 @@ def report(items, open_time, minutes_to_open, confirmed_label, earnings=None, fi
 def urgent_messages(items):
     out = []
     for x in items:
-        if x.get("level") == "HIGH" and x.get("score", 0) >= 88 and x.get("nq_directness", 0) >= 14 and freshness_hours(x) <= 3:
+        impact = int(x.get("market_impact", x.get("score", 0)))
+        nq = _index_relevance(x, "NQ")
+        if x.get("public_level", x.get("level")) == "HIGH" and impact >= 88 and nq >= 80 and freshness_hours(x) <= 3:
             sources = ", ".join(x.get("sources", [])[:4]) or "Unknown"
             link = _short_source_link(x)
             msg = (
                 "<b>🚨 NQ HIGH-IMPACT CATALYST</b>\n"
                 f"<b>{escape(str(x['title']))}</b>\n"
                 f"<b>Category:</b> {escape(', '.join(x.get('categories', ['OTHER'])[:3]))}\n"
-                f"<b>Impact:</b> NQ <b>{_index_relevance(x, 'NQ')}/100</b> | S&amp;P 500 <b>{_index_relevance(x, 'SPX')}/100</b> | {escape(_direction_label(x.get('direction', 'NEUTRAL')))}\n"
+                f"{_catalyst_metrics_line(x)}\n"
                 f"Sources: {escape(sources)}"
             )
             if link: msg += f"\n{link}"
