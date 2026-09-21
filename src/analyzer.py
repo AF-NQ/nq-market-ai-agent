@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from .news_engine import catalyst_summary
+from .news_engine import catalyst_summary, freshness_hours
 from .verify import relevance
 
 
@@ -41,20 +41,22 @@ def report(items, open_time, minutes_to_open, confirmed_label):
         for i, x in enumerate(items[:8], 1):
             cats = ", ".join(x.get("categories", ["OTHER"])[:3])
             direction = _direction_label(x.get("direction", "NEUTRAL"))
-            sources = ", ".join(x.get("sources", [])[:4])
+            sources = ", ".join(x.get("sources", [])[:4]) or "Unknown"
             confirmation = "CONFIRMED" if x.get("source_count", 1) >= 2 else "SINGLE SOURCE"
+            freshness = freshness_hours(x)
+            age = f"{freshness:.1f}h old" if freshness < 48 else f"{freshness:.0f}h old"
             lines.append(f"{i}. [{x['level']}] {x['title']}")
             lines.append(f"   Category: {cats}")
             lines.append(f"   NQ relevance: {x['score']}/100 | {direction}")
-            lines.append(f"   Sources: {sources} | {confirmation}")
+            lines.append(f"   Sources: {sources} | {confirmation} | {age}")
             lines.append(f"   {x['link']}")
 
     lines += [
         "",
         "━━━━━━━━━━━━━━━━━━━━",
         "🧭 NEWS ENGINE",
-        "Clusters similar headlines into catalysts; separates publisher quality, freshness and cross-source confirmation.",
-        "Direction is descriptive of the headline/event language, not a price forecast.",
+        "Clusters duplicate/syndicated headlines into catalysts and weights direct NQ relevance, publisher quality, freshness and cross-source confirmation.",
+        "Direction is descriptive of the event/headline language, not a price forecast.",
         "",
         "⚠️ Verification: public-source collection and rule-based checks only. Absence of confirmation is not proof of falsity.",
     ]
@@ -62,10 +64,16 @@ def report(items, open_time, minutes_to_open, confirmed_label):
 
 
 def urgent_messages(items):
+    """Intraday alerts only: very fresh, high-impact and directly relevant catalysts."""
     out = []
     for x in items:
-        if x.get("level") == "HIGH" and x.get("score", 0) >= 80:
-            sources = ", ".join(x.get("sources", [])[:4])
+        if (
+            x.get("level") == "HIGH"
+            and x.get("score", 0) >= 88
+            and x.get("nq_directness", 0) >= 14
+            and freshness_hours(x) <= 3
+        ):
+            sources = ", ".join(x.get("sources", [])[:4]) or "Unknown"
             out.append(
                 "🚨 NQ HIGH-IMPACT CATALYST\n"
                 f"{x['title']}\n"
