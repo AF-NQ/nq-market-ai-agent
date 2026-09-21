@@ -58,19 +58,8 @@ def _weekdays(start):
     return [monday + timedelta(days=i) for i in range(5)]
 
 
-def collect_earnings(days=5, start_date=None):
-    """Return watchlist earnings from Finviz for the current trading week."""
-    start = start_date or date.today()
-    try:
-        html = _get(FINVIZ_EARNINGS.format(date=start.isoformat()))
-    except Exception:
-        return []
-
+def _earnings_tables(html):
     soup = BeautifulSoup(html, "html.parser")
-    results = []
-    week_dates = _weekdays(start)
-    cutoff = start + timedelta(days=max(0, days - 1))
-
     tables = []
     for table in soup.find_all("table"):
         rows = table.find_all("tr")
@@ -79,37 +68,69 @@ def collect_earnings(days=5, start_date=None):
         header = " ".join(c.get_text(" ", strip=True).lower() for c in rows[0].find_all(["th", "td"]))
         if "ticker" in header and "company" in header and "time" in header:
             tables.append(table)
+    return tables
 
-    for table_index, table in enumerate(tables[:5]):
-        if table_index >= len(week_dates):
-            break
-        day = week_dates[table_index]
-        if day < start or day > cutoff:
+
+def collect_earnings(days=5, start_date=None):
+    """Return watchlist earnings from Finviz for the next trading days."""
+    start = start_date or date.today()
+    target_days = []
+    d = start
+    while len(target_days) < days:
+        if d.weekday() < 5:
+            target_days.append(d)
+        d += timedelta(days=1)
+
+    results = []
+    week_start = start - timedelta(days=start.weekday())
+    weeks_needed = 1 + ((target_days[-1] - week_start).days // 7)
+
+    for week_offset in range(weeks_needed):
+        page_date = week_start + timedelta(days=7 * week_offset)
+        try:
+            html = _get(FINVIZ_EARNINGS.format(date=page_date.isoformat()))
+        except Exception:
             continue
-        for row in table.find_all("tr")[1:]:
-            cells = [c.get_text(" ", strip=True) for c in row.find_all(["th", "td"])]
-            if len(cells) < 3:
+        tables = _earnings_tables(html)
+        week_dates = _weekdays(page_date)
+        for table_index, table in enumerate(tables[:5]):
+            if table_index >= len(week_dates):
+                break
+            day = week_dates[table_index]
+            if day not in target_days:
                 continue
-            symbol = re.sub(r"[^A-Z0-9.\-]", "", cells[0].upper())
-            if symbol not in WATCHLIST:
-                continue
-            timing = cells[2].upper()
-            if timing == "BMO":
-                timing = "BEFORE OPEN"
-            elif timing == "AMC":
-                timing = "AFTER CLOSE"
-            else:
-                timing = timing or "TIME N/A"
-            results.append({
-                "symbol": symbol,
-                "company": WATCHLIST[symbol],
-                "date": day.isoformat(),
-                "time": timing,
-                "indexes": index_memberships(symbol),
-                "finviz": True,
-                "source": "Finviz",
-            })
-    return results
+            for row in table.find_all("tr")[1:]:
+                cells = [c.get_text(" ", strip=True) for c in row.find_all(["th", "td"])]
+                if len(cells) < 3:
+                    continue
+                symbol = re.sub(r"[^A-Z0-9.\-]", "", cells[0].upper())
+                if symbol not in WATCHLIST:
+                    continue
+                timing = cells[2].upper()
+                if timing == "BMO":
+                    timing = "BEFORE OPEN"
+                elif timing == "AMC":
+                    timing = "AFTER CLOSE"
+                else:
+                    timing = timing or "TIME N/A"
+                results.append({
+                    "symbol": symbol,
+                    "company": WATCHLIST[symbol],
+                    "date": day.isoformat(),
+                    "time": timing,
+                    "indexes": index_memberships(symbol),
+                    "finviz": True,
+                    "source": "Finviz",
+                })
+    seen = set()
+    unique = []
+    for item in results:
+        key = (item["date"], item["symbol"])
+        if key in seen:
+            continue
+        seen.add(key)
+        unique.append(item)
+    return unique
 
 
 def collect_insider_activity(days=7, start_date=None):
