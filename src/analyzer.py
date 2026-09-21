@@ -1,8 +1,7 @@
 from datetime import datetime
 from html import escape
-from urllib.parse import urlparse
 
-from .news_engine import catalyst_summary, freshness_hours, nq_directness
+from .news_engine import catalyst_summary, freshness_hours, nq_directness, publisher
 from .verify import relevance
 
 
@@ -47,18 +46,41 @@ def _index_relevance(item, index):
     return max(0, min(100, base - nq_component + spx_component))
 
 
+def _source_link_label(item):
+    """Use the normalized publisher instead of the final redirect URL host."""
+    p = publisher(item).lower()
+    if "reuters" in p: return "Read Reuters"
+    if "cnbc" in p: return "Read CNBC"
+    if "yahoo" in p: return "Read Yahoo Finance"
+    if "economic times" in p or "economictimes" in p: return "Read Economic Times"
+    if "motley fool" in p or "motleyfool" in p: return "Read Motley Fool"
+    if "marketwatch" in p: return "Read MarketWatch"
+    if "investing.com" in p or "investing" in p: return "Read Investing.com"
+    if "seeking alpha" in p: return "Read Seeking Alpha"
+    return f"Read {publisher(item)}" if publisher(item) not in {"Unknown", ""} else "Read article"
+
+
 def _short_source_link(item):
     link = (item.get("link") or "").strip()
-    if not link: return ""
-    try: host = urlparse(link).netloc.lower().replace("www.", "")
-    except Exception: host = ""
-    label = "Read article"
-    if "reuters" in host: label = "Read Reuters"
-    elif "cnbc" in host: label = "Read CNBC"
-    elif "yahoo" in host: label = "Read Yahoo Finance"
-    elif "economictimes" in host: label = "Read Economic Times"
-    elif "motleyfool" in host: label = "Read Motley Fool"
-    return f'<a href="{escape(link, quote=True)}">{label}</a>'
+    if not link:
+        return ""
+    from html import escape as html_escape
+    return f'<a href="{html_escape(link, quote=True)}">{html_escape(_source_link_label(item))}</a>'
+
+
+def _normalize_earnings_time(raw):
+    value = str(raw or "").strip().lower()
+    if not value:
+        return "TIME N/A"
+    if any(x in value for x in ("after-hours", "after hours", "afterhours", "post-market", "post market")):
+        return "AFTER CLOSE"
+    if any(x in value for x in ("pre-market", "pre market", "premarket", "before-open", "before open")):
+        return "BEFORE OPEN"
+    if value in {"time-not-supplied", "not supplied", "tbd", "n/a", "na"}:
+        return "TIME N/A"
+    if value in {"during-market", "during market", "intraday", "market hours"}:
+        return "INTRADAY"
+    return str(raw).upper().replace("_", " ").replace("-", " ")
 
 
 def _earnings_block(earnings):
@@ -73,12 +95,12 @@ def _earnings_block(earnings):
         except Exception: label = date
         lines.append(f"<b>{escape(label)}</b>")
         for e in rows:
-            timing = e.get("time") or "time n/a"
+            timing = _normalize_earnings_time(e.get("time"))
             indexes = e.get("indexes") or []
             index_label = " + ".join(indexes) if indexes else "Watchlist"
             lines.append(
                 f'• <b>{escape(e["symbol"])}</b> {escape(e["company"])} '
-                f'— <b>{escape(index_label)}</b> — {escape(timing)}'
+                f'— <b>{escape(index_label)}</b> — <b>{escape(timing)}</b>'
             )
     lines.append("<i>Times/calendar dates come from the free public calendar and should be treated as indicative until company-confirmed.</i>")
     return lines
