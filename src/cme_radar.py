@@ -1,4 +1,4 @@
-"""Rule-based CME futures news radar for the Telegram premarket test.
+"""Rule-based CME futures news radar for the Telegram premarket feed.
 
 Maps ranked news catalysts to major liquid CME Group futures. Contract bias is
 kept separate from NQ/SPX news pressure and is never a price forecast.
@@ -156,7 +156,7 @@ def _contract_bias_label(direction):
 
 
 def enrich_test_directions(items):
-    """Improve only the Telegram test's headline-level direction labels."""
+    """Improve Telegram headline-level equity direction labels."""
     for item in items:
         title = str(item.get("title", "")).lower()
         current = str(item.get("direction", "NEUTRAL") or "NEUTRAL").upper()
