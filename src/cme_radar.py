@@ -1,8 +1,8 @@
 """Rule-based CME futures news radar for the premarket test.
 
-This module is intentionally separate from the NQ/SPX engine.  It maps the
+This module is intentionally separate from the NQ/SPX engine. It maps the
 same already-ranked news catalysts to major liquid CME Group futures and
-estimates contract relevance, catalyst strength and move potential.  It does
+estimates contract relevance, catalyst strength and move potential. It does
 not forecast price or expected volatility.
 """
 
@@ -78,8 +78,6 @@ def _text(item):
     title = str(item.get("title", ""))
     summary = str(item.get("summary", ""))
     categories = " ".join(item.get("categories", []) or [])
-    # Title is deliberately repeated: a title hit is stronger than a generic
-    # category/summary mention and prevents context-only mentions from driving mapping.
     return title.lower(), f"{title} {summary} {categories}".lower()
 
 
@@ -94,7 +92,6 @@ def _catalyst_strength(item, title_hits, all_hits):
     score = int(item.get("score", 0) or 0)
     freshness = float(item.get("freshness", 0) or 0)
     source = float(item.get("source_quality", 0) or 0)
-    # Strength describes the underlying news catalyst, not expected price move.
     strength = min(100, max(0, score))
     if title_hits:
         strength = min(100, strength + min(10, len(title_hits) * 4))
@@ -108,11 +105,7 @@ def _catalyst_strength(item, title_hits, all_hits):
 
 
 def score_contract(item, contract: Contract):
-    """Score one contract against one catalyst.
-
-    Title matches are stronger than summary/category matches. This is the key
-    guard against an article merely mentioning an unrelated market in passing.
-    """
+    """Score one contract against one catalyst using title-first mapping."""
     title, text = _text(item)
     normalized_title = re.sub(r"[^a-z0-9$+\- ]+", " ", title)
     title_hits = [k for k in contract.keywords if k.lower() in normalized_title]
@@ -120,8 +113,6 @@ def score_contract(item, contract: Contract):
     if not all_hits:
         return 0, 0, []
 
-    # If there is no direct title signal, require a specific category/event
-    # connection. Generic words such as stocks/equities/oil are not sufficient.
     generic_only = {"stocks", "equities", "us stocks", "oil", "crude", "rates", "dollar", "china", "weather"}
     specific_hits = [k for k in all_hits if k.lower() not in generic_only]
     if not title_hits and not specific_hits:
@@ -138,34 +129,29 @@ def score_contract(item, contract: Contract):
         "earnings", "guidance", "shutdown", "sanctions",
     )
     move_bonus = 10 if any(term in text for term in event_terms) else 4 if specific_hits else 0
-    volatility = min(100, max(0, relevance + move_bonus))
+    move_potential = min(100, max(0, relevance + move_bonus))
     strength = _catalyst_strength(item, title_hits, all_hits)
-    # A weak catalyst cannot create a high move-potential score merely because
-    # the contract is structurally sensitive to that theme.
-    volatility = min(volatility, max(35, strength + 10))
-    return relevance, volatility, all_hits[:6]
+    move_potential = min(move_potential, max(35, strength + 10))
+    return relevance, move_potential, all_hits[:6]
 
 
 def build_radar(items, limit=15):
-    """Return the strongest contract/catalyst pairs, deduped by contract.
-
-    The formatter later groups contracts by catalyst, so one event can explain
-    several affected contracts without printing the same headline repeatedly.
-    """
+    """Return strongest contract/catalyst pairs, deduped by contract."""
     rows = []
     for item in items:
         for contract in CONTRACTS:
             impact, move_potential, hits = score_contract(item, contract)
             if impact < 50:
                 continue
-            title_hits = [k for k in contract.keywords if k.lower() in str(item.get("title", "")).lower()]
+            title = str(item.get("title", ""))
+            title_hits = [k for k in contract.keywords if k.lower() in title.lower()]
             rows.append({
                 "symbol": contract.symbol,
                 "name": contract.name,
                 "group": contract.group,
                 "impact": impact,
                 "move_potential": move_potential,
-                "volatility": move_potential,  # compatibility for existing tests/callers
+                "volatility": move_potential,
                 "catalyst_strength": _catalyst_strength(item, title_hits, hits),
                 "direction": _direction(item, contract),
                 "title": item.get("title", ""),
@@ -192,18 +178,18 @@ def _group_by_catalyst(rows):
 
 
 def format_radar(items, limit=18):
-    rows = build_radar(items, limit=limit)
+    # Build the full material set first. The display limit must not make a
+    # category look empty merely because its contracts ranked below the top N.
+    all_material = build_radar(items, limit=len(CONTRACTS))
+    rows = all_material[:limit]
     lines = ["", "━━━━━━━━━━━━━━━━━━━━", "<b>🌎 CME FUTURES RADAR — PREMARKET</b>"]
     lines.append("<i>Impact = news relevance to the contract. Move Potential = potential for elevated movement if the catalyst develops. Catalyst Strength = strength/freshness/source quality of the underlying event. None is a price forecast.</i>")
 
     if not rows:
-        lines.append("")
-        lines.append("No material CME futures catalysts detected in the current news set.")
-        lines.append("<i>Rule-based mapping across major liquid CME Group benchmark futures.</i>")
+        lines += ["", "No material CME futures catalysts detected in the current news set.", "<i>Rule-based mapping across major liquid CME Group benchmark futures.</i>"]
         return "\n".join(lines)
 
     grouped = _group_by_catalyst(rows)
-    seen_groups = set()
     for group_rows in grouped:
         title = group_rows[0]["title"]
         group_names = sorted({r["group"] for r in group_rows}, key=lambda g: GROUPS.index(g))
@@ -216,11 +202,9 @@ def format_radar(items, limit=18):
                     f'Impact <b>{row["impact"]}</b> | Move <b>{row["move_potential"]}</b> | '
                     f'Catalyst <b>{row["catalyst_strength"]}</b> | {row["direction"]}'
                 )
-        seen_groups.update(group_names)
 
-    # Explicitly show coverage gaps so absence is meaningful rather than silent.
-    covered = set(seen_groups)
-    missing = [g for g in GROUPS if g not in covered]
+    material_groups = {r["group"] for r in all_material}
+    missing = [g for g in GROUPS if g not in material_groups]
     if missing:
         lines += ["", "<b>NO MATERIAL CATALYST</b>"]
         for group in missing:
