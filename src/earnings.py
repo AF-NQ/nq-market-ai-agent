@@ -41,6 +41,22 @@ def index_memberships(symbol):
     return [name for name in ("NDX", "SPX") if symbol in INDEXES[name]]
 
 
+def _normalize_time(value):
+    """Normalize Nasdaq's timing labels for concise Telegram display."""
+    raw = str(value or "").strip().lower()
+    if not raw:
+        return "TIME N/A"
+    if any(x in raw for x in ("after-hours", "after hours", "afterhours", "post-market", "post market")):
+        return "AFTER CLOSE"
+    if any(x in raw for x in ("pre-market", "pre market", "premarket", "before-open", "before open")):
+        return "BEFORE OPEN"
+    if raw in {"time-not-supplied", "not supplied", "tbd", "n/a", "na"}:
+        return "TIME N/A"
+    if raw in {"during-market", "during market", "intraday", "market hours"}:
+        return "INTRADAY"
+    return str(value).upper().replace("_", " ").replace("-", " ")
+
+
 def _get_day(date_str):
     url = f"https://api.nasdaq.com/api/calendar/earnings?date={date_str}"
     headers = {
@@ -59,7 +75,7 @@ def _get_day(date_str):
                 "symbol": sym,
                 "company": WATCHLIST[sym],
                 "date": date_str,
-                "time": row.get("time", ""),
+                "time": _normalize_time(row.get("time", "")),
                 "eps": row.get("epsForecast", ""),
                 "revenue": row.get("revenueForecast", ""),
                 "indexes": index_memberships(sym),
