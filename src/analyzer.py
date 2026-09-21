@@ -11,7 +11,10 @@ def analyze(items):
         x["legacy_score"] = s
         x["legacy_level"] = l
         x["reasons"] = r
-    return catalyst_summary(items, limit=20)
+    catalysts = catalyst_summary(items, limit=20)
+    # KEY CATALYSTS should contain material events only. A low-scoring article
+    # may still be useful as background, but should not occupy a premarket slot.
+    return [x for x in catalysts if x.get("score", 0) >= 55]
 
 
 def _direction_label(direction):
