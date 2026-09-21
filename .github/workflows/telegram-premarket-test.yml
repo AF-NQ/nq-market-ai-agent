@@ -69,8 +69,7 @@ jobs:
           print(f"   Final catalysts: {len(ranked)}")
 
           # Test-only headline-direction enrichment. Production NQ Market Monitor
-          # is not changed. We keep the original engine directions separately so
-          # CME contract mapping does not inherit a broad equity headline bias.
+          # is not changed. The original directions are retained for CME mapping.
           original_directions = [x.get("direction", "NEUTRAL") for x in ranked]
           enrich_test_directions(ranked)
           for i, x in enumerate(ranked[:10], 1):
@@ -92,18 +91,34 @@ jobs:
                   raise AssertionError(f"CME direction regression for {symbol}: expected {expected}, got {actual}")
           print("   ✅ Directional mapping checks passed")
 
-          print("5. Building CME futures news radar...")
-          # Restore the original engine direction before contract mapping. The
-          # headline-level enrichment is for KEY CATALYSTS only; CME Radar must
-          # decide direction independently for each contract.
+          now = datetime.now(ZoneInfo(CONFIG.timezone))
+          op = next_open(now)
+          minutes_to_open = (op - now).total_seconds() / 60
+          print(f"5. Next US cash open: {op} ({minutes_to_open:.1f} min)")
+
+          print("6. Building REAL NQ premarket report with 5-trading-day earnings calendar...")
+          earnings = upcoming_earnings(days=5)
+          print(f"   Relevant earnings found: {len(earnings)}")
+          for e in earnings:
+              print(f"   {e['date']} {e['symbol']} {e['company']} — {e['time'] or 'time n/a'}")
+
+          # Render KEY CATALYSTS while the test-only headline direction enrichment
+          # is active. This affects only this manually-run Telegram test.
+          msg = report(ranked, op, minutes_to_open, "source-check", earnings=earnings)
+
+          # Restore the original directions before CME mapping. CME Radar decides
+          # direction independently per contract and must not inherit broad NQ/SPX
+          # headline direction.
           for x, original in zip(ranked, original_directions):
               x["direction"] = original
+
+          print("7. Building CME futures news radar...")
           cme_rows = build_radar(ranked, limit=18)
           print(f"   CME futures with material news relevance: {len(cme_rows)}")
           for i, x in enumerate(cme_rows, 1):
               print(f"   {i}. {x['symbol']} {x['name']} | impact={x['impact']} | move={x['move_potential']} | catalyst={x['catalyst_strength']} | {x['direction']} | {x['title']}")
 
-          print("6. Checking Radar / Market Map consistency...")
+          print("8. Checking Radar / Market Map consistency...")
           full_cme_rows = build_radar(ranked, limit=len(CONTRACTS))
           radar_text = format_radar(ranked, limit=18)
           for row in full_cme_rows:
@@ -111,22 +126,6 @@ jobs:
               if marker not in radar_text:
                   raise AssertionError(f"Market Map missing material contract {row['symbol']}")
           print("   ✅ Material contracts are present in the Market Map")
-
-          now = datetime.now(ZoneInfo(CONFIG.timezone))
-          op = next_open(now)
-          minutes_to_open = (op - now).total_seconds() / 60
-          print(f"7. Next US cash open: {op} ({minutes_to_open:.1f} min)")
-
-          print("8. Building REAL NQ premarket report with 5-trading-day earnings calendar...")
-          earnings = upcoming_earnings(days=5)
-          print(f"   Relevant earnings found: {len(earnings)}")
-          for e in earnings:
-              print(f"   {e['date']} {e['symbol']} {e['company']} — {e['time'] or 'time n/a'}")
-
-          # KEY CATALYSTS should show the test-enriched headline direction.
-          for x, original in zip(ranked, original_directions):
-              pass
-          msg = report(ranked, op, minutes_to_open, "source-check", earnings=earnings)
 
           funds = collect_13f()
           if funds:
