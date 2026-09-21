@@ -42,6 +42,7 @@ jobs:
           echo "Clustering duplicate/syndicated headlines into catalysts..."
           echo "Applying NQ-direct relevance, source quality and freshness scoring..."
           echo "Building the same premarket report used by production..."
+          echo "Keeping 13F discovery, but removing raw URLs from Telegram output..."
           echo "Sending the report to Telegram..."
           echo ""
 
@@ -56,6 +57,7 @@ jobs:
           from src.calendar import next_open
           from src.analyzer import analyze, report
           from src.earnings import upcoming_earnings
+          from src.hedge_funds import collect_13f
           from src.telegram import send
 
           print("1. Collecting live news...")
@@ -97,6 +99,12 @@ jobs:
                       f'{e["symbol"]} {e["company"]} — {e["time"] or "time n/a"}'
                       for e in earnings
                   )
+              )
+
+          funds = collect_13f()
+          if funds:
+              msg += "\n\n🏦 13F / HEDGE-FUND DISCOVERY\n" + "\n".join(
+                  f'• {x["title"]} — {x["source"]}' for x in funds[:5]
               )
 
           print("\n===== TELEGRAM MESSAGE PREVIEW =====")
