@@ -1,0 +1,46 @@
+name: Telegram Premarket Test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  premarket-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run real premarket test
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+
+          MARKET_TIMEZONE: America/New_York
+
+          # Force the current time into the premarket window
+          PREOPEN_MINUTES: '1440'
+          PREOPEN_WINDOW_MINUTES: '1440'
+
+          # Separate test state — does not touch production state
+          STATE_PATH: data/test-state.json
+
+        run: |
+          echo "=== REAL PREMARKET TEST ==="
+          echo "Collecting live news..."
+          echo "Running the same src.main pipeline as production..."
+          echo ""
+
+          python -m src.main --once
