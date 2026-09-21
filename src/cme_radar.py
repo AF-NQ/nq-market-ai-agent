@@ -2,8 +2,8 @@
 
 This module is intentionally separate from the NQ/SPX engine. It maps the
 same already-ranked news catalysts to major liquid CME Group futures and
-estimates contract relevance, catalyst strength and move potential. It does
-not forecast price or expected volatility.
+estimates contract relevance and event-driven move potential. It does not
+forecast price or implied volatility.
 """
 
 from dataclasses import dataclass
@@ -21,24 +21,16 @@ class Contract:
 
 
 GROUPS = (
-    "EQUITY INDEX",
-    "INTEREST RATES",
-    "FX",
-    "ENERGY",
-    "METALS",
-    "AGRICULTURE",
-    "CRYPTO",
+    "EQUITY INDEX", "INTEREST RATES", "FX", "ENERGY",
+    "METALS", "AGRICULTURE", "CRYPTO",
 )
 
-
 CONTRACTS = [
-    # Equity indexes
     Contract("ES", "E-mini S&P 500", "EQUITY INDEX", ("s&p", "s&p 500", "spx", "stocks", "equities", "wall street", "us stocks", "index futures", "risk-on", "risk-off"), 38),
     Contract("NQ", "E-mini Nasdaq-100", "EQUITY INDEX", ("nasdaq", "nasdaq-100", "nvidia", "nvda", "apple", "microsoft", "amazon", "meta", "amd", "broadcom", "ai", "semiconductor", "fed", "yields", "rates"), 40),
     Contract("RTY", "E-mini Russell 2000", "EQUITY INDEX", ("russell", "small caps", "small-cap", "regional banks", "domestic stocks", "rates", "fed"), 34),
     Contract("YM", "E-mini Dow", "EQUITY INDEX", ("dow", "industrial", "industrials", "us stocks", "equities", "stocks"), 32),
     Contract("NKD", "Nikkei 225", "EQUITY INDEX", ("nikkei", "japan stocks", "japanese stocks", "boj", "bank of japan", "yen"), 28),
-    # FX
     Contract("6A", "Australian Dollar", "FX", ("australia", "australian", "rba", "aud", "china", "iron ore", "commodities"), 22),
     Contract("6C", "Canadian Dollar", "FX", ("canada", "canadian", "boc", "bank of canada", "cad", "oil", "crude"), 22),
     Contract("6E", "Euro FX", "FX", ("euro", "eur", "ecb", "eurozone", "europe", "germany", "france", "italy", "european"), 24),
@@ -46,29 +38,24 @@ CONTRACTS = [
     Contract("6B", "British Pound", "FX", ("pound", "sterling", "gbp", "bank of england", "boe", "uk", "britain", "british"), 21),
     Contract("6S", "Swiss Franc", "FX", ("swiss", "switzerland", "snb", "franc", "chf"), 19),
     Contract("6N", "New Zealand Dollar", "FX", ("new zealand", "rbnz", "nzd", "kiwi"), 17),
-    # Interest rates
     Contract("SR3", "3-Month SOFR", "INTEREST RATES", ("fed", "federal reserve", "fomc", "interest rate", "rates", "cpi", "inflation", "pce", "jobs", "payroll", "unemployment", "sofr"), 45),
     Contract("ZT", "2-Year Treasury Note", "INTEREST RATES", ("fed", "federal reserve", "fomc", "interest rate", "rates", "cpi", "inflation", "pce", "jobs", "payroll", "unemployment", "2-year", "2 year", "treasury", "yield"), 44),
     Contract("ZF", "5-Year Treasury Note", "INTEREST RATES", ("fed", "federal reserve", "fomc", "interest rate", "rates", "cpi", "inflation", "pce", "jobs", "payroll", "treasury", "yield", "5-year", "5 year"), 42),
     Contract("ZN", "10-Year Treasury Note", "INTEREST RATES", ("fed", "federal reserve", "fomc", "interest rate", "rates", "cpi", "inflation", "pce", "jobs", "payroll", "treasury", "yield", "10-year", "10 year"), 44),
     Contract("ZB", "30-Year Treasury Bond", "INTEREST RATES", ("fed", "federal reserve", "fomc", "interest rate", "rates", "cpi", "inflation", "pce", "jobs", "payroll", "treasury", "yield", "30-year", "30 year", "bond"), 40),
-    # Energy
     Contract("CL", "WTI Crude Oil", "ENERGY", ("oil", "crude", "wti", "brent", "opec", "opec+", "iran", "israel", "middle east", "hormuz", "supply", "inventory", "eia"), 42),
     Contract("NG", "Henry Hub Natural Gas", "ENERGY", ("natural gas", "lng", "henry hub", "gas storage", "weather", "hurricane", "pipeline"), 36),
     Contract("RB", "RBOB Gasoline", "ENERGY", ("gasoline", "rbob", "refinery", "refineries", "crack spread", "oil", "crude", "supply", "eia", "opec"), 29),
     Contract("HO", "Heating Oil", "ENERGY", ("heating oil", "diesel", "distillate", "refinery", "oil", "crude", "supply", "eia", "opec"), 27),
-    # Metals
     Contract("GC", "Gold", "METALS", ("gold", "precious metals", "fed", "rates", "real yields", "treasury", "yield", "dollar", "usd", "geopolitics", "iran", "war"), 40),
     Contract("SI", "Silver", "METALS", ("silver", "precious metals", "gold", "fed", "rates", "dollar", "usd", "industrial demand"), 34),
     Contract("HG", "Copper", "METALS", ("copper", "china", "pboc", "manufacturing", "industrial", "construction", "stimulus", "tariff", "trade", "dollar"), 35),
     Contract("PL", "Platinum", "METALS", ("platinum", "precious metals", "auto", "automotive", "south africa", "china", "dollar"), 23),
-    # Agriculture
     Contract("ZC", "Corn", "AGRICULTURE", ("corn", "maize", "usda", "crop", "harvest", "planting", "weather", "drought", "exports", "ethanol"), 36),
     Contract("ZS", "Soybeans", "AGRICULTURE", ("soybean", "soybeans", "usda", "crop", "harvest", "planting", "weather", "drought", "exports", "china", "brazil", "argentina"), 35),
     Contract("ZW", "Chicago SRW Wheat", "AGRICULTURE", ("wheat", "usda", "crop", "harvest", "planting", "weather", "drought", "exports", "russia", "ukraine", "black sea"), 35),
     Contract("LE", "Live Cattle", "AGRICULTURE", ("cattle", "beef", "livestock", "usda", "feedlot", "slaughter"), 23),
     Contract("HE", "Lean Hogs", "AGRICULTURE", ("hogs", "pork", "livestock", "usda", "china"), 20),
-    # Crypto
     Contract("BTC", "Bitcoin", "CRYPTO", ("bitcoin", "btc", "crypto", "digital assets", "sec", "etf", "ethereum", "risk-on", "risk-off", "dollar", "rates"), 34),
     Contract("ETH", "Ether", "CRYPTO", ("ether", "ethereum", "eth", "crypto", "digital assets", "sec", "etf", "bitcoin", "rates", "dollar"), 29),
 ]
@@ -83,25 +70,29 @@ def _text(item):
 
 def _direction(item, contract: Contract):
     direction = str(item.get("direction", "NEUTRAL") or "NEUTRAL").upper()
-    if direction not in {"BULLISH", "BEARISH", "NEUTRAL"}:
-        return "NEUTRAL"
-    return direction.replace("BULLISH", "BULLISH PRESSURE").replace("BEARISH", "BEARISH PRESSURE")
+    if direction not in {"BULLISH", "BEARISH", "MIXED", "NEUTRAL"}:
+        direction = "NEUTRAL"
+    return {
+        "BULLISH": "BULLISH PRESSURE",
+        "BEARISH": "BEARISH PRESSURE",
+        "MIXED": "MIXED",
+        "NEUTRAL": "NEUTRAL",
+    }[direction]
 
 
-def _catalyst_strength(item, title_hits, all_hits):
+def catalyst_strength(item):
+    """Event-level strength; intentionally independent of contract sensitivity."""
     score = int(item.get("score", 0) or 0)
-    freshness = float(item.get("freshness", 0) or 0)
-    source = float(item.get("source_quality", 0) or 0)
-    strength = min(100, max(0, score))
-    if title_hits:
-        strength = min(100, strength + min(10, len(title_hits) * 4))
-    if freshness:
-        strength = min(100, strength + min(5, int(freshness / 20)))
-    if source:
-        strength = min(100, strength + min(5, int(source / 20)))
-    if not all_hits:
-        strength = max(0, strength - 10)
-    return strength
+    return max(0, min(100, score))
+
+
+def _event_terms(text):
+    return (
+        "cpi", "pce", "payroll", "fomc", "rate decision", "opec", "usda",
+        "inventory", "inventories", "production", "supply disruption", "intervention",
+        "tariff", "sanctions", "earnings", "guidance", "shutdown", "refinery",
+        "storage", "weather warning", "drought", "harvest", "export ban", "ceasefire",
+    )
 
 
 def score_contract(item, contract: Contract):
@@ -118,33 +109,36 @@ def score_contract(item, contract: Contract):
     if not title_hits and not specific_hits:
         return 0, 0, []
 
+    # Prevent generic market-context mentions from becoming false contract catalysts.
+    if contract.symbol == "CL":
+        oil_specific = {"wti", "brent", "opec", "opec+", "iran", "israel", "middle east", "hormuz", "supply", "inventory", "eia"}
+        if not any(k in {h.lower() for h in specific_hits} for k in oil_specific):
+            return 0, 0, []
+    if contract.symbol == "NG":
+        gas_specific = {"natural gas", "lng", "henry hub", "gas storage", "hurricane", "pipeline"}
+        if not any(k in {h.lower() for h in specific_hits} for k in gas_specific):
+            return 0, 0, []
+
     catalyst_score = int(item.get("score", 0) or 0)
     title_bonus = min(18, len(title_hits) * 9)
     specific_bonus = min(16, len(specific_hits) * 5)
     relevance = min(100, contract.base + title_bonus + specific_bonus + max(0, catalyst_score - 55) // 6)
 
-    event_terms = (
-        "cpi", "pce", "payroll", "fomc", "rate decision", "opec", "usda",
-        "inventory", "production", "supply disruption", "intervention", "tariff",
-        "earnings", "guidance", "shutdown", "sanctions",
-    )
-    move_bonus = 10 if any(term in text for term in event_terms) else 4 if specific_hits else 0
-    move_potential = min(100, max(0, relevance + move_bonus))
-    strength = _catalyst_strength(item, title_hits, all_hits)
+    event_bonus = 10 if any(term in text for term in _event_terms(text)) else 4 if specific_hits else 0
+    move_potential = min(100, max(0, relevance + event_bonus))
+    strength = catalyst_strength(item)
     move_potential = min(move_potential, max(35, strength + 10))
     return relevance, move_potential, all_hits[:6]
 
 
 def build_radar(items, limit=15):
-    """Return strongest contract/catalyst pairs, deduped by contract."""
+    """Return strongest material contract/catalyst pairs, deduped by contract."""
     rows = []
     for item in items:
         for contract in CONTRACTS:
             impact, move_potential, hits = score_contract(item, contract)
             if impact < 50:
                 continue
-            title = str(item.get("title", ""))
-            title_hits = [k for k in contract.keywords if k.lower() in title.lower()]
             rows.append({
                 "symbol": contract.symbol,
                 "name": contract.name,
@@ -152,7 +146,7 @@ def build_radar(items, limit=15):
                 "impact": impact,
                 "move_potential": move_potential,
                 "volatility": move_potential,
-                "catalyst_strength": _catalyst_strength(item, title_hits, hits),
+                "catalyst_strength": catalyst_strength(item),
                 "direction": _direction(item, contract),
                 "title": item.get("title", ""),
                 "catalyst_score": int(item.get("score", 0) or 0),
@@ -162,11 +156,11 @@ def build_radar(items, limit=15):
     best = {}
     for row in rows:
         old = best.get(row["symbol"])
-        key = (row["catalyst_strength"], row["move_potential"], row["impact"], row["catalyst_score"])
-        old_key = (-1, -1, -1, -1) if old is None else (old["catalyst_strength"], old["move_potential"], old["impact"], old["catalyst_score"])
+        key = (row["move_potential"], row["impact"], row["catalyst_strength"], row["catalyst_score"])
+        old_key = (-1, -1, -1, -1) if old is None else (old["move_potential"], old["impact"], old["catalyst_strength"], old["catalyst_score"])
         if old is None or key > old_key:
             best[row["symbol"]] = row
-    return sorted(best.values(), key=lambda r: (r["catalyst_strength"], r["move_potential"], r["impact"]), reverse=True)[:limit]
+    return sorted(best.values(), key=lambda r: (r["move_potential"], r["impact"]), reverse=True)[:limit]
 
 
 def _group_by_catalyst(rows):
@@ -174,20 +168,32 @@ def _group_by_catalyst(rows):
     for row in rows:
         key = re.sub(r"\s+", " ", str(row["title"]).strip().lower())
         groups[key].append(row)
-    return sorted(groups.values(), key=lambda rs: max(r["catalyst_strength"] for r in rs), reverse=True)
+    return sorted(groups.values(), key=lambda rs: max(r["move_potential"] for r in rs), reverse=True)
+
+
+def volatility_watch(rows, limit=5):
+    """Top contracts by event-driven move potential, not a price forecast."""
+    seen = {}
+    for row in rows:
+        old = seen.get(row["symbol"])
+        if old is None or (row["move_potential"], row["impact"]) > (old["move_potential"], old["impact"]):
+            seen[row["symbol"]] = row
+    return sorted(seen.values(), key=lambda r: (r["move_potential"], r["impact"]), reverse=True)[:limit]
 
 
 def format_radar(items, limit=18):
-    # Build the full material set first. The display limit must not make a
-    # category look empty merely because its contracts ranked below the top N.
     all_material = build_radar(items, limit=len(CONTRACTS))
     rows = all_material[:limit]
     lines = ["", "━━━━━━━━━━━━━━━━━━━━", "<b>🌎 CME FUTURES RADAR — PREMARKET</b>"]
-    lines.append("<i>Impact = news relevance to the contract. Move Potential = potential for elevated movement if the catalyst develops. Catalyst Strength = strength/freshness/source quality of the underlying event. None is a price forecast.</i>")
+    lines.append("<i>Impact = news relevance to the contract. Move Potential = event-driven potential for elevated movement if the catalyst develops. Catalyst Strength = strength of the underlying event/news cluster. None is a price forecast or implied-volatility measure.</i>")
 
     if not rows:
         lines += ["", "No material CME futures catalysts detected in the current news set.", "<i>Rule-based mapping across major liquid CME Group benchmark futures.</i>"]
         return "\n".join(lines)
+
+    lines += ["", "<b>🔥 VOLATILITY WATCH — MOVE POTENTIAL</b>"]
+    for i, row in enumerate(volatility_watch(all_material, limit=5), 1):
+        lines.append(f'{i}. <b>{row["symbol"]}</b> — {row["name"]} | Move <b>{row["move_potential"]}</b> | Impact {row["impact"]}')
 
     grouped = _group_by_catalyst(rows)
     for group_rows in grouped:
