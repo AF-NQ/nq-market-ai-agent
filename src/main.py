@@ -8,7 +8,7 @@ from .analyzer import analyze, report, urgent_messages
 from .earnings import upcoming_earnings
 from .finviz import collect_finviz
 from .hedge_funds import collect_13f
-from .cme_radar import build_radar, format_radar, enrich_test_directions, CONTRACTS
+from .cme_radar import format_radar, enrich_test_directions
 from .telegram import send
 
 
