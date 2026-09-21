@@ -38,18 +38,9 @@ jobs:
           STATE_PATH: data/test-premarket-state.json
         run: |
           echo "=== REAL NQ NEWS ENGINE TELEGRAM TEST ==="
-          echo "Collecting live public market news..."
-          echo "Clustering duplicate/syndicated headlines into catalysts..."
-          echo "Applying NQ-direct relevance, source quality and freshness scoring..."
-          echo "Building the same premarket report used by production..."
-          echo "Keeping 13F discovery, but removing raw URLs from Telegram output..."
-          echo "Sending the report to Telegram..."
-          echo ""
-
           python - <<'PY'
           from datetime import datetime
           from zoneinfo import ZoneInfo
-
           from src.config import CONFIG
           from src.sources import collect
           from src.verify import relevance
@@ -69,37 +60,27 @@ jobs:
           for x in raw:
               s, level, reasons = relevance(x)
               x.update(legacy_score=s, legacy_level=level, reasons=reasons)
-
           new = store.new_events(raw)
           print(f"   New items in test state: {len(new)}")
 
           print("3. Building catalyst clusters and ranking...")
           ranked = analyze(new)
           print(f"   Final catalysts: {len(ranked)}")
-
           for i, x in enumerate(ranked[:10], 1):
               print(f"   {i}. [{x['level']}] {x['title']} | {x['score']}/100 | direct={x.get('nq_directness')} | {x.get('sources', [])}")
 
-          print("4. Resolving next US cash open (display only; no production gate)...")
           now = datetime.now(ZoneInfo(CONFIG.timezone))
           op = next_open(now)
           minutes_to_open = (op - now).total_seconds() / 60
-          print(f"   Current time: {now}")
-          print(f"   Next open: {op}")
-          print(f"   Minutes to open: {minutes_to_open:.1f}")
+          print(f"4. Next US cash open: {op} ({minutes_to_open:.1f} min)")
 
-          print("5. Building REAL NQ premarket-format report...")
-          msg = report(ranked, op, minutes_to_open, "source-check")
+          print("5. Building REAL NQ premarket report with 5-trading-day earnings calendar...")
+          earnings = upcoming_earnings(days=5)
+          print(f"   Relevant earnings found: {len(earnings)}")
+          for e in earnings:
+              print(f"   {e['date']} {e['symbol']} {e['company']} — {e['time'] or 'time n/a'}")
 
-          earnings = upcoming_earnings()
-          if earnings:
-              msg += (
-                  "\n\n📅 MEGA-CAP EARNINGS TODAY\n"
-                  + "\n".join(
-                      f'{e["symbol"]} {e["company"]} — {e["time"] or "time n/a"}'
-                      for e in earnings
-                  )
-              )
+          msg = report(ranked, op, minutes_to_open, "source-check", earnings=earnings)
 
           funds = collect_13f()
           if funds:
@@ -116,6 +97,5 @@ jobs:
           if not ok:
               raise RuntimeError("Telegram send() returned False")
           print("   ✅ MAIN PREMARKET REPORT SENT")
-
           print("\n=== TEST COMPLETED SUCCESSFULLY ===")
           PY
