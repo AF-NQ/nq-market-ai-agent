@@ -1,9 +1,9 @@
-"""Rule-based CME futures news radar for the premarket test.
+"""Rule-based CME futures news radar for the Telegram premarket test.
 
-This module is intentionally separate from the NQ/SPX engine. It maps the
-same already-ranked news catalysts to major liquid CME Group futures and
-estimates contract relevance and event-driven move potential. It does not
-forecast price or implied volatility.
+This module is intentionally separate from the production NQ/SPX engine. It maps
+already-ranked news catalysts to major liquid CME Group futures and estimates
+contract relevance and event-driven move potential. It does not forecast price
+or implied volatility.
 """
 
 from dataclasses import dataclass
@@ -68,70 +68,108 @@ def _text(item):
     return title.lower(), f"{title} {summary} {categories}".lower()
 
 
+def _has(text, *terms):
+    return any(term in text for term in terms)
+
+
 def _direction(item, contract: Contract):
-    """Infer catalyst direction for the specific contract, not just the headline."""
+    """Infer direction for the specific contract; never blindly copy headline direction."""
     raw = str(item.get("direction", "NEUTRAL") or "NEUTRAL").upper()
     title, text = _text(item)
 
-    bull = ("rise", "rises", "rally", "rallies", "jump", "jumps", "surge", "surges", "gain", "gains", "higher", "recovery", "recover", "optimism", "lower yields", "yields retreat", "yields ease", "rate cut", "dovish", "cooling inflation")
-    bear = ("fall", "falls", "drop", "drops", "plunge", "plunges", "selloff", "sell-off", "lower", "higher yields", "yields rise", "yields jump", "rate hike", "hawkish", "hotter inflation", "inflation rises", "tariff escalation")
-
-    def has_any(terms):
-        return any(term in text for term in terms)
-
-    # Rates futures move opposite to Treasury yields; SOFR futures are also rate-sensitive.
+    # Contract-specific rules come first. This avoids the common error where a
+    # bullish equity headline incorrectly makes oil, FX or rates bullish too.
     if contract.group == "INTEREST RATES":
-        if has_any(("yields retreat", "yields ease", "lower yields", "yield falls", "yields fall", "yields decline")):
+        if _has(title, "yields retreat", "yield retreat", "yields ease", "yield eases", "lower yields", "yields fall", "yield falls", "yields decline", "yields drop", "yield drops", "yields slip"):
             return "BULLISH PRESSURE"
-        if has_any(("higher yields", "yields rise", "yields jump", "yield rises", "yield climbs", "yields climb")):
+        if _has(title, "higher yields", "yield rises", "yields rise", "yield jumps", "yields jump", "yield climbs", "yields climb", "yields increase", "yield increases"):
+            return "BEARISH PRESSURE"
+        if _has(text, "yields retreat", "yields ease", "lower yields", "yields fall", "yields decline"):
+            return "BULLISH PRESSURE"
+        if _has(text, "higher yields", "yields rise", "yields jump", "yields climb"):
             return "BEARISH PRESSURE"
 
-    # Broad equities generally benefit from falling yields / easier policy and are pressured by rising yields.
     if contract.group == "EQUITY INDEX":
-        if has_any(("rally", "rallies", "gain", "gains", "higher", "recovery", "recover", "optimism", "lower yields", "yields retreat", "rate cut", "dovish")):
+        if _has(title, "ends sharply higher", "ends higher", "stocks recover", "equities recover", "stock gains", "stocks gain", "stocks rise", "stocks rally", "stocks rebound", "equities rally", "equities rebound", "rallies", "rally", "gains", "gain", "higher", "optimism", "recovery", "recover"):
             return "BULLISH PRESSURE"
-        if has_any(("selloff", "sell-off", "fall", "falls", "drop", "drops", "higher yields", "yields rise", "rate hike", "hawkish")):
+        if _has(title, "ends sharply lower", "ends lower", "stocks fall", "stocks drop", "equities fall", "equities drop", "stocks retreat", "equities retreat", "selloff", "sell-off", "losses", "slump", "falls", "drops", "lower"):
+            return "BEARISH PRESSURE"
+        if _has(text, "lower yields", "yields retreat", "yields ease", "rate cut", "dovish"):
+            return "BULLISH PRESSURE"
+        if _has(text, "higher yields", "yields rise", "rate hike", "hawkish"):
             return "BEARISH PRESSURE"
 
-    # Energy: price direction and supply/demand shocks are contract-specific.
-    if contract.group == "ENERGY":
-        if contract.symbol == "CL" and has_any(("oil rises", "oil rise", "oil jumps", "oil surges", "crude rises", "crude jumps", "supply disruption", "supply cut", "opec cut", "production cut")):
+    if contract.symbol == "CL":
+        if _has(title, "oil prices rise", "oil prices gain", "oil rises", "oil gains", "oil jumps", "oil surges", "crude rises", "crude gains", "crude jumps", "crude surges", "oil rallies", "crude rallies", "supply disruption", "supply cut", "opec cut", "production cut"):
             return "BULLISH PRESSURE"
-        if contract.symbol == "CL" and has_any(("oil eases", "oil falls", "oil drops", "crude falls", "crude drops", "demand weakens")):
+        if _has(title, "oil prices ease", "oil prices retreat", "oil eases", "oil retreats", "oil falls", "oil drops", "oil slips", "crude falls", "crude drops", "crude eases", "crude retreats", "demand weakens"):
             return "BEARISH PRESSURE"
-        if contract.symbol in {"RB", "HO"} and has_any(("oil eases", "oil falls", "crude falls", "refinery outage", "refinery shutdown")):
-            return "MIXED"
+        if _has(text, "oil prices ease", "oil eases", "oil falls", "crude falls", "crude drops", "demand weakens"):
+            return "BEARISH PRESSURE"
 
-    # Precious metals are generally helped by lower yields / weaker dollar, but geopolitics can be mixed.
+    if contract.symbol in {"RB", "HO"}:
+        if _has(title, "gasoline rises", "gasoline gains", "gasoline jumps", "refinery outage", "refinery shutdown"):
+            return "BULLISH PRESSURE"
+        if _has(title, "oil prices ease", "oil eases", "oil falls", "crude falls", "crude drops"):
+            return "BEARISH PRESSURE"
+
     if contract.group == "METALS":
-        if has_any(("lower yields", "yields retreat", "yields ease", "dollar falls", "dollar weakens", "usd falls")):
+        if _has(title, "lower yields", "yields retreat", "yields ease", "dollar falls", "dollar weakens", "usd falls"):
             return "BULLISH PRESSURE"
-        if has_any(("higher yields", "yields rise", "yields jump", "dollar rises", "dollar strengthens", "usd rises")):
+        if _has(title, "higher yields", "yields rise", "yields jump", "dollar rises", "dollar strengthens", "usd rises"):
             return "BEARISH PRESSURE"
 
-    # Direct currency catalysts should be directional; intervention/watch headlines remain mixed unless a move is explicit.
     if contract.group == "FX":
-        if contract.symbol == "6J" and has_any(("yen intervention", "intervention watch", "intervention risk")):
+        if contract.symbol == "6J" and _has(title, "yen intervention", "intervention watch", "intervention risk"):
             return "MIXED"
-        if contract.symbol == "6E" and has_any(("euro rises", "euro gains", "euro strengthens")):
-            return "BULLISH PRESSURE"
-        if contract.symbol == "6E" and has_any(("euro falls", "euro drops", "euro weakens")):
-            return "BEARISH PRESSURE"
-        if contract.symbol == "6C" and has_any(("oil rises", "oil jumps", "crude rises")):
-            return "BULLISH PRESSURE"
-        if contract.symbol == "6C" and has_any(("oil falls", "oil drops", "crude falls", "oil eases")):
-            return "BEARISH PRESSURE"
-        if contract.symbol == "NKD" and has_any(("nikkei rises", "nikkei gains", "japan stocks rise", "japanese stocks rise")):
-            return "BULLISH PRESSURE"
+        if contract.symbol == "6E":
+            if _has(title, "euro rises", "euro gains", "euro strengthens", "euro climbs"):
+                return "BULLISH PRESSURE"
+            if _has(title, "euro falls", "euro drops", "euro weakens", "euro slips"):
+                return "BEARISH PRESSURE"
+        if contract.symbol == "6C":
+            if _has(title, "oil rises", "oil jumps", "crude rises"):
+                return "BULLISH PRESSURE"
+            if _has(title, "oil falls", "oil drops", "crude falls", "oil eases"):
+                return "BEARISH PRESSURE"
+        if contract.symbol == "NKD":
+            if _has(title, "nikkei rises", "nikkei gains", "japan stocks rise", "japanese stocks rise"):
+                return "BULLISH PRESSURE"
+            if _has(title, "nikkei falls", "nikkei drops", "japan stocks fall", "japanese stocks fall"):
+                return "BEARISH PRESSURE"
 
-    # Use the engine direction only when it is genuinely directional.
     if raw in {"BULLISH", "BEARISH", "MIXED"}:
         return {"BULLISH": "BULLISH PRESSURE", "BEARISH": "BEARISH PRESSURE", "MIXED": "MIXED"}[raw]
     return "NEUTRAL"
 
 
+def enrich_test_directions(items):
+    """Improve only the Telegram test's headline-level direction labels.
+
+    The production analyzer is deliberately untouched. This helper fixes obvious
+    directional phrases that the legacy News Engine can miss, while leaving
+    genuinely ambiguous events as MIXED/NEUTRAL.
+    """
+    for item in items:
+        title = str(item.get("title", "")).lower()
+        current = str(item.get("direction", "NEUTRAL") or "NEUTRAL").upper()
+
+        # Priority is broad equity language first: a headline about stocks
+        # recovering is bullish for the headline-level NQ/SPX view even if the
+        # same headline also says oil eased.
+        if _has(title, "ends sharply higher", "ends higher", "stocks recover", "equities recover", "stock gains", "stocks gain", "stocks rise", "stocks rally", "stocks rebound", "equities rally", "equities rebound", "rallies", "rally"):
+            item["direction"] = "BULLISH"
+        elif _has(title, "ends sharply lower", "ends lower", "stocks fall", "stocks drop", "equities fall", "equities drop", "stocks retreat", "equities retreat", "selloff", "sell-off", "losses", "slump"):
+            item["direction"] = "BEARISH"
+        elif current == "NEUTRAL":
+            if _has(title, "higher", "gains", "gain", "rises", "rally", "recover", "rebound"):
+                item["direction"] = "BULLISH"
+            elif _has(title, "lower", "falls", "drops", "retreats", "slips", "slump", "losses"):
+                item["direction"] = "BEARISH"
+    return items
+
+
 def catalyst_strength(item):
-    """Event-level strength; intentionally independent of contract sensitivity."""
     score = int(item.get("score", 0) or 0)
     return max(0, min(100, score))
 
@@ -146,7 +184,6 @@ def _event_terms(text):
 
 
 def score_contract(item, contract: Contract):
-    """Score one contract against one catalyst using title-first mapping."""
     title, text = _text(item)
     normalized_title = re.sub(r"[^a-z0-9$+\- ]+", " ", title)
     title_hits = [k for k in contract.keywords if k.lower() in normalized_title]
@@ -159,10 +196,14 @@ def score_contract(item, contract: Contract):
     if not title_hits and not specific_hits:
         return 0, 0, []
 
+    # Direct oil-price headlines should qualify CL even when the word "oil" is
+    # the only title keyword: direction is resolved separately above.
     if contract.symbol == "CL":
         oil_specific = {"wti", "brent", "opec", "opec+", "iran", "israel", "middle east", "hormuz", "supply", "inventory", "eia"}
         if not any(k in {h.lower() for h in specific_hits} for k in oil_specific):
-            return 0, 0, []
+            if not _has(title, "oil prices ease", "oil prices rise", "oil prices gain", "oil prices fall", "oil prices drop", "oil prices retreat"):
+                return 0, 0, []
+
     if contract.symbol == "NG":
         gas_specific = {"natural gas", "lng", "henry hub", "gas storage", "hurricane", "pipeline"}
         if not any(k in {h.lower() for h in specific_hits} for k in gas_specific):
@@ -181,7 +222,6 @@ def score_contract(item, contract: Contract):
 
 
 def build_radar(items, limit=15):
-    """Return strongest material contract/catalyst pairs, deduped by contract."""
     rows = []
     for item in items:
         for contract in CONTRACTS:
@@ -221,7 +261,6 @@ def _group_by_catalyst(rows):
 
 
 def volatility_watch(rows, limit=5):
-    """Top contracts by event-driven move potential, not a price forecast."""
     seen = {}
     for row in rows:
         old = seen.get(row["symbol"])
@@ -231,6 +270,9 @@ def volatility_watch(rows, limit=5):
 
 
 def format_radar(items, limit=18):
+    # Always compute the complete material map first; the displayed catalyst
+    # list is a view over that same map. This prevents Radar and Market Map from
+    # disagreeing about whether a contract has a material catalyst.
     all_material = build_radar(items, limit=len(CONTRACTS))
     rows = all_material[:limit]
     lines = ["", "━━━━━━━━━━━━━━━━━━━━", "<b>🌎 CME FUTURES RADAR — PREMARKET</b>"]
