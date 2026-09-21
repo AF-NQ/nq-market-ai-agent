@@ -24,10 +24,11 @@ def _direction_label(direction):
 
 
 def report(items, open_time, minutes_to_open, confirmed_label):
-    now = datetime.now().strftime("%Y-%m-%d %H:%M")
+    now = datetime.now(open_time.tzinfo) if open_time.tzinfo else datetime.now()
+    now_text = now.strftime("%Y-%m-%d %H:%M %Z")
     lines = [
         "🔴 NQ PRE-MARKET — FINAL CHECK",
-        f"Generated: {now}",
+        f"Generated: {now_text}",
         f"US regular open: {open_time.strftime('%Y-%m-%d %H:%M %Z')}",
         f"Approx. minutes to open: {minutes_to_open:.1f}",
         "",
