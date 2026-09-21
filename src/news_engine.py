@@ -1,5 +1,5 @@
 import re
-from collections import Counter, defaultdict
+from collections import Counter
 from datetime import datetime, timezone
 from email.utils import parsedate_to_datetime
 from urllib.parse import urlparse
@@ -16,6 +16,9 @@ TIER2 = {
     "yahoo finance", "marketwatch", "investing.com", "barron's", "the economist",
     "economic times", "nasdaq", "cme group", "white house", "u.s. treasury",
     "seeking alpha", "benzinga", "the hill", "politico",
+}
+LOW_QUALITY_PATTERNS = {
+    "latest news from", "breaking news from", "news from", "google finance news",
 }
 
 CATEGORY_RULES = {
@@ -69,8 +72,7 @@ def publisher(item):
     if src and not src.lower().startswith("google"):
         return src
     try:
-        host = urlparse(item.get("link", "")).netloc.lower()
-        host = host.replace("www.", "")
+        host = urlparse(item.get("link", "")).netloc.lower().replace("www.", "")
         if "reuters" in host: return "Reuters"
         if "cnbc" in host: return "CNBC"
         if "yahoo" in host: return "Yahoo Finance"
@@ -82,6 +84,7 @@ def publisher(item):
 
 def source_quality(item):
     p = publisher(item).lower()
+    if any(x in p for x in LOW_QUALITY_PATTERNS): return 30
     if any(x in p for x in TIER1): return 100
     if any(x in p for x in TIER2): return 80
     return 55
@@ -128,7 +131,6 @@ def _similar(a, b):
     shared_anchors = _anchors(a.get("title", "") + " " + a.get("summary", "")) & _anchors(b.get("title", "") + " " + b.get("summary", ""))
     j = len(ta & tb) / max(1, len(ta | tb))
     shared = len(ta & tb)
-    # Require either strong textual overlap or an anchor + meaningful overlap.
     return j >= 0.50 or (shared_anchors and shared >= 3 and j >= 0.25)
 
 
