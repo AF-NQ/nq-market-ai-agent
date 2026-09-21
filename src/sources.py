@@ -29,6 +29,11 @@ FEEDS = [
     ("SEC", "https://www.sec.gov/news/pressreleases.rss", 100),
     ("BLS", "https://www.bls.gov/feed/bls_latest.rss", 95),
     ("White House", "https://www.whitehouse.gov/feed/", 95),
+
+    # Direct Investing.com RSS. This supplements Google News discovery so
+    # Investing.com stories do not depend on aggregator indexing.
+    ("Investing.com News", "https://www.investing.com/rss/investing_news.rss", 82),
+
     ("Google Finance News", "https://news.google.com/rss/search?q=" + quote_plus("Nasdaq NQ S&P 500 markets earnings Fed") + "&hl=en-US&gl=US&ceid=US:en", 75),
     ("AI Semiconductors", "https://news.google.com/rss/search?q=" + quote_plus("Nvidia AMD semiconductors AI Nasdaq") + "&hl=en-US&gl=US&ceid=US:en", 80),
     ("Oil Rates Dollar", "https://news.google.com/rss/search?q=" + quote_plus("oil Treasury yields dollar Fed markets") + "&hl=en-US&gl=US&ceid=US:en", 80),
