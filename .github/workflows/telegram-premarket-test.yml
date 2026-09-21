@@ -47,6 +47,7 @@ jobs:
           from src.storage import Store
           from src.calendar import next_open
           from src.analyzer import analyze, report
+          from src.cme_radar import build_radar, format_radar
           from src.earnings import upcoming_earnings
           from src.hedge_funds import collect_13f
           from src.telegram import send
@@ -69,18 +70,25 @@ jobs:
           for i, x in enumerate(ranked[:10], 1):
               print(f"   {i}. [{x['level']}] {x['title']} | {x['score']}/100 | direct={x.get('nq_directness')} | {x.get('sources', [])}")
 
+          print("4. Building CME futures news radar...")
+          cme_rows = build_radar(ranked, limit=15)
+          print(f"   CME futures with material news relevance: {len(cme_rows)}")
+          for i, x in enumerate(cme_rows, 1):
+              print(f"   {i}. {x['symbol']} {x['name']} | impact={x['impact']} | volatility={x['volatility']} | {x['direction']} | {x['title']}")
+
           now = datetime.now(ZoneInfo(CONFIG.timezone))
           op = next_open(now)
           minutes_to_open = (op - now).total_seconds() / 60
-          print(f"4. Next US cash open: {op} ({minutes_to_open:.1f} min)")
+          print(f"5. Next US cash open: {op} ({minutes_to_open:.1f} min)")
 
-          print("5. Building REAL NQ premarket report with 5-trading-day earnings calendar...")
+          print("6. Building REAL NQ premarket report with 5-trading-day earnings calendar and CME futures radar...")
           earnings = upcoming_earnings(days=5)
           print(f"   Relevant earnings found: {len(earnings)}")
           for e in earnings:
               print(f"   {e['date']} {e['symbol']} {e['company']} — {e['time'] or 'time n/a'}")
 
           msg = report(ranked, op, minutes_to_open, "source-check", earnings=earnings)
+          msg += "\n\n" + format_radar(ranked, limit=15)
 
           funds = collect_13f()
           if funds:
@@ -92,7 +100,7 @@ jobs:
           print(msg)
           print("===== END TELEGRAM MESSAGE PREVIEW =====\n")
 
-          print("6. Sending REAL report to Telegram...")
+          print("7. Sending REAL report to Telegram...")
           ok = send(CONFIG.telegram_token, CONFIG.telegram_chat_id, msg)
           if not ok:
               raise RuntimeError("Telegram send() returned False")
