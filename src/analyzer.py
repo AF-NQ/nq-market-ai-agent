@@ -86,9 +86,10 @@ def _normalize_earnings_time(raw):
     return str(raw).upper().replace("_", " ").replace("-", " ")
 
 
-def _earnings_block(earnings):
+def _earnings_block(earnings, finviz_earnings=None):
     if not earnings:
         return []
+    finviz_keys = {(e.get("date", ""), e.get("symbol", "")) for e in (finviz_earnings or [])}
     grouped = {}
     for e in earnings:
         grouped.setdefault(e.get("date", ""), []).append(e)
@@ -101,17 +102,43 @@ def _earnings_block(earnings):
             timing = _normalize_earnings_time(e.get("time"))
             indexes = e.get("indexes") or []
             index_label = " + ".join(indexes) if indexes else "Watchlist"
+            cross = " | Finviz cross-check" if (date, e.get("symbol", "")) in finviz_keys else ""
             lines.append(
                 f'• <b>{escape(e["symbol"])}</b> {escape(e["company"])} '
-                f'— <b>{escape(index_label)}</b> — <b>{escape(timing)}</b>'
+                f'— <b>{escape(index_label)}</b> — <b>{escape(timing)}</b>{escape(cross)}'
             )
     lines.append("<i>Times/calendar dates come from the free public calendar and should be treated as indicative until company-confirmed.</i>")
+    if finviz_earnings:
+        lines.append("<i>Finviz is used as a secondary calendar cross-check; it does not replace company confirmation.</i>")
     return lines
 
 
-def report(items, open_time, minutes_to_open, confirmed_label, earnings=None):
+def _finviz_insider_block(insiders):
+    if not insiders:
+        return []
+    lines = ["", "━━━━━━━━━━━━━━━━━━━━", "<b>🏦 FINVIZ — MATERIAL INSIDER ACTIVITY</b>"]
+    for x in insiders[:8]:
+        indexes = " + ".join(x.get("indexes") or []) or "Watchlist"
+        transaction = x.get("transaction", "")
+        marker = "🟢 BUY" if transaction == "BUY" else "🔴 SALE" if transaction == "SALE" else "🟠 PROPOSED SALE"
+        lines.append(
+            f'• <b>{escape(x.get("symbol", ""))}</b> {escape(x.get("company", ""))} '
+            f'— <b>{escape(indexes)}</b> — {marker} — <b>{escape(x.get("value_display", ""))}</b>'
+        )
+        lines.append(
+            f'  {escape(x.get("owner", ""))} ({escape(x.get("relationship", ""))}) — {escape(x.get("date", ""))}'
+        )
+    link = insiders[0].get("link")
+    if link:
+        lines.append(f'<a href="{escape(link, quote=True)}">Read Finviz insider transactions</a>')
+    lines.append("<i>Insider buys/sales are factual filings; a sale can be routine or pre-planned and is not automatically bearish.</i>")
+    return lines
+
+
+def report(items, open_time, minutes_to_open, confirmed_label, earnings=None, finviz=None):
     now = datetime.now(open_time.tzinfo) if open_time.tzinfo else datetime.now()
     now_text = now.strftime("%Y-%m-%d %H:%M %Z")
+    finviz = finviz or {}
     lines = [
         "<b>🔴 NQ PRE-MARKET — FINAL CHECK</b>",
         f"Generated: {escape(now_text)}",
@@ -148,7 +175,8 @@ def report(items, open_time, minutes_to_open, confirmed_label, earnings=None):
         "<i>Direction is descriptive of the event/headline language, not a price forecast.</i>",
         "", "<i>⚠️ Verification: public-source collection and rule-based checks only. Absence of confirmation is not proof of falsity.</i>",
     ]
-    lines.extend(_earnings_block(earnings or []))
+    lines.extend(_earnings_block(earnings or [], finviz.get("earnings", [])))
+    lines.extend(_finviz_insider_block(finviz.get("insiders", [])))
     return "\n".join(lines)
 
 
