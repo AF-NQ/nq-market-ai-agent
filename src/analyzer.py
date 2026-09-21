@@ -144,14 +144,14 @@ def _catalyst_metrics_line(x):
     nq = _index_relevance(x, "NQ")
     spx = _index_relevance(x, "SPX")
     impact = int(x.get("market_impact", x.get("score", 0)))
-    direction = _direction_label(x.get("equity_direction", x.get("direction", "NEUTRAL")))
+    pressure = _direction_label(x.get("equity_direction", x.get("direction", "NEUTRAL")))
     confidence = int(x.get("direction_confidence", 0))
     return (
         f"<b>Market Impact:</b> <b>{impact}/100</b> | "
         f"<b>NQ Relevance:</b> <b>{nq}/100</b> | "
         f"<b>S&amp;P 500 Relevance:</b> <b>{spx}/100</b> | "
-        f"<b>Direction:</b> {escape(direction)} | "
-        f"<b>Direction Confidence:</b> <b>{confidence}/100</b>"
+        f"<b>Equity Pressure:</b> {escape(pressure)} | "
+        f"<b>Pressure Confidence:</b> <b>{confidence}/100</b>"
     )
 
 
@@ -188,8 +188,8 @@ def report(items, open_time, minutes_to_open, confirmed_label, earnings=None, fi
 
     lines += [
         "", "━━━━━━━━━━━━━━━━━━━━", "<b>🧭 NEWS ENGINE</b>",
-        "<i>Market Impact = intrinsic significance of the event. NQ/SPX Relevance = estimated transmission to the index. Direction = descriptive equity pressure, not a price forecast.</i>",
-        "<i>Source quality, freshness and cross-source coverage affect confidence/ranking; they do not inflate the event's Market Impact.</i>",
+        "<i>Market Impact = intrinsic significance of the event. NQ/SPX Relevance = estimated transmission to the index. Equity Pressure = descriptive bullish, bearish, mixed or neutral pressure on equities; it is not a price forecast.</i>",
+        "<i>Pressure Confidence measures how strongly the rule-based engine supports the stated equity pressure. Source quality, freshness and cross-source coverage affect confidence/ranking; they do not inflate the event's Market Impact.</i>",
         "<i>Multi-publisher coverage does not necessarily mean independent confirmation; syndicated wire stories can appear under multiple publishers.</i>",
         "", "<i>⚠️ Verification: public-source collection and rule-based checks only. Absence of confirmation is not proof of falsity.</i>",
     ]
