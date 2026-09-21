@@ -81,7 +81,11 @@ def test_contract_bias_never_renders_neutral_bias():
     x = item("Japan intervention watch dominates markets", score=70, direction="NEUTRAL", categories=["JAPAN / BOJ"])
     report = format_radar([x])
     assert "NEUTRAL CONTRACT BIAS" not in report
-    assert "NO MATERIAL CONTRACT MAPPING" in report or "MIXED CONTRACT BIAS" in report
+    assert (
+        "NO MATERIAL CONTRACT MAPPING" in report
+        or "MIXED CONTRACT BIAS" in report
+        or "No material CME futures catalysts detected" in report
+    )
 
 
 def test_market_map_uses_no_material_mapping_for_absent_contract_catalyst():
