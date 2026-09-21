@@ -21,8 +21,6 @@ LOW_QUALITY_PATTERNS = {
 GENERIC_PUBLISHERS = {
     "google finance news", "latest news from", "news from", "unknown", "",
 }
-
-# Premarket KEY CATALYSTS are deliberately limited to recent material.
 MAX_CATALYST_AGE_HOURS = 48.0
 
 CATEGORY_RULES = {
@@ -79,7 +77,6 @@ def _anchors(text):
 
 
 def _title_publisher(title):
-    """Recover the real publisher from Google News titles when feed metadata is polluted."""
     t = _clean(title)
     if " - " not in t:
         return ""
@@ -94,23 +91,18 @@ def _title_publisher(title):
     for key, value in mapping.items():
         if key in low:
             return value
-    if any(x in low for x in LOW_QUALITY_PATTERNS):
-        return ""
-    if low.startswith("latest news") or low.startswith("news from"):
-        return ""
+    if any(x in low for x in LOW_QUALITY_PATTERNS): return ""
+    if low.startswith("latest news") or low.startswith("news from"): return ""
     return suffix if len(suffix) <= 60 else ""
 
 
 def publisher(item):
     p = _clean(item.get("publisher") or "")
-    if p and p.lower() not in GENERIC_PUBLISHERS and not any(x in p.lower() for x in LOW_QUALITY_PATTERNS):
-        return p
+    if p and p.lower() not in GENERIC_PUBLISHERS and not any(x in p.lower() for x in LOW_QUALITY_PATTERNS): return p
     recovered = _title_publisher(item.get("title", ""))
-    if recovered:
-        return recovered
+    if recovered: return recovered
     src = _clean(item.get("source") or "")
-    if src and src.lower() not in GENERIC_PUBLISHERS and not any(x in src.lower() for x in LOW_QUALITY_PATTERNS):
-        return src
+    if src and src.lower() not in GENERIC_PUBLISHERS and not any(x in src.lower() for x in LOW_QUALITY_PATTERNS): return src
     try:
         host = urlparse(item.get("link", "")).netloc.lower().replace("www.", "")
         if "reuters" in host: return "Reuters"
@@ -118,15 +110,13 @@ def publisher(item):
         if "yahoo" in host: return "Yahoo Finance"
         if "economictimes" in host: return "Economic Times"
         if "motleyfool" in host: return "Motley Fool"
-    except Exception:
-        pass
+    except Exception: pass
     return recovered or "Unknown"
 
 
 def source_quality(item):
     p = publisher(item).lower()
-    if any(x in p for x in LOW_QUALITY_PATTERNS) or p in GENERIC_PUBLISHERS:
-        return 25
+    if any(x in p for x in LOW_QUALITY_PATTERNS) or p in GENERIC_PUBLISHERS: return 25
     if any(x in p for x in TIER1): return 100
     if any(x in p for x in TIER2): return 82
     return 55
@@ -137,26 +127,17 @@ def _category_hits(text, keys):
 
 
 def categories(item):
-    """Classify mainly from the headline so body-text tangents do not create false categories."""
     title = (item.get("title", "") or "").lower()
     summary = (item.get("summary", "") or "").lower()
-    title_out = []
+    out = []
     for cat, keys in CATEGORY_RULES.items():
-        if any(k in title for k in keys):
-            title_out.append(cat)
-    # Body text can add a genuinely central macro/market category, but it cannot
-    # create a long list of secondary company/sector labels by itself.
+        if any(k in title for k in keys): out.append(cat)
     for cat in ("FED / RATES", "INFLATION / MACRO", "LABOR", "TREASURIES / YIELDS", "USD", "OIL / ENERGY", "TARIFFS / TRADE", "GEOPOLITICS", "INDEX / FUTURES"):
-        if cat in title_out:
-            continue
-        keys = CATEGORY_RULES[cat]
-        if _category_hits(summary, keys) >= 2:
-            title_out.append(cat)
-    return title_out[:3] or ["OTHER"]
+        if cat not in out and _category_hits(summary, CATEGORY_RULES[cat]) >= 2: out.append(cat)
+    return out[:3] or ["OTHER"]
 
 
 def direction(item):
-    """Weight headline language more heavily than body text."""
     title = (item.get("title", "") or "").lower()
     summary = (item.get("summary", "") or "").lower()
     bull = 2 * sum(title.count(k) for k in BULLISH_WORDS) + sum(summary.count(k) for k in BULLISH_WORDS)
@@ -179,8 +160,7 @@ def freshness_hours(item, now=None):
         try:
             dt = parsedate_to_datetime(raw)
             return max(0.0, (now - dt).total_seconds() / 3600)
-        except Exception:
-            return 24.0
+        except Exception: return 24.0
 
 
 def nq_directness(item):
@@ -196,17 +176,9 @@ def _similar(a, b):
     shared_anchors = _anchors(a.get("title", "") + " " + a.get("summary", "")) & _anchors(b.get("title", "") + " " + b.get("summary", ""))
     j = len(ta & tb) / max(1, len(ta | tb))
     shared = len(ta & tb)
-    # Exact/near duplicate headlines remain the strongest cluster signal.
-    if j >= 0.50 or (shared_anchors and shared >= 3 and j >= 0.25):
-        return True
-    # Group clearly identical macro/geopolitical events even when Reuters uses
-    # different headlines for different aspects of the same event.
-    pair_groups = (
-        {"TRUMP", "XI"}, {"FED", "YIELDS"}, {"OIL", "IRAN"},
-    )
-    for group in pair_groups:
-        if group.issubset(shared_anchors) and len(shared_anchors & group) == 2:
-            return True
+    if j >= 0.50 or (shared_anchors and shared >= 3 and j >= 0.25): return True
+    for group in ({"TRUMP", "XI"}, {"FED", "YIELDS"}, {"OIL", "IRAN"}):
+        if group.issubset(shared_anchors): return True
     return False
 
 
@@ -216,27 +188,21 @@ def cluster_items(items):
         placed = False
         for cluster in clusters:
             if _similar(item, cluster[0]):
-                cluster.append(item)
-                placed = True
-                break
-        if not placed:
-            clusters.append([item])
+                cluster.append(item); placed = True; break
+        if not placed: clusters.append([item])
     return clusters
 
 
 def _freshness_component(item):
-    hours = freshness_hours(item)
-    return max(0, round(15 - hours * 0.25))
+    return max(0, round(15 - freshness_hours(item) * 0.25))
 
 
 def score_item(item, cluster_size=1):
     cats = categories(item)
     cat_weights = {
-        "FED / RATES": 18, "INFLATION / MACRO": 16, "LABOR": 16,
-        "TREASURIES / YIELDS": 15, "AI / SEMICONDUCTORS": 18,
-        "MEGA-CAP": 17, "EARNINGS": 16, "GEOPOLITICS": 8,
-        "OIL / ENERGY": 8, "TARIFFS / TRADE": 9, "REGULATION": 9,
-        "INDEX / FUTURES": 18,
+        "FED / RATES": 18, "INFLATION / MACRO": 16, "LABOR": 16, "TREASURIES / YIELDS": 15,
+        "AI / SEMICONDUCTORS": 18, "MEGA-CAP": 17, "EARNINGS": 16, "GEOPOLITICS": 8,
+        "OIL / ENERGY": 8, "TARIFFS / TRADE": 9, "REGULATION": 9, "INDEX / FUTURES": 18,
     }
     relevance = min(30, sum(cat_weights.get(cat, 3) for cat in cats))
     direct = nq_directness(item)
@@ -266,11 +232,7 @@ def build_catalysts(items):
     clusters = cluster_items(fresh_items)
     catalysts = []
     for cluster in clusters:
-        ranked = sorted(
-            cluster,
-            key=lambda x: (source_quality(x), -freshness_hours(x)),
-            reverse=True,
-        )
+        ranked = sorted(cluster, key=lambda x: (freshness_hours(x), -source_quality(x)))
         lead = ranked[0].copy()
         pubs = []
         for x in cluster:
@@ -279,10 +241,9 @@ def build_catalysts(items):
         cats = categories(lead)
         score, level = score_item(lead, len(cluster))
         lead.update({
-            "publisher": publisher(lead), "categories": cats, "direction": direction(lead),
-            "score": score, "level": level, "sources": pubs[:6], "source_count": len(pubs),
-            "cluster_size": len(cluster), "nq_directness": nq_directness(lead),
-            "event_key": _event_key(lead),
+            "publisher": publisher(lead), "categories": cats, "direction": direction(lead), "score": score,
+            "level": level, "sources": pubs[:6], "source_count": len(pubs), "cluster_size": len(cluster),
+            "nq_directness": nq_directness(lead), "event_key": _event_key(lead),
         })
         catalysts.append(lead)
     return diversified_rank(catalysts)
@@ -292,8 +253,7 @@ def diversified_rank(items):
     remaining = sorted(items, key=lambda x: (x.get("score", 0), source_quality(x)), reverse=True)
     out, used_categories, used_events = [], Counter(), Counter()
     while remaining:
-        best = None
-        best_value = None
+        best = None; best_value = None
         for x in remaining:
             primary = x.get("categories", ["OTHER"])[0]
             event = x.get("event_key", "")
@@ -302,8 +262,7 @@ def diversified_rank(items):
             event_penalty = min(20, used_events[event] * 14) if event else 0
             low_quality_penalty = 12 if quality < 70 else 0
             value = x.get("score", 0) - category_penalty - event_penalty - low_quality_penalty
-            if best is None or value > best_value:
-                best, best_value = x, value
+            if best is None or value > best_value: best, best_value = x, value
         remaining.remove(best)
         used_categories[best.get("categories", ["OTHER"])[0]] += 1
         if best.get("event_key"): used_events[best["event_key"]] += 1
