@@ -71,30 +71,33 @@ jobs:
               print(f"   {i}. [{x['level']}] {x['title']} | {x['score']}/100 | direct={x.get('nq_directness')} | {x.get('sources', [])}")
 
           print("4. Building CME futures news radar...")
-          cme_rows = build_radar(ranked, limit=15)
+          cme_rows = build_radar(ranked, limit=18)
           print(f"   CME futures with material news relevance: {len(cme_rows)}")
           for i, x in enumerate(cme_rows, 1):
-              print(f"   {i}. {x['symbol']} {x['name']} | impact={x['impact']} | volatility={x['volatility']} | {x['direction']} | {x['title']}")
+              print(f"   {i}. {x['symbol']} {x['name']} | impact={x['impact']} | move={x['move_potential']} | catalyst={x['catalyst_strength']} | {x['direction']} | {x['title']}")
 
           now = datetime.now(ZoneInfo(CONFIG.timezone))
           op = next_open(now)
           minutes_to_open = (op - now).total_seconds() / 60
           print(f"5. Next US cash open: {op} ({minutes_to_open:.1f} min)")
 
-          print("6. Building REAL NQ premarket report with 5-trading-day earnings calendar and CME futures radar...")
+          print("6. Building REAL NQ premarket report with 5-trading-day earnings calendar...")
           earnings = upcoming_earnings(days=5)
           print(f"   Relevant earnings found: {len(earnings)}")
           for e in earnings:
               print(f"   {e['date']} {e['symbol']} {e['company']} — {e['time'] or 'time n/a'}")
 
           msg = report(ranked, op, minutes_to_open, "source-check", earnings=earnings)
-          msg += "\n\n" + format_radar(ranked, limit=15)
 
           funds = collect_13f()
           if funds:
               msg += "\n\n🏦 13F / HEDGE-FUND DISCOVERY\n" + "\n".join(
                   f'• {x["title"]} — {x["source"]}' for x in funds[:5]
               )
+
+          # CME Radar is deliberately appended LAST so the normal news,
+          # verification, earnings and 13F sections remain the primary feed.
+          msg += "\n\n" + format_radar(ranked, limit=18)
 
           print("\n===== TELEGRAM MESSAGE PREVIEW =====")
           print(msg)
