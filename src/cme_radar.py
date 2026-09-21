@@ -150,6 +150,16 @@ def _direction(item, contract: Contract):
     return "NEUTRAL"
 
 
+def _contract_bias_label(direction):
+    """Render CME direction explicitly as contract bias, not NQ/SPX pressure."""
+    return {
+        "BULLISH PRESSURE": "BULLISH CONTRACT BIAS",
+        "BEARISH PRESSURE": "BEARISH CONTRACT BIAS",
+        "MIXED": "MIXED CONTRACT BIAS",
+        "NEUTRAL": "NEUTRAL CONTRACT BIAS",
+    }.get(direction, "NEUTRAL CONTRACT BIAS")
+
+
 def enrich_test_directions(items):
     """Improve only the Telegram test's headline-level direction labels."""
     for item in items:
@@ -267,7 +277,7 @@ def format_radar(items, limit=18):
     all_material = build_radar(items, limit=len(CONTRACTS))
     rows = all_material[:limit]
     lines = ["", "━━━━━━━━━━━━━━━━━━━━", "<b>🌎 CME FUTURES RADAR — PREMARKET</b>"]
-    lines.append("<i>Impact = news relevance to the contract. Move Potential = event-driven potential for elevated movement if the catalyst develops. Catalyst Strength = strength of the underlying event/news cluster. None is a price forecast or implied-volatility measure.</i>")
+    lines.append("<i>Impact = news relevance to the contract. Move Potential = event-driven potential for elevated movement if the catalyst develops. Contract Bias = directional pressure on the named CME contract. It is not a price forecast or implied-volatility measure.</i>")
     if not rows:
         lines += ["", "No material CME futures catalysts detected in the current news set.", "<i>Rule-based mapping across major liquid CME Group benchmark futures.</i>"]
         return "\n".join(lines)
@@ -285,7 +295,7 @@ def format_radar(items, limit=18):
         for group_name in group_names:
             lines.append(f"<b>{group_name}</b>")
             for row in sorted((r for r in group_rows if r["group"] == group_name), key=lambda r: r["move_potential"], reverse=True):
-                lines.append(f'<b>{row["symbol"]}</b> — {row["name"]} | Impact <b>{row["impact"]}</b> | Move <b>{row["move_potential"]}</b> | {row["direction"]}')
+                lines.append(f'<b>{row["symbol"]}</b> — {row["name"]} | Impact <b>{row["impact"]}</b> | Move <b>{row["move_potential"]}</b> | {_contract_bias_label(row["direction"])}')
 
     lines += ["", "<b>📊 CME MARKET MAP — BENCHMARK FUTURES</b>"]
     by_symbol = {r["symbol"]: r for r in all_material}
@@ -294,7 +304,7 @@ def format_radar(items, limit=18):
         for contract in [c for c in CONTRACTS if c.group == group]:
             row = by_symbol.get(contract.symbol)
             if row:
-                lines.append(f'<b>{contract.symbol}</b> — {contract.name} | Impact {row["impact"]} | Move {row["move_potential"]} | {row["direction"]}')
+                lines.append(f'<b>{contract.symbol}</b> — {contract.name} | Impact {row["impact"]} | Move {row["move_potential"]} | {_contract_bias_label(row["direction"])}')
             else:
                 lines.append(f"<b>{contract.symbol}</b> — {contract.name} | — no material catalyst")
 
