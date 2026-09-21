@@ -7,26 +7,38 @@ from datetime import datetime, timedelta
 import requests
 
 # Companies with meaningful index/sector relevance for NQ and/or S&P 500.
+# Index labels refer to Nasdaq-100 (NDX) and S&P 500 (SPX).
 WATCHLIST = {
-    # NQ / mega-cap / semiconductors
-    "NVDA":"NVIDIA", "AAPL":"Apple", "MSFT":"Microsoft", "AMZN":"Amazon",
-    "GOOGL":"Alphabet", "GOOG":"Alphabet", "META":"Meta", "AVGO":"Broadcom",
-    "TSLA":"Tesla", "AMD":"AMD", "NFLX":"Netflix", "MU":"Micron",
-    "ORCL":"Oracle", "ADBE":"Adobe", "INTC":"Intel", "QCOM":"Qualcomm",
-    "AMAT":"Applied Materials", "LRCX":"Lam Research", "KLAC":"KLA",
-    "MRVL":"Marvell Technology", "ARM":"Arm Holdings", "PANW":"Palo Alto Networks",
-    "CRWD":"CrowdStrike", "PLTR":"Palantir", "CSCO":"Cisco", "INTU":"Intuit",
-    # Broad S&P 500 / major sectors
-    "JPM":"JPMorgan Chase", "BAC":"Bank of America", "WFC":"Wells Fargo",
-    "GS":"Goldman Sachs", "MS":"Morgan Stanley", "V":"Visa", "MA":"Mastercard",
-    "COST":"Costco", "WMT":"Walmart", "HD":"Home Depot", "LOW":"Lowe's",
-    "KO":"Coca-Cola", "PEP":"PepsiCo", "MCD":"McDonald's", "NKE":"Nike",
-    "DIS":"Walt Disney", "CRM":"Salesforce", "NOW":"ServiceNow", "IBM":"IBM",
-    "GE":"GE Aerospace", "CAT":"Caterpillar", "BA":"Boeing", "XOM":"Exxon Mobil",
-    "CVX":"Chevron", "UNH":"UnitedHealth", "JNJ":"Johnson & Johnson",
-    "PFE":"Pfizer", "LLY":"Eli Lilly", "MRK":"Merck", "TMO":"Thermo Fisher",
-    "C":"Citigroup", "BLK":"BlackRock", "GS":"Goldman Sachs",
+    # NDX + S&P 500
+    "NVDA": "NVIDIA", "AAPL": "Apple", "MSFT": "Microsoft", "AMZN": "Amazon",
+    "GOOGL": "Alphabet", "GOOG": "Alphabet", "META": "Meta", "AVGO": "Broadcom",
+    "TSLA": "Tesla", "AMD": "AMD", "NFLX": "Netflix", "MU": "Micron",
+    "ORCL": "Oracle", "ADBE": "Adobe", "INTC": "Intel", "QCOM": "Qualcomm",
+    "AMAT": "Applied Materials", "LRCX": "Lam Research", "KLAC": "KLA",
+    "MRVL": "Marvell Technology", "PANW": "Palo Alto Networks", "CRWD": "CrowdStrike",
+    "PLTR": "Palantir", "CSCO": "Cisco", "INTU": "Intuit", "COST": "Costco",
+    "WMT": "Walmart", "PEP": "PepsiCo", "CRM": "Salesforce", "IBM": "IBM",
+    # NDX only among this watchlist
+    "ARM": "Arm Holdings",
+    # S&P 500 only among this watchlist
+    "JPM": "JPMorgan Chase", "BAC": "Bank of America", "WFC": "Wells Fargo",
+    "GS": "Goldman Sachs", "MS": "Morgan Stanley", "V": "Visa", "MA": "Mastercard",
+    "HD": "Home Depot", "LOW": "Lowe's", "KO": "Coca-Cola", "MCD": "McDonald's",
+    "NKE": "Nike", "DIS": "Walt Disney", "NOW": "ServiceNow", "GE": "GE Aerospace",
+    "CAT": "Caterpillar", "BA": "Boeing", "XOM": "Exxon Mobil", "CVX": "Chevron",
+    "UNH": "UnitedHealth", "JNJ": "Johnson & Johnson", "PFE": "Pfizer", "LLY": "Eli Lilly",
+    "MRK": "Merck", "TMO": "Thermo Fisher", "C": "Citigroup", "BLK": "BlackRock",
 }
+
+INDEXES = {
+    "NDX": {"NVDA", "AAPL", "MSFT", "AMZN", "GOOGL", "GOOG", "META", "AVGO", "TSLA", "AMD", "NFLX", "MU", "ORCL", "ADBE", "INTC", "QCOM", "AMAT", "LRCX", "KLAC", "MRVL", "ARM", "PANW", "CRWD", "PLTR", "CSCO", "INTU", "COST", "WMT", "PEP", "CRM", "IBM"},
+    "SPX": {"NVDA", "AAPL", "MSFT", "AMZN", "GOOGL", "GOOG", "META", "AVGO", "TSLA", "AMD", "NFLX", "MU", "ORCL", "ADBE", "INTC", "QCOM", "AMAT", "LRCX", "KLAC", "MRVL", "PANW", "CRWD", "PLTR", "CSCO", "INTU", "COST", "WMT", "PEP", "CRM", "IBM", "JPM", "BAC", "WFC", "GS", "MS", "V", "MA", "HD", "LOW", "KO", "MCD", "NKE", "DIS", "NOW", "GE", "CAT", "BA", "XOM", "CVX", "UNH", "JNJ", "PFE", "LLY", "MRK", "TMO", "C", "BLK"},
+}
+
+
+def index_memberships(symbol):
+    """Return relevant index labels for a symbol in stable display order."""
+    return [name for name in ("NDX", "SPX") if symbol in INDEXES[name]]
 
 
 def _get_day(date_str):
@@ -50,6 +62,7 @@ def _get_day(date_str):
                 "time": row.get("time", ""),
                 "eps": row.get("epsForecast", ""),
                 "revenue": row.get("revenueForecast", ""),
+                "indexes": index_memberships(sym),
             })
     return wanted
 
@@ -60,7 +73,6 @@ def upcoming_earnings(days=5, start_date=None):
     results = []
     checked = 0
     offset = 0
-    # Look ahead far enough to cover 5 trading days while skipping weekends.
     while checked < days and offset < 10:
         d = start + timedelta(days=offset)
         offset += 1
@@ -70,6 +82,5 @@ def upcoming_earnings(days=5, start_date=None):
         try:
             results.extend(_get_day(d.isoformat()))
         except Exception:
-            # One failed calendar date must not break the entire market report.
             continue
     return results

@@ -74,8 +74,13 @@ def _earnings_block(earnings):
         lines.append(f"<b>{escape(label)}</b>")
         for e in rows:
             timing = e.get("time") or "time n/a"
-            lines.append(f'• <b>{escape(e["symbol"])}</b> {escape(e["company"])} — {escape(timing)}')
-    lines.append("Times/calendar dates are from the free public calendar and should be treated as indicative until company-confirmed.")
+            indexes = e.get("indexes") or []
+            index_label = " + ".join(indexes) if indexes else "Watchlist"
+            lines.append(
+                f'• <b>{escape(e["symbol"])}</b> {escape(e["company"])} '
+                f'— <b>{escape(index_label)}</b> — {escape(timing)}'
+            )
+    lines.append("<i>Times/calendar dates come from the free public calendar and should be treated as indicative until company-confirmed.</i>")
     return lines
 
 
@@ -113,10 +118,10 @@ def report(items, open_time, minutes_to_open, confirmed_label, earnings=None):
 
     lines += [
         "", "━━━━━━━━━━━━━━━━━━━━", "<b>🧭 NEWS ENGINE</b>",
-        "Clusters duplicate/syndicated headlines into catalysts and weights direct NQ relevance, publisher quality, freshness and cross-source coverage.",
-        "Multi-publisher coverage does not necessarily mean independent confirmation; syndicated wire stories can appear under multiple publishers.",
-        "Direction is descriptive of the event/headline language, not a price forecast.",
-        "", "⚠️ Verification: public-source collection and rule-based checks only. Absence of confirmation is not proof of falsity.",
+        "<i>Clusters duplicate/syndicated headlines into catalysts and weights direct NQ relevance, publisher quality, freshness and cross-source coverage.</i>",
+        "<i>Multi-publisher coverage does not necessarily mean independent confirmation; syndicated wire stories can appear under multiple publishers.</i>",
+        "<i>Direction is descriptive of the event/headline language, not a price forecast.</i>",
+        "", "<i>⚠️ Verification: public-source collection and rule-based checks only. Absence of confirmation is not proof of falsity.</i>",
     ]
     lines.extend(_earnings_block(earnings or []))
     return "\n".join(lines)
