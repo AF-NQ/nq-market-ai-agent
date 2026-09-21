@@ -40,8 +40,10 @@ CONTRACTS = [
     # Energy
     Contract("CL", "WTI Crude Oil", "ENERGY", ("oil", "crude", "wti", "brent", "opec", "opec+", "iran", "israel", "middle east", "hormuz", "supply", "inventory", "eia"), 42),
     Contract("NG", "Henry Hub Natural Gas", "ENERGY", ("natural gas", "lng", "henry hub", "gas storage", "weather", "hurricane", "pipeline"), 36),
-    Contract("RB", "RBOB Gasoline", "ENERGY", ("gasoline", "rboB", "refinery", "refineries", "crack spread", "oil", "crude", "eia", "opec"), 29),
-    Contract("HO", "Heating Oil", "ENERGY", ("heating oil", "diesel", "distillate", "refinery", "oil", "crude", "eia", "opec"), 27),
+    # Gasoline and heating oil are directly exposed to crude/feedstock supply shocks,
+    # so generic oil-supply catalysts should clear the material-impact threshold.
+    Contract("RB", "RBOB Gasoline", "ENERGY", ("gasoline", "rboB", "refinery", "refineries", "crack spread", "oil", "crude", "supply", "eia", "opec"), 29),
+    Contract("HO", "Heating Oil", "ENERGY", ("heating oil", "diesel", "distillate", "refinery", "oil", "crude", "supply", "eia", "opec"), 27),
     # Metals
     Contract("GC", "Gold", "METALS", ("gold", "precious metals", "fed", "rates", "real yields", "treasury", "yield", "dollar", "usd", "geopolitics", "iran", "war"), 40),
     Contract("SI", "Silver", "METALS", ("silver", "precious metals", "gold", "fed", "rates", "dollar", "usd", "industrial demand"), 34),
