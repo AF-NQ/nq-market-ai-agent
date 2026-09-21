@@ -1,0 +1,10 @@
+{
+  "timezone": "America/New_York",
+  "poll_minutes": 5,
+  "preopen_minutes": 30,
+  "preopen_window_minutes": 5,
+  "urgent_enabled": true,
+  "reuters_priority": 100,
+  "max_items_per_feed": 20,
+  "database_path": "data/market.db"
+}
