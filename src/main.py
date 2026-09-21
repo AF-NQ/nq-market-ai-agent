@@ -6,6 +6,7 @@ from .storage import Store
 from .calendar import preopen_state
 from .analyzer import analyze, report, urgent_messages
 from .earnings import upcoming_earnings
+from .hedge_funds import collect_13f
 from .telegram import send
 
 
@@ -21,12 +22,17 @@ def run_once():
     last_pre = store.get("last_preopen_date")
     today = op.date().isoformat()
     earnings = upcoming_earnings()
+    funds = collect_13f()
 
     if is_pre and last_pre != today:
         msg = report(ranked, op, mins, "source-check")
         if earnings:
             msg += "\n\n📅 MEGA-CAP EARNINGS TODAY\n" + "\n".join(
                 f'{e["symbol"]} {e["company"]} — {e["time"] or "time n/a"}' for e in earnings
+            )
+        if funds:
+            msg += "\n\n🏦 13F / HEDGE-FUND DISCOVERY\n" + "\n".join(
+                f'• {x["title"]} — {x["source"]}' for x in funds[:5]
             )
         send(CONFIG.telegram_token, CONFIG.telegram_chat_id, msg)
         store.set("last_preopen_date", today)
