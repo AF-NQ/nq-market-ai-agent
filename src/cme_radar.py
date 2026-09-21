@@ -1,9 +1,7 @@
 """Rule-based CME futures news radar for the Telegram premarket test.
 
-This module is intentionally separate from the production NQ/SPX engine. It maps
-already-ranked news catalysts to major liquid CME Group futures and estimates
-contract relevance and event-driven move potential. It does not forecast price
-or implied volatility.
+Maps ranked news catalysts to major liquid CME Group futures. Contract bias is
+kept separate from NQ/SPX news pressure and is never a price forecast.
 """
 
 from collections import defaultdict
@@ -61,11 +59,16 @@ CONTRACTS = [
 ]
 
 
-def _text(item):
+def _parts(item):
     title = str(item.get("title", ""))
     summary = str(item.get("summary", ""))
     categories = " ".join(item.get("categories", []) or [])
-    return title.lower(), f"{title} {summary} {categories}".lower()
+    return title.lower(), summary.lower(), categories.lower(), f"{title} {summary} {categories}".lower()
+
+
+def _text(item):
+    title, summary, categories, text = _parts(item)
+    return title, text
 
 
 def _has(text, *terms):
@@ -75,9 +78,8 @@ def _has(text, *terms):
 def _direction(item, contract: Contract):
     """Infer direction for a specific contract; never blindly copy headline direction."""
     raw = str(item.get("direction", "NEUTRAL") or "NEUTRAL").upper()
-    title, text = _text(item)
+    title, summary, categories, text = _parts(item)
 
-    # Rates: Treasury futures move inversely to yields.
     if contract.group == "INTEREST RATES":
         if _has(title, "yields retreat", "yield retreat", "yields ease", "yield eases", "lower yields", "yields fall", "yield falls", "yield decline", "yields decline", "yield drop", "yields drop", "yield slips", "yields slip"):
             return "BULLISH PRESSURE"
@@ -88,15 +90,11 @@ def _direction(item, contract: Contract):
         if _has(text, "higher yields", "yields rise", "yields jump", "yields climb", "yields increase"):
             return "BEARISH PRESSURE"
 
-    # Equity indexes: explicitly handle yield-driven equity moves before broad
-    # headline wording. This fixes 'equity futures fall as yields jump'.
     if contract.group == "EQUITY INDEX":
-        if _has(title, "higher yields", "yields rise", "yields jump", "yields climb", "yields increase", "rate hike", "hawkish"):
-            if _has(title, "fall", "falls", "drop", "drops", "retreat", "retreats", "selloff", "sell-off", "slump", "loss", "losses", "lower") or _has(text, "equity futures fall", "stocks fall", "stocks drop", "equities fall"):
-                return "BEARISH PRESSURE"
-        if _has(title, "lower yields", "yields retreat", "yields ease", "yields fall", "yields decline", "yields drop", "rate cut", "dovish"):
-            if _has(title, "higher", "gain", "gains", "rise", "rally", "rallies", "recover", "recovery", "rebound") or _has(text, "wall street rallies", "stocks recover", "equities recover"):
-                return "BULLISH PRESSURE"
+        if _has(title, "higher yields", "yields rise", "yields jump", "yields climb", "yields increase", "rate hike", "hawkish") and (_has(title, "fall", "falls", "drop", "drops", "retreat", "retreats", "selloff", "sell-off", "slump", "loss", "losses", "lower") or _has(text, "equity futures fall", "stocks fall", "stocks drop", "equities fall")):
+            return "BEARISH PRESSURE"
+        if _has(title, "lower yields", "yields retreat", "yields ease", "yields fall", "yields decline", "yields drop", "rate cut", "dovish") and (_has(title, "higher", "gain", "gains", "rise", "rally", "rallies", "recover", "recovery", "rebound") or _has(text, "wall street rallies", "stocks recover", "equities recover")):
+            return "BULLISH PRESSURE"
         if _has(title, "ends sharply higher", "ends higher", "stocks recover", "equities recover", "stock gains", "stocks gain", "stocks rise", "stocks rally", "stocks rebound", "equities rally", "equities rebound", "rallies", "rally", "gains", "gain", "higher", "optimism", "recovery", "recover"):
             return "BULLISH PRESSURE"
         if _has(title, "ends sharply lower", "ends lower", "stocks fall", "stocks drop", "equities fall", "equities drop", "stocks retreat", "equities retreat", "selloff", "sell-off", "losses", "slump", "falls", "drops", "lower", "loss"):
@@ -109,9 +107,7 @@ def _direction(item, contract: Contract):
     if contract.symbol == "CL":
         if _has(title, "oil prices rise", "oil prices gain", "oil rises", "oil gains", "oil jumps", "oil surges", "crude rises", "crude gains", "crude jumps", "crude surges", "oil rallies", "crude rallies", "supply disruption", "supply cut", "opec cut", "production cut"):
             return "BULLISH PRESSURE"
-        if _has(title, "oil prices ease", "oil prices retreat", "oil eases", "oil retreats", "oil falls", "oil drops", "oil slips", "crude falls", "crude drops", "crude eases", "crude retreats", "demand weakens"):
-            return "BEARISH PRESSURE"
-        if _has(text, "oil prices ease", "oil eases", "oil falls", "crude falls", "crude drops", "demand weakens"):
+        if _has(title, "oil prices ease", "oil prices retreat", "oil eases", "oil retreats", "oil falls", "oil drops", "oil slips", "crude falls", "crude drops", "crude eases", "crude retreats", "demand weakens") or _has(text, "oil prices ease", "oil eases", "oil falls", "crude falls", "crude drops", "demand weakens"):
             return "BEARISH PRESSURE"
 
     if contract.symbol in {"RB", "HO"}:
@@ -151,13 +147,12 @@ def _direction(item, contract: Contract):
 
 
 def _contract_bias_label(direction):
-    """Render CME direction explicitly as contract bias, not NQ/SPX pressure."""
+    """Render CME direction explicitly as contract bias, never NQ/SPX pressure."""
     return {
         "BULLISH PRESSURE": "BULLISH CONTRACT BIAS",
         "BEARISH PRESSURE": "BEARISH CONTRACT BIAS",
         "MIXED": "MIXED CONTRACT BIAS",
-        "NEUTRAL": "NEUTRAL CONTRACT BIAS",
-    }.get(direction, "NEUTRAL CONTRACT BIAS")
+    }.get(direction, "NO MATERIAL CONTRACT MAPPING")
 
 
 def enrich_test_directions(items):
@@ -190,29 +185,66 @@ def _event_terms(text):
     )
 
 
+def _contract_link_is_material(contract: Contract, title_hits, content_hits, categories):
+    """Require a genuine contract-specific link; category labels alone are not enough."""
+    title_or_content = {h.lower() for h in (title_hits + content_hits)}
+    category_hits = {h.lower() for h in categories}
+
+    broad_equity = {"stocks", "equities", "us stocks", "wall street", "index futures", "risk-on", "risk-off"}
+    if contract.symbol == "YM":
+        return bool(title_or_content & {"dow", "industrial", "industrials"})
+    if contract.symbol == "RTY":
+        return bool(title_or_content & {"russell", "small caps", "small-cap", "regional banks", "domestic stocks"})
+    if contract.symbol == "NKD":
+        return bool(title_or_content & {"nikkei", "japan stocks", "japanese stocks", "boj", "bank of japan", "yen"})
+    if contract.symbol == "NQ":
+        return bool(title_or_content & set(contract.keywords)) or bool(title_or_content & broad_equity)
+    if contract.symbol == "ES":
+        return bool(title_or_content & set(contract.keywords))
+    if contract.group == "FX":
+        return bool(title_or_content & set(contract.keywords))
+    if contract.group == "INTEREST RATES":
+        rate_terms = {"fed", "federal reserve", "fomc", "interest rate", "rates", "cpi", "inflation", "pce", "jobs", "payroll", "unemployment", "sofr", "treasury", "yield", "2-year", "2 year", "5-year", "5 year", "10-year", "10 year", "30-year", "30 year", "bond"}
+        return bool(title_or_content & rate_terms)
+    if contract.symbol == "CL":
+        return bool(title_or_content & {"oil", "crude", "wti", "brent", "opec", "opec+", "iran", "israel", "middle east", "hormuz", "supply", "inventory", "eia"})
+    if contract.symbol in {"RB", "HO"}:
+        return bool(title_or_content & set(contract.keywords))
+    if contract.symbol == "NG":
+        return bool(title_or_content & {"natural gas", "lng", "henry hub", "gas storage", "hurricane", "pipeline"})
+    if contract.symbol == "HG":
+        direct = {"copper", "manufacturing", "industrial", "construction", "stimulus", "pboc"}
+        trade_pair = {"china", "tariff", "trade"}
+        return bool(title_or_content & direct) or len(title_or_content & trade_pair) >= 2
+    if contract.symbol in {"GC", "SI", "PL"}:
+        return bool(title_or_content & set(contract.keywords))
+    if contract.group == "AGRICULTURE":
+        return bool(title_or_content & set(contract.keywords))
+    if contract.group == "CRYPTO":
+        return bool(title_or_content & set(contract.keywords))
+    return bool(title_or_content & set(contract.keywords))
+
+
 def score_contract(item, contract: Contract):
-    title, text = _text(item)
+    title, summary, categories, text = _parts(item)
     normalized_title = re.sub(r"[^a-z0-9$+\- ]+", " ", title)
+    normalized_summary = re.sub(r"[^a-z0-9$+\- ]+", " ", summary)
     title_hits = [k for k in contract.keywords if k.lower() in normalized_title]
+    content_hits = [k for k in contract.keywords if k.lower() in f"{normalized_title} {normalized_summary}"]
     all_hits = [k for k in contract.keywords if k.lower() in text]
-    if not all_hits:
+    if not all_hits or not _contract_link_is_material(contract, title_hits, content_hits, categories):
         return 0, 0, []
 
     generic_only = {"stocks", "equities", "us stocks", "oil", "crude", "rates", "dollar", "china", "weather"}
-    specific_hits = [k for k in all_hits if k.lower() not in generic_only]
-    if not title_hits and not specific_hits:
-        return 0, 0, []
+    specific_hits = [k for k in content_hits if k.lower() not in generic_only]
 
     if contract.symbol == "CL":
         oil_specific = {"wti", "brent", "opec", "opec+", "iran", "israel", "middle east", "hormuz", "supply", "inventory", "eia"}
-        if not any(k.lower() in oil_specific for k in specific_hits):
-            if not _has(title, "oil prices ease", "oil prices rise", "oil prices gain", "oil prices fall", "oil prices drop", "oil prices retreat"):
-                return 0, 0, []
-
-    if contract.symbol == "NG":
-        gas_specific = {"natural gas", "lng", "henry hub", "gas storage", "hurricane", "pipeline"}
-        if not any(k.lower() in gas_specific for k in specific_hits):
+        if not any(k.lower() in oil_specific for k in content_hits) and not _has(title, "oil prices ease", "oil prices rise", "oil prices gain", "oil prices fall", "oil prices drop", "oil prices retreat"):
             return 0, 0, []
+
+    if contract.symbol == "NG" and not any(k.lower() in {"natural gas", "lng", "henry hub", "gas storage", "hurricane", "pipeline"} for k in content_hits):
+        return 0, 0, []
 
     catalyst_score = int(item.get("score", 0) or 0)
     title_bonus = min(18, len(title_hits) * 9)
@@ -232,6 +264,7 @@ def build_radar(items, limit=15):
             impact, move_potential, hits = score_contract(item, contract)
             if impact < 50:
                 continue
+            direction = _direction(item, contract)
             rows.append({
                 "symbol": contract.symbol,
                 "name": contract.name,
@@ -240,7 +273,7 @@ def build_radar(items, limit=15):
                 "move_potential": move_potential,
                 "volatility": move_potential,
                 "catalyst_strength": catalyst_strength(item),
-                "direction": _direction(item, contract),
+                "direction": direction,
                 "title": item.get("title", ""),
                 "catalyst_score": int(item.get("score", 0) or 0),
                 "hits": hits,
@@ -306,7 +339,7 @@ def format_radar(items, limit=18):
             if row:
                 lines.append(f'<b>{contract.symbol}</b> — {contract.name} | Impact {row["impact"]} | Move {row["move_potential"]} | {_contract_bias_label(row["direction"])}')
             else:
-                lines.append(f"<b>{contract.symbol}</b> — {contract.name} | — no material catalyst")
+                lines.append(f"<b>{contract.symbol}</b> — {contract.name} | — no material contract mapping")
 
     lines += ["", "<i>Universe focuses on major liquid CME Group benchmark futures across equity indexes, rates, FX, energy, metals, agriculture and crypto; it is not an exhaustive contract directory.</i>"]
     return "\n".join(lines)
