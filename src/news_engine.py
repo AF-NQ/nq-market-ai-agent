@@ -22,6 +22,11 @@ GENERIC_PUBLISHERS = {
     "google finance news", "latest news from", "news from", "unknown", "",
 }
 
+# Premarket KEY CATALYSTS are deliberately limited to recent material.
+# A 48h hard cutoff prevents old articles from resurfacing simply because
+# their keywords remain highly relevant to NQ/SPX.
+MAX_CATALYST_AGE_HOURS = 48.0
+
 CATEGORY_RULES = {
     "FED / RATES": ["fed", "federal reserve", "fomc", "interest rate", "rate cut", "rate hike", "powell", "hawkish", "dovish"],
     "INFLATION / MACRO": ["cpi", "ppi", "inflation", "core inflation", "pce", "retail sales", "gdp", "ism", "consumer confidence"],
@@ -96,8 +101,6 @@ def _title_publisher(title):
             return value
     if any(x in low for x in LOW_QUALITY_PATTERNS):
         return ""
-    # Keep recognizable publisher suffixes, but do not treat arbitrary geographic
-    # wrappers such as "Latest news from Azerbaijan" as a publisher.
     if low.startswith("latest news") or low.startswith("news from"):
         return ""
     return suffix if len(suffix) <= 60 else ""
@@ -119,6 +122,7 @@ def publisher(item):
         if "cnbc" in host: return "CNBC"
         if "yahoo" in host: return "Yahoo Finance"
         if "economictimes" in host: return "Economic Times"
+        if "motleyfool" in host: return "Motley Fool"
     except Exception:
         pass
     return recovered or "Unknown"
@@ -174,8 +178,6 @@ def nq_directness(item):
         return 25
     if any(k in text for k in US_EQUITY_CONTEXT):
         return 14
-    # Pure geopolitical/commodity stories can matter, but should not outrank
-    # direct Nasdaq/US-equity catalysts merely because they contain many categories.
     return 5
 
 
@@ -202,10 +204,14 @@ def cluster_items(items):
     return clusters
 
 
+def _freshness_component(item):
+    """Freshness bonus: strong for the current session, still useful through 48h."""
+    hours = freshness_hours(item)
+    return max(0, round(15 - hours * 0.25))
+
+
 def score_item(item, cluster_size=1):
     cats = categories(item)
-    # Category contribution is capped so a generic macro headline cannot score
-    # highly just by mentioning oil + yields + geopolitics + rates together.
     cat_weights = {
         "FED / RATES": 18, "INFLATION / MACRO": 16, "LABOR": 16,
         "TREASURIES / YIELDS": 15, "AI / SEMICONDUCTORS": 18,
@@ -219,7 +225,7 @@ def score_item(item, cluster_size=1):
     impact_terms = ["unexpected", "emergency", "surprise", "beats", "misses", "guidance", "ceasefire", "strike", "tariff", "sanction", "default", "halt", "decision"]
     impact = min(20, sum(4 for x in impact_terms if x in text))
     quality = round(source_quality(item) * 0.15)
-    fresh = max(0, round(12 - min(12, freshness_hours(item) * 1.2)))
+    fresh = _freshness_component(item)
     confirmation = min(10, max(0, (cluster_size - 1) * 4))
     score = min(100, relevance + direct + impact + quality + fresh + confirmation)
     level = "HIGH" if score >= 75 else "MEDIUM" if score >= 55 else "LOW"
@@ -227,10 +233,19 @@ def score_item(item, cluster_size=1):
 
 
 def build_catalysts(items):
-    clusters = cluster_items(items)
+    # Hard freshness gate for the premarket catalyst list. This prevents old
+    # articles from ranking highly merely because their keywords remain relevant.
+    fresh_items = [x for x in items if freshness_hours(x) <= MAX_CATALYST_AGE_HOURS]
+    clusters = cluster_items(fresh_items)
     catalysts = []
     for cluster in clusters:
-        ranked = sorted(cluster, key=lambda x: (source_quality(x), -freshness_hours(x)), reverse=True)
+        # Prefer the freshest material first, then publisher quality. A fresh
+        # Tier-2 article should not be represented by a months-old Tier-1 story.
+        ranked = sorted(
+            cluster,
+            key=lambda x: (freshness_hours(x) <= MAX_CATALYST_AGE_HOURS, -freshness_hours(x), source_quality(x)),
+            reverse=True,
+        )
         lead = ranked[0].copy()
         pubs = []
         for x in cluster:
