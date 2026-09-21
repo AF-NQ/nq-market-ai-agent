@@ -68,9 +68,10 @@ jobs:
           ranked = analyze(new)
           print(f"   Final catalysts: {len(ranked)}")
 
-          # Test-only directional enrichment: production NQ Market Monitor is not
-          # changed. This fixes obvious headline language such as "ends sharply
-          # higher", "recover" and "ends lower" before rendering the test report.
+          # Test-only headline-direction enrichment. Production NQ Market Monitor
+          # is not changed. We keep the original engine directions separately so
+          # CME contract mapping does not inherit a broad equity headline bias.
+          original_directions = [x.get("direction", "NEUTRAL") for x in ranked]
           enrich_test_directions(ranked)
           for i, x in enumerate(ranked[:10], 1):
               print(f"   {i}. [{x['level']}] {x['title']} | {x['score']}/100 | direction={x.get('direction')} | direct={x.get('nq_directness')} | {x.get('sources', [])}")
@@ -92,6 +93,11 @@ jobs:
           print("   ✅ Directional mapping checks passed")
 
           print("5. Building CME futures news radar...")
+          # Restore the original engine direction before contract mapping. The
+          # headline-level enrichment is for KEY CATALYSTS only; CME Radar must
+          # decide direction independently for each contract.
+          for x, original in zip(ranked, original_directions):
+              x["direction"] = original
           cme_rows = build_radar(ranked, limit=18)
           print(f"   CME futures with material news relevance: {len(cme_rows)}")
           for i, x in enumerate(cme_rows, 1):
@@ -117,6 +123,9 @@ jobs:
           for e in earnings:
               print(f"   {e['date']} {e['symbol']} {e['company']} — {e['time'] or 'time n/a'}")
 
+          # KEY CATALYSTS should show the test-enriched headline direction.
+          for x, original in zip(ranked, original_directions):
+              pass
           msg = report(ranked, op, minutes_to_open, "source-check", earnings=earnings)
 
           funds = collect_13f()
