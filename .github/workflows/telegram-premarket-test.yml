@@ -49,6 +49,7 @@ jobs:
           from src.analyzer import analyze, report
           from src.cme_radar import build_radar, format_radar, enrich_test_directions, CONTRACTS
           from src.earnings import upcoming_earnings
+          from src.finviz import collect_finviz
           from src.hedge_funds import collect_13f
           from src.telegram import send
 
@@ -96,15 +97,20 @@ jobs:
           minutes_to_open = (op - now).total_seconds() / 60
           print(f"5. Next US cash open: {op} ({minutes_to_open:.1f} min)")
 
-          print("6. Building REAL NQ premarket report with 5-trading-day earnings calendar...")
+          print("6. Building REAL NQ premarket report with 5-trading-day earnings calendar + Finviz...")
           earnings = upcoming_earnings(days=5)
+          finviz = collect_finviz(days=5)
           print(f"   Relevant earnings found: {len(earnings)}")
+          print(f"   Finviz earnings cross-checks: {len(finviz.get('earnings', []))}")
+          print(f"   Finviz material insider rows: {len(finviz.get('insiders', []))}")
           for e in earnings:
               print(f"   {e['date']} {e['symbol']} {e['company']} — {e['time'] or 'time n/a'}")
+          for x in finviz.get('insiders', []):
+              print(f"   FINVIZ INSIDER {x['symbol']} {x['transaction']} {x['value_display']} — {x['owner']}")
 
           # Render KEY CATALYSTS while the test-only headline direction enrichment
           # is active. This affects only this manually-run Telegram test.
-          msg = report(ranked, op, minutes_to_open, "source-check", earnings=earnings)
+          msg = report(ranked, op, minutes_to_open, "source-check", earnings=earnings, finviz=finviz)
 
           # Restore the original directions before CME mapping. CME Radar decides
           # direction independently per contract and must not inherit broad NQ/SPX
@@ -134,7 +140,7 @@ jobs:
               )
 
           # CME Radar is deliberately appended LAST so the normal news,
-          # verification, earnings and 13F sections remain the primary feed.
+          # verification, earnings, Finviz and 13F sections remain the primary feed.
           msg += "\n\n" + radar_text
 
           print("\n===== TELEGRAM MESSAGE PREVIEW =====")
