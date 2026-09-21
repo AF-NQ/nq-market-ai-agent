@@ -21,15 +21,11 @@ def run_once():
     op, mins, is_pre = preopen_state(minutes=CONFIG.preopen_minutes, window=CONFIG.preopen_window_minutes)
     last_pre = store.get("last_preopen_date")
     today = op.date().isoformat()
-    earnings = upcoming_earnings()
+    earnings = upcoming_earnings(days=5)
     funds = collect_13f()
 
     if is_pre and last_pre != today:
-        msg = report(ranked, op, mins, "source-check")
-        if earnings:
-            msg += "\n\n📅 MEGA-CAP EARNINGS TODAY\n" + "\n".join(
-                f'{e["symbol"]} {e["company"]} — {e["time"] or "time n/a"}' for e in earnings
-            )
+        msg = report(ranked, op, mins, "source-check", earnings=earnings)
         if funds:
             msg += "\n\n🏦 13F / HEDGE-FUND DISCOVERY\n" + "\n".join(
                 f'• {x["title"]} — {x["source"]}' for x in funds[:5]
@@ -37,18 +33,15 @@ def run_once():
         send(CONFIG.telegram_token, CONFIG.telegram_chat_id, msg)
         store.set("last_preopen_date", today)
 
-    # Urgent alerts are intraday-only. During premarket the main report already
-    # contains the ranked catalysts, so sending them again creates duplicate noise.
+    # Urgent alerts are intraday-only; the main premarket report already contains
+    # the catalysts and the earnings calendar, so we avoid duplicate premarket noise.
     if not is_pre:
         for msg in urgent_messages(ranked):
             send(CONFIG.telegram_token, CONFIG.telegram_chat_id, msg)
 
     return {
-        "collected": len(raw),
-        "new": len(new),
-        "preopen": is_pre,
-        "open": op.isoformat(),
-        "minutes": mins,
+        "collected": len(raw), "new": len(new), "preopen": is_pre,
+        "open": op.isoformat(), "minutes": mins, "earnings": len(earnings),
     }
 
 
