@@ -1,7 +1,14 @@
 from datetime import datetime
+from html import escape
 
 from .news_engine import catalyst_summary, freshness_hours
 from .verify import relevance
+
+
+def _link(text, url):
+    if not url:
+        return escape(text)
+    return f'<a href="{escape(url, quote=True)}">{escape(text)}</a>'
 
 
 def analyze(items):
@@ -45,11 +52,13 @@ def report(items, open_time, minutes_to_open, confirmed_label):
             source_status = "MULTI-PUBLISHER" if x.get("source_count", 1) >= 2 else "SINGLE PUBLISHER"
             freshness = freshness_hours(x)
             age = f"{freshness:.1f}h old" if freshness < 48 else f"{freshness:.0f}h old"
-            lines.append(f"{i}. [{x['level']}] {x['title']}")
-            lines.append(f"   Category: {cats}")
+            # Keep the Telegram message visually clean: the headline itself is
+            # clickable instead of printing a long Google News URL underneath it.
+            headline = _link(x["title"], x.get("link", ""))
+            lines.append(f"{i}. [{x['level']}] {headline}")
+            lines.append(f"   Category: {escape(cats)}")
             lines.append(f"   NQ relevance: {x['score']}/100 | {direction}")
-            lines.append(f"   Sources: {sources} | {source_status} | {age}")
-            lines.append(f"   {x['link']}")
+            lines.append(f"   Sources: {escape(sources)} | {source_status} | {age}")
 
     lines += [
         "",
@@ -75,12 +84,12 @@ def urgent_messages(items):
             and freshness_hours(x) <= 3
         ):
             sources = ", ".join(x.get("sources", [])[:4]) or "Unknown"
+            headline = _link(x["title"], x.get("link", ""))
             out.append(
                 "🚨 NQ HIGH-IMPACT CATALYST\n"
-                f"{x['title']}\n"
-                f"Category: {', '.join(x.get('categories', ['OTHER'])[:3])}\n"
+                f"{headline}\n"
+                f"Category: {escape(', '.join(x.get('categories', ['OTHER'])[:3]))}\n"
                 f"NQ relevance: HIGH ({x['score']}/100)\n"
-                f"Sources: {sources}\n"
-                f"{x['link']}"
+                f"Sources: {escape(sources)}"
             )
     return out
