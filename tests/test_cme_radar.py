@@ -1,4 +1,4 @@
-from src.cme_radar import build_radar, score_contract, CONTRACTS
+from src.cme_radar import build_radar, score_contract, CONTRACTS, format_radar
 
 
 def item(title, score=90, direction="BULLISH", categories=None):
@@ -43,3 +43,35 @@ def test_radar_returns_distinct_contracts():
     assert "ZT" in symbols
     assert "ZN" in symbols
     assert len(symbols) == len(rows)
+
+
+def test_direction_is_contract_aware_for_treasuries_and_equities():
+    x = item("Wall Street rallies as Treasury yields retreat", direction="NEUTRAL", categories=["TREASURIES / YIELDS"])
+    rate = score_contract(x, contract("ZN"))
+    equity = score_contract(x, contract("NQ"))
+    assert rate[0] >= 50
+    assert equity[0] >= 50
+
+    rows = build_radar([x], limit=len(CONTRACTS))
+    by_symbol = {r["symbol"]: r for r in rows}
+    assert by_symbol["ZN"]["direction"] == "BULLISH PRESSURE"
+    assert by_symbol["NQ"]["direction"] == "BULLISH PRESSURE"
+
+
+def test_direction_inverts_for_rising_yields():
+    x = item("Equity futures fall as Treasury yields jump", direction="NEUTRAL", categories=["TREASURIES / YIELDS"])
+    rows = build_radar([x], limit=len(CONTRACTS))
+    by_symbol = {r["symbol"]: r for r in rows}
+    assert by_symbol["ZN"]["direction"] == "BEARISH PRESSURE"
+    assert by_symbol["NQ"]["direction"] == "BEARISH PRESSURE"
+
+
+def test_format_radar_has_event_level_strength_and_full_market_map():
+    x = item("Wall Street rallies as Treasury yields retreat", direction="NEUTRAL", categories=["TREASURIES / YIELDS"])
+    report = format_radar([x])
+    assert "VOLATILITY WATCH — MOVE POTENTIAL" in report
+    assert "Catalyst Strength:" in report
+    assert "CME MARKET MAP — BENCHMARK FUTURES" in report
+    assert "ES — E-mini S&P 500" in report
+    assert "CL — WTI Crude Oil" in report
+    assert "Catalyst <b>" not in report
