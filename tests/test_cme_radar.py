@@ -1,10 +1,10 @@
 from src.cme_radar import build_radar, score_contract, CONTRACTS, format_radar
 
 
-def item(title, score=90, direction="BULLISH", categories=None):
+def item(title, score=90, direction="BULLISH", categories=None, summary=""):
     return {
         "title": title,
-        "summary": "",
+        "summary": summary,
         "score": score,
         "direction": direction,
         "categories": categories or [],
@@ -66,6 +66,31 @@ def test_direction_inverts_for_rising_yields():
     assert by_symbol["NQ"]["direction"] == "BEARISH PRESSURE"
 
 
+def test_weak_global_headline_does_not_force_unrelated_contracts():
+    x = item(
+        'Trump pushes "super intelligence," dismisses AI risks and eyes China hotline',
+        score=88,
+        direction="NEUTRAL",
+        categories=["INFLATION / MACRO", "CHINA / PBOC", "GEOPOLITICS"],
+    )
+    assert score_contract(x, contract("HG"))[0] == 0
+    assert score_contract(x, contract("YM"))[0] == 0
+
+
+def test_contract_bias_never_renders_neutral_bias():
+    x = item("Japan intervention watch dominates markets", score=70, direction="NEUTRAL", categories=["JAPAN / BOJ"])
+    report = format_radar([x])
+    assert "NEUTRAL CONTRACT BIAS" not in report
+    assert "NO MATERIAL CONTRACT MAPPING" in report or "MIXED CONTRACT BIAS" in report
+
+
+def test_market_map_uses_no_material_mapping_for_absent_contract_catalyst():
+    x = item("Nasdaq rises as AI optimism lifts technology shares", score=85, direction="BULLISH", categories=["AI / SEMICONDUCTORS"])
+    report = format_radar([x])
+    assert "<b>NQ</b> — E-mini Nasdaq-100" in report
+    assert "no material contract mapping" in report
+
+
 def test_format_radar_has_event_level_strength_and_full_market_map():
     x = item("Wall Street rallies as Treasury yields retreat", direction="NEUTRAL", categories=["TREASURIES / YIELDS"])
     report = format_radar([x])
@@ -74,4 +99,5 @@ def test_format_radar_has_event_level_strength_and_full_market_map():
     assert "CME MARKET MAP — BENCHMARK FUTURES" in report
     assert "<b>ES</b> — E-mini S&P 500" in report
     assert "<b>CL</b> — WTI Crude Oil" in report
+    assert "BULLISH CONTRACT BIAS" in report
     assert "Catalyst <b>" not in report
