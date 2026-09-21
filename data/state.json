@@ -1,1 +1,589 @@
-{"seen": {}, "state": {}}
+{
+  "seen": {
+    "0cc012dc606fcdb85f3efac81da66f487c7fca2d45e9dc101fe402b328275e0a": {
+      "ts": "2026-09-21T15:57:01+00:00",
+      "title": "Wall St rises on AI gains as oil slides, Treasury yields retreat - Reuters"
+    },
+    "8d6ecddb88107e56dc64f5b7d41b62ad2240ddb01b0ae1c29285318ca8fc79f9": {
+      "ts": "2026-09-21T10:53:39+00:00",
+      "title": "Rare earths force Trump to be less hostile before Xi summit - Reuters"
+    },
+    "03b07f04965e972499cef417f40449af3713bf86b3672ea5f9efa2bd3068dfdf": {
+      "ts": "2026-09-21T08:19:51+00:00",
+      "title": "How Trump and Xi went from tariff war to trade truce - Reuters"
+    },
+    "5667c54851ad3ebc15a79c3008a088b765276e41eb8aa31eeb28dd68679e1388": {
+      "ts": "2026-09-21T04:35:00+00:00",
+      "title": "Morning Bid: More oil is flowing, depending on who you ask - Reuters"
+    },
+    "7faedd2996bae8f49705914cbc57b050fc4836cddd2a62516dcc29302f3152a8": {
+      "ts": "2026-09-21T02:50:00+00:00",
+      "title": "Xi rolls into Trump summit with China's trade engine roaring - Reuters"
+    },
+    "2a10c4da1f039de0a7fe4a9307771a0c1973a86acc0bc347a234b42be6dc7f2e": {
+      "ts": "2026-09-21T00:39:00+00:00",
+      "title": "Chipmakers fuel global stock gains as oil retreats - Reuters"
+    },
+    "0ce55f2d9fbed12db701005bc7008d5ea3115f778bb504b2d6d43d54191d1714": {
+      "ts": "2026-09-19T02:29:42+00:00",
+      "title": "Russia sanctions bill gives Trump sweeping new tariff powers - Reuters"
+    },
+    "59b2d9f2d788e8bd4db0015a8631e07e7afaff70b6ff1781691ef310cc7f8ba3": {
+      "ts": "2026-09-19T01:55:34+00:00",
+      "title": "Global shares edge higher as central banks double down on inflation fight - Reuters"
+    },
+    "ae4a1ea7700cd6c06c605ee26e780ff2d1683e563b0f5d72a47a7b9dd019ac1c": {
+      "ts": "2026-09-19T01:54:18+00:00",
+      "title": "US Treasury's Bessent to discuss AI, rare earths with China's He, source says - Reuters"
+    },
+    "63f3ebc7bd2388e1430ea74dc8106a0d42fb14632d158b0e160b5f783ec462c7": {
+      "ts": "2026-09-18T23:10:24+00:00",
+      "title": "S&P 500, Nasdaq advance, turning the page on a tumultuous week - Reuters"
+    },
+    "8bdb8ab6b8a3c36a8f58f5ff0f4f33961186b15e06fccf3249cb74ddb20f6a24": {
+      "ts": "2026-09-18T22:51:03+00:00",
+      "title": "US, China discuss cutting tariffs on US LNG ahead of Xi visit - Reuters"
+    },
+    "7f75d6e0c3b204f1b794cf5f4c93a16679eb994150e415800abbb9873d3bc51a": {
+      "ts": "2026-09-18T17:54:52+00:00",
+      "title": "Orion180 Insurance valued at $1.14 billion as shares fall in debut - Reuters"
+    },
+    "f97aba5887ecbeeb14e6c7e038bf78e9efddd01db29ca1d0792a9f2a2334a8d1": {
+      "ts": "2026-09-18T16:41:35+00:00",
+      "title": "Mexico's Sheinbaum says working towards a trade deal with Trump - Reuters"
+    },
+    "109ef45185f02193149663c727d44e8e4e67c29ac78a8e630e3469ecace7cb65": {
+      "ts": "2026-09-18T15:00:00+00:00",
+      "title": "Federal Reserve Board announces termination of enforcement action with SNB Bancshares and Bank of Eufaula"
+    },
+    "d10550c3573337890c386f69d17d13a6ea4ec5338e640162a26087a93e3b0f8d": {
+      "ts": "2026-09-18T15:00:00+00:00",
+      "title": "Federal Reserve Board issues enforcement actions with former employee of Northstar Bank, former employee of American Express Travel Related Services Company, Inc., and former employee of Regions Bank"
+    },
+    "ffcf1f3f45191541d67470a7a0973cdfc14b4132fa8b4246617cf7b33d53b5a0": {
+      "ts": "2026-09-18T14:50:57+00:00",
+      "title": "New US sanctions bill on Russia puts India's Modi in a bind - Reuters"
+    },
+    "bd9d2c2a7cde1b36472ee7a440dea84f892d90c218fa2c0b7f4191cb21a3c0a2": {
+      "ts": "2026-09-18T05:45:20+00:00",
+      "title": "What commodity markets can expect from the Trump-Xi summit - Reuters"
+    },
+    "dba9e955c19d0d8bb84e32988c68650131869989ddbe7b427604d024079c5335": {
+      "ts": "2026-09-18T04:12:09+00:00",
+      "title": "Hyundai Motor CEO warns of Chinese vehicle surge in the US without guardrails - Reuters"
+    },
+    "d0f32c43e0af9213ad7e3b10d23e7c3222b463e3e2e11ba748cf680d7b76517a": {
+      "ts": "2026-09-18T03:17:07+00:00",
+      "title": "Gold gains over 2% on weaker dollar, easing oil prices - Reuters"
+    },
+    "2447aa55bc90d86e96af5156c03e90d2b834d7c63698c960e09827793587dc08": {
+      "ts": "2026-09-18T00:29:36+00:00",
+      "title": "India says new US tariffs over Russian oil could hit ties, vows to protect energy security - Reuters"
+    },
+    "89f3b42071961374b97189b865cbc39c4d37a9dfa6a1590ce739cb531d87a048": {
+      "ts": "2026-09-18T00:20:35+00:00",
+      "title": "Holtec Nuclear shelves US IPO as AI trade hits turbulence - Reuters"
+    },
+    "7efbcb2dfce58c9f51d7f8e6bbccfddab180789e563880381e0a2d9e356c0312": {
+      "ts": "2026-09-17T22:43:46+00:00",
+      "title": "Tech leads Wall St to higher close as oil eases, Treasury yields dip - Reuters"
+    },
+    "021adf734b6739332203f0d5c09a688a2b6cce0436edc84296412750fbe99799": {
+      "ts": "2026-09-17T21:08:32+00:00",
+      "title": "COMMENTARY: Trading Day: Lower oil, yields boost stocks - Reuters"
+    },
+    "b98dbf5bb90a91f7474fb6215e6d820d63875607e8e10e55e7b672212d0730dc": {
+      "ts": "2026-09-17T21:04:35+00:00",
+      "title": "Dollar pauses after Fed rally as yields, oil retreat - Reuters"
+    },
+    "c037e43c0457c2da7bff9658a995bb660e09665182eadc82527d272ad8a03467": {
+      "ts": "2026-09-17T21:03:00+00:00",
+      "title": "What will Trump and Xi discuss in Washington next week? - Reuters"
+    },
+    "450b5932ad53bf77ae27d07b4afd8bbfcd36787d64cb314fd03c9c0b91a49b99": {
+      "ts": "2026-09-17T16:59:52+00:00",
+      "title": "US securities regulator rolls out five-year exemption for tokenized stock trading - Reuters"
+    },
+    "113b15da738e73e9879bd0d9a45af11c37b5d64d6a9e9b3c819c0fa571623ae3": {
+      "ts": "2026-09-17T14:38:23+00:00",
+      "title": "As Canadian tariffs bite, Republicans search for a winning message - Reuters"
+    },
+    "29f48e361184cc808b233d6b1fbe1c29b48a772ac1f3018052acb5fbc70e2c15": {
+      "ts": "2026-09-17T13:38:40+00:00",
+      "title": "Revolut considering dual listing in New York and London, founder says - Reuters"
+    },
+    "8f056c3f8c0829025dcd5c8ea7eeec19bd94254f80ea791b94c00fdec098f329": {
+      "ts": "2026-09-17T13:32:28+00:00",
+      "title": "Canada and EU should ally to protect democracies, Carney says, after 'associate member' proposal angers Trump - Reuters"
+    },
+    "b200852747dbff96e1ea1991ecf2de128b15adf784d42e37ed4b053500b47250": {
+      "ts": "2026-09-17T13:30:25+00:00",
+      "title": "World stocks rebound, Treasury yields retreat after Fed, BoE decisions - Reuters"
+    },
+    "f1ae90e6386ba0318e440021a6ffb1eaeb3afd48ae4b23fb04229ff239a7611a": {
+      "ts": "2026-09-17T12:55:00+00:00",
+      "title": "SEC Issues “Innovation Exemption” to Facilitate the Trading of Tokenized NMS Stock and Request for Comment"
+    },
+    "3e8cab0f71e97c8d21fe2afe7649b2e7a52c1914b314203daf60a89c6381f8ac": {
+      "ts": "2026-09-17T08:48:11+00:00",
+      "title": "House passes Russia sanctions bill championed by Graham, sending it to Trump - Reuters"
+    },
+    "8406b2d19dfccf1b08968ef0e7240828a38467038851c56725a2b279db8d2ea4": {
+      "ts": "2026-09-16T21:14:28+00:00",
+      "title": "Stocks fall as Fed delivers hawkish rate hike - Reuters"
+    },
+    "783927d6ca87a15be5e12b37298d5253b9eb4fe618e9af85776bc72cf0254a82": {
+      "ts": "2026-09-16T20:10:10+00:00",
+      "title": "VIEW Stocks pull back after Fed raises rates, points to another hike this year - Reuters"
+    },
+    "717f565cb945045f7c7a063247cbe2049fef83cec9aeacccc243e1a49177c6ab": {
+      "ts": "2026-09-16T19:42:54+00:00",
+      "title": "Gold falls more than 1% after Fed hikes interest rates - Reuters"
+    },
+    "df65065e734adb98008dd575ededf9399d101a27f89afb74d8792a12d22080f5": {
+      "ts": "2026-09-16T18:00:00+00:00",
+      "title": "Federal Reserve issues FOMC statement"
+    },
+    "baac86590eb840407af2443dbc4af1802b47dbade0317df53b727465e7f28392": {
+      "ts": "2026-09-16T18:00:00+00:00",
+      "title": "Federal Reserve Board and Federal Open Market Committee release economic projections from the September 15-16 FOMC meeting"
+    },
+    "f7abda704ee634e935324268a6b027b38b28f809b6c8fac9f0b7776caf003206": {
+      "ts": "2026-09-16T15:40:48+00:00",
+      "title": "Bund yields dip from 17-year highs as oil falls, with Fed in focus - Reuters"
+    },
+    "8d641c839d164c26d0d562903cbe4c8b7b237f40ad9acaff64d36428b614e4e0": {
+      "ts": "2026-09-16T14:00:00+00:00",
+      "title": "SEC Proposes Rescission of Shareholder Proposal Rule and Reforms to Proxy Solicitation Process"
+    },
+    "b0cbcea9bed7ad37cbaadbebc3883ef13a66d6982b18942c3a8034b6c3a90217": {
+      "ts": "2026-09-16T09:07:00+00:00",
+      "title": "Wall St ends lower after Fed hikes interest rates, sees more tightening ahead - Reuters"
+    },
+    "2932858e3fc38364681197df019c77b052f310126f42d8749fc184c11cdb469c": {
+      "ts": "2026-09-16T04:38:00+00:00",
+      "title": "Morning Bid: Warsh on collision course with Trump administration - Reuters"
+    },
+    "ec631b248cac95c7761f4350cc467a1baf14884f82c50031a7f81fcadee96c8b": {
+      "ts": "2026-09-16T03:37:00+00:00",
+      "title": "Chinese investors rush into US stocks as Beijing opens wider path overseas - Reuters"
+    },
+    "7050a635cb8ae6dc4a5e12397783c476c3d014f6871f0b27ae2385f434558b12": {
+      "ts": "2026-09-15T22:49:50+00:00",
+      "title": "Wall Street ends lower as oil spikes and the benchmark Treasury yield breaches 5% - Reuters"
+    },
+    "dcc4ca0e4532321f69cc344fcfd0e9d8cefdc8ca2b92f250e07e0050b6a6b562": {
+      "ts": "2026-09-15T19:53:34+00:00",
+      "title": "Dollar higher as oil lifts yields and Fed hike looms - Reuters"
+    },
+    "f5847336e2ff134ad5af3d21fb0432e5c7049ca38f171423a08a643b9fbfe29a": {
+      "ts": "2026-09-15T09:32:04+00:00",
+      "title": "South Korean lawmaker says Trump due to announce US investment details on Friday - Reuters"
+    },
+    "cd8fbb54b0f4b19bdb40bdbe6c2124bb2bd07b80042c2d4e2aeb8c9c390a6ae8": {
+      "ts": "2026-09-15T05:35:24+00:00",
+      "title": "Gold edges down as oil-driven inflation fears lift rate-hike bets - Reuters"
+    },
+    "b6d132d17446f78d8a5f88ab0997b1a8f723c20a21671f4f8196b5b905d27cae": {
+      "ts": "2026-09-14T20:19:22+00:00",
+      "title": "Wall Street ends down, calls for AI slowdown pummel chipmakers - Reuters"
+    },
+    "40427cbd150e35404129144383906fc191330f459e2a9e443e6f658990849049": {
+      "ts": "2026-09-14T16:47:00+00:00",
+      "title": "SEC Grants Exemptive Relief from Certain Inline XBRL Filing or Submission Requirements"
+    },
+    "fe4c6c6e3100aa89448bf371b5e81ac66af02bbd9f386e61539bd7a3d6840495": {
+      "ts": "2026-09-14T12:40:33+00:00",
+      "title": "Companies left China to dodge tariffs. Now some are heading back - Reuters"
+    },
+    "df1393423a8b9509c73d5f4da496fcd08736db1d6716b0b228e119d13241e6ec": {
+      "ts": "2026-09-14T10:39:22+00:00",
+      "title": "COMMENTARY: Morning Bid: Go slow AI - Reuters"
+    },
+    "9279e4bce27585224f8ff7b19de9ce1f4aef4b463456f3a4a82464aa9e484ed2": {
+      "ts": "2026-09-14T10:28:27+00:00",
+      "title": "Mapping the Market: Key US interest rate eyes 5% threshold - Reuters"
+    },
+    "ffaf8bb1749edb76dd70d58ddda04042610d64efa5ae9c6bacc22d9119ac568e": {
+      "ts": "2026-09-14T10:15:12+00:00",
+      "title": "Global banks coalesce around Fed hike call after inflation surprises - Reuters"
+    },
+    "f9502296b352601ce385cc3689b91f762bfdc2bd931a0821a219e60795af745d": {
+      "ts": "2026-09-14T00:31:55+00:00",
+      "title": "Dollar rises as Middle East conflict lifts oil, Fed hike looms - Reuters"
+    },
+    "302c2d5e87fd8a3c4576ee379ba3d34b74cc7d76a6746bb4ff7cfb37a28b54a3": {
+      "ts": "2026-09-11T15:00:00+00:00",
+      "title": "Joint Readout of Principals’ Meeting of U.S. and UK Authorities Regarding Central Counterparty Resolution"
+    },
+    "3dc2194861d0673d967d85d9f6e12bc54de758a717f224eb0ec2fef947f1aef0": {
+      "ts": "2026-09-11T14:00:00+00:00",
+      "title": "Agencies seek comment on proposed third-party risk management guidance and issue statement on community bank engagement with core service providers"
+    },
+    "3d54caecfdd66ab43593ff48bda9e4a31de0243984ed8171734f5946d2fb8295": {
+      "ts": "2026-09-11T07:00:00+00:00",
+      "title": "Mexico, Washington sprint toward bilateral trade deal before US elections - Reuters"
+    },
+    "407c0aecb9185fcc7bb156b5654e47df725fc76d700bb4e266d037af54f286be": {
+      "ts": "2026-09-11T07:00:00+00:00",
+      "title": "US House to vote on Russia sanctions backed by late Senator Graham - Reuters"
+    },
+    "e21870c02146b9373c4f9dabf1ecf4837479d6d9b02d0f35ab2e98d8774cd0be": {
+      "ts": "2026-09-11T07:00:00+00:00",
+      "title": "US consumer prices accelerate in August, push Fed closer to rate hike - Reuters"
+    },
+    "174fd356eb167da4de33400f6dba1ee83c4ce0a567fbc1586cf2b65c0f066665": {
+      "ts": "2026-09-10T20:00:00+00:00",
+      "title": "Agencies reduce regulatory burden for community banks, increase eligibility for 18-month exam cycle"
+    },
+    "6a54d989491d0f68e2687210ac7e3226e12df74c8f732d478aa4ce588d9076e9": {
+      "ts": "2026-09-10T17:45:22+00:00",
+      "title": "SEC Charges Founder and His Two New Jersey-Based Companies in Alleged $16 Million Ponzi Scheme"
+    },
+    "9d045baeb6fc6b7f59e8092a003f233c81bcea97aea06af1700d46b549aac549": {
+      "ts": "2026-09-04T15:00:00+00:00",
+      "title": "Federal Reserve Board announces termination of enforcement actions with United Texas Bank, Quontic Bank Acquisition Corp., and Quontic Bank Holdings Corp."
+    },
+    "31875b0fdf0f26ae74ea875d12d35751a56eec42796a8848dce2dd67c12944e5": {
+      "ts": "2026-09-03T20:30:00+00:00",
+      "title": "SEC Proposes Rescission of Political Contribution Rule for Investment Advisers"
+    },
+    "9bf3655c082a5fcbf9d3a3a5d2c9232ba5ca43395aa54afc2a653a3932bddf2e": {
+      "ts": "2026-09-03T14:27:49+00:00",
+      "title": "SEC Investor Advisory Committee to Host Sept. 10 Meeting"
+    },
+    "f7bd4033245be8b4e7095721ea615e9cfa5668699cf0b2aa99ca7a3eec8fcb34": {
+      "ts": "2026-09-01T19:17:39+00:00",
+      "title": "SEC Announces Agenda and Panelists for Roundtable on Preparations for 24-Hour Trading"
+    },
+    "ccb8d7528b3252a49413f33c872146f46063fd964ca33336288143eb24271047": {
+      "ts": "2026-09-01T17:52:32+00:00",
+      "title": "SEC Charges San Francisco Bay Area Private Fund Executives with Multimillion Dollar Ponzi-Like Scheme"
+    },
+    "840344229354788b61d782e70911d618c8a78bdba9d79a84106f2a7efe14b42c": {
+      "ts": "2026-09-01T14:57:00+00:00",
+      "title": "SEC Proposes to Modernize Rules for Registered Transfer Agents"
+    },
+    "ec5ef74a2f8a5a107f701cea7bd3e76ce30533dc28362fa7ff58dff2d210dcfb": {
+      "ts": "2026-08-31T18:24:32+00:00",
+      "title": "SEC and FDA Announce MOU to Bolster Cooperation and Ensure Market Integrity"
+    },
+    "ae8843456b88e2f4de56ee8b42edc4c0f96de9028d759653d76f6e46f7515174": {
+      "ts": "2026-08-28T17:33:00+00:00",
+      "title": "SEC Proposes Amendments to Exchange Act Rule 3a12-8 to Add European Union Debt Obligations"
+    },
+    "2bf07af10a0b5da5d3129f8f0fa70f6b5ff96edfb1a425531b6b61fb407ebc4e": {
+      "ts": "2026-08-27T21:30:00+00:00",
+      "title": "SEC: 38 Entities Feigned Legitimacy as U.S. Advisers Through False Filings to Lure Retail Investors"
+    },
+    "420abd3eec3b2a9a35cf19e86322b1ea72af54a72855840abebfdd6e48b92d43": {
+      "ts": "2026-08-27T15:00:00+00:00",
+      "title": "Federal Reserve Board issues enforcement action with former employee of Banco Popular de Puerto Rico"
+    },
+    "706be6c3774b3ec15eaab56ac61486b612dc9718fa9c0c41fdaf42333377a3b0": {
+      "ts": "2026-08-25T18:00:00+00:00",
+      "title": "Minutes of the Board's discount rate meetings on July 20 and July 29, 2026"
+    },
+    "1d3ecb477ffc64d17255eca0214dd00015f21d0e29c654ae1dffdd9e00e5ae07": {
+      "ts": "2026-08-20T20:00:00+00:00",
+      "title": "Federal Reserve Board announces approval of application by National Westminster Bank Plc"
+    },
+    "a043f0e781caee3a4b45d7fa73a3a6518a3e66c8278d2796d0a86d9e703e1e3b": {
+      "ts": "2026-08-20T15:00:00+00:00",
+      "title": "Federal Reserve Board issues enforcement actions with former employee of Regions Bank and former employee of United Community Bank"
+    },
+    "6ec5f9d7d82fed0b4e446c1563e789d246fffc0f6f66647b2f5339243518a13b": {
+      "ts": "2026-08-20T15:00:00+00:00",
+      "title": "Federal Reserve Board issues enforcement action with SouthPoint Bancshares, Inc. and announces termination of enforcement action with Deutsche Bank AG, DB USA Corporation, and Deutsche Bank AG New York Branch"
+    },
+    "041f54be901f1bd49164feb2a8a81d90b217ae2119683fe6c8e8d0973a93a102": {
+      "ts": "2026-08-19T18:00:00+00:00",
+      "title": "Minutes of the Federal Open Market Committee, July 28–29, 2026"
+    },
+    "bb3f03a7fe14f7e6044b0ef939f7d3e18870a9b4c356caf0aa1b62688d132d82": {
+      "ts": "2026-08-18T19:55:10+00:00",
+      "title": "SEC Charges Former Executives With Fraud in Connection With $1.9 Billion Collapse of Subprime Auto Lender Tricolor"
+    },
+    "a849094a6a5171fe65b6bb3f5b65d14bb60828e5c5293201e7bc369226422931": {
+      "ts": "2026-08-18T17:15:48+00:00",
+      "title": "SEC Proposes New Regulation Crypto Assets"
+    },
+    "e329434811667ed68e1d770681643cb8c796b23bef394bd8b27f6bd4b4662eaa": {
+      "ts": "2026-08-14T20:16:34+00:00",
+      "title": "SEC Charges Boiler Room Operator and Three Entities with Defrauding Retail Investors in $74 Million Pre-IPO Investment Scam"
+    },
+    "c237877ef12e2b5f34ed1c20edda938b18010f22dd4c4427747752749110231d": {
+      "ts": "2026-08-13T20:32:19+00:00",
+      "title": "SEC Charges Toms River Trio in Connection with Alleged $47 Million Fraud Targeting Orthodox Jewish Communities"
+    },
+    "1f72fa16ccd62d5d2e71e49b890c7909f0226797070007a3aca5554759299946": {
+      "ts": "2026-08-13T15:00:00+00:00",
+      "title": "Federal Reserve Board issues enforcement action with former employee of Regions Bank"
+    },
+    "cf0dfce35111ab3bb2597589a21f60521cde4e2273db45520ffd8201a0449d5e": {
+      "ts": "2026-08-10T18:00:00+00:00",
+      "title": "SEC Charges Private Fund Adviser Adit Ventures Management, Its CEO and Affiliated General Partners in Alleged Fraud"
+    },
+    "82fce4c50d50e7e3b3eb63c2442f268d1945b58a4748b8a3e13ca23ef614d99a": {
+      "ts": "2026-08-05T18:30:00+00:00",
+      "title": "SEC Establishes Financial Reporting and Accounting Unit in Enforcement Division"
+    },
+    "300371d093d8407ec3a20eee2b443ff40b3f3aa3d9a241db7f6eb4974cde7d2b": {
+      "ts": "2026-08-04T20:30:00+00:00",
+      "title": "Federal Reserve Board announces approval of the application by Coastal Bend Bancshares, Inc."
+    },
+    "abe62b78552fecba5390841a7c6f7eb82d0c39869c80f220561eafb41686c432": {
+      "ts": "2026-08-04T20:30:00+00:00",
+      "title": "Federal Reserve Board announces approval of the application by FS Bancorp, Inc."
+    },
+    "8a5d35ff8173fd8ec6a958a6fedc311ae63298844c08c806a6abb3d0600120bd": {
+      "ts": "2026-08-04T20:30:00+00:00",
+      "title": "Federal Reserve Board announces approval of the application by Banco Santander, S.A. and Santander Holdings USA, Inc."
+    },
+    "26c9d0dc1bf7d2d5564c9d3907cfe39949d2429c57d89d24ba0640b552bafbba": {
+      "ts": "2026-07-31T14:00:00+00:00",
+      "title": "Federal Reserve Board requests comment on a proposal to modernize rules for mutual banking organizations"
+    },
+    "ff06d0a7df4ac82a79ef4f6cb9af094c13169021b00ac6a2d818b9f7edb85e5c": {
+      "ts": "2026-07-31T14:00:00+00:00",
+      "title": "Federal Reserve Board requests comment on a proposal to modernize its rule governing the extension of credit to bank \"insiders\"—bank executives, board members and major shareholders who could potentially influence a bank's lending decisions"
+    },
+    "99e6f2623cc7724984f234d0c655818632e888b42019d92a172cdae7301c4b48": {
+      "ts": "2026-07-30T15:00:00+00:00",
+      "title": "Federal Reserve Board issues enforcement actions with former employee of Regions Bank and former employee of First Interstate Bank"
+    },
+    "2d657e6bc22854670cf8f31ec620a8b114b75edbfdf2988b80fc49799afe08a8": {
+      "ts": "2026-07-30T13:53:38+00:00",
+      "title": "SEC Announces Continuation of Small Business Advisory Committee Meeting"
+    },
+    "c46e4c4ff7a46159d0665db243f648595c7f13d58502105d2dd0111898365b75": {
+      "ts": "2016-06-06T02:15:43+00:00",
+      "title": "Global Market Headlines | Breaking Stock Market News - Reuters"
+    },
+    "91b490b688b96dd3c7e48df37f87a33b38154270a9b28aa8b7d02cb93584feb0": {
+      "ts": "2026-09-21T14:11:37+00:00",
+      "title": "Gold Dips as Fed Hike Bets Lift Dollar; Oil Retreat Caps Treasury Yields - vtmarkets.com"
+    },
+    "29036123b5e22f6d1a570ae639c05532ed0fba722d1341924d850ca9bfacd2fa": {
+      "ts": "2026-09-21T10:21:00+00:00",
+      "title": "Breaking the Rp 17,800 Barrier: How Oil Shocks, Foreign Outflows, and a Hawkish Fed Are Squeezing the Indonesian Rupiah - InvestorTrust"
+    },
+    "f306f319e0a089fe81d9661e90089c63d5983458088e98562bf4a9fff0ea1c19": {
+      "ts": "2026-09-18T12:56:55+00:00",
+      "title": "Gold, silver extend rebound as oil, yields ease after Fed hike - Kitco AM Report - KITCO"
+    },
+    "7b4860ac02ab4eb9dd1443ecb1c16dc3909c3f7d92e60b39dadcf88f3dd63f23": {
+      "ts": "2026-09-18T12:16:49+00:00",
+      "title": "Nasdaq 100 Forecast: NDX extends gains as oil, Treasury yields fall - forex.com"
+    },
+    "6ed1727af1a62c27248424833b25137e0d810d172a63f40107d9838387bd1551": {
+      "ts": "2026-09-17T21:04:34+00:00",
+      "title": "Gold price rebounds above $4,340 as lower oil eases rate pressure - Kitco PM Report - KITCO"
+    },
+    "5ac140043f21cdbe20aee897b1e9d828f2a67b45314f37ae2d85ba63e628d5ee": {
+      "ts": "2026-09-17T17:37:00+00:00",
+      "title": "AMD Jumps 7% as Semiconductor Rebound Reaches a Third Session; Broadcom Rises 3%, NVIDIA Edges Higher - 24/7 Wall St."
+    },
+    "8a602cccf646f4d52d7f608fb0ec20aa663a19a10b97e55c79e485ebb96301ae": {
+      "ts": "2026-09-17T12:28:53+00:00",
+      "title": "Overseas Markets Mixed After Fed Rate Hike - stl.news"
+    },
+    "72480ad7bba1890f6145601423dc2681027c674f9da397a66de65b50000f6354": {
+      "ts": "2026-09-17T08:15:05+00:00",
+      "title": "Dollar eases from seven-week peak as oil prices extend decline - Wichita Eagle"
+    },
+    "a68f93d411f85d0d8ea7cba3b3febf430809dda1bd4b0193684e2d5336902299": {
+      "ts": "2026-09-17T04:40:21+00:00",
+      "title": "A stronger dollar and rising yields: How the Fed’s rate hike could hit global markets - CNBC"
+    },
+    "eb52da323a0d640035959407be0713564441595ce9e45117ca4d9ff7922be2ca": {
+      "ts": "2026-09-16T23:38:46+00:00",
+      "title": "U.S. Rate Hikes Strain Emerging Markets Amid High Oil Prices - 조선일보"
+    },
+    "3e301eda6da8907e99fef3f2c1e0e684a3ed9c6e21cc9fc4851b34b420b32917": {
+      "ts": "2026-09-15T23:10:48+00:00",
+      "title": "Government bond yields rise, oil gains again as stocks dip - Reuters"
+    },
+    "053f7913306884e8d28a7e05f37cff8ab78b899bf73b531f35a75aee06169271": {
+      "ts": "2026-09-15T22:25:00+00:00",
+      "title": "US Treasury Yields Surge Past 5% as Oil Prices Spike; Dollar Index Hits Two-Week High - finance.biggo.com"
+    },
+    "ac1b9ebcb6f65824ae6f4c96ccebd779329fa1bdcb6cab845cfdd8ca5f22c00f": {
+      "ts": "2026-09-15T06:52:25+00:00",
+      "title": "Dollar inches higher as 10-year Treasury yield climbs to highest since 2007 - kelo.com"
+    },
+    "d31aa0daeb97bdd33674999393403cd24fa6b0c0c291e3f39d12b5f593ddd818": {
+      "ts": "2026-09-14T19:00:45+00:00",
+      "title": "Dollar rises as Middle East conflict lifts oil, Fed hike looms - Yahoo Finance"
+    },
+    "6d438fc8707133086efbe3f4bc35e39a3b811f7e25258ee6b19e3d7d67de4bbe": {
+      "ts": "2026-09-14T11:32:34+00:00",
+      "title": "Chip stocks down: AMD, Nvidia, Intel, and Sandisk lead market selloff after AI bosses call for a pause - Fast Company"
+    },
+    "6d2ed948625a0b1c98580e3c61890e80e539a37e858643ceb4ac840207cbcec0": {
+      "ts": "2026-09-14T10:10:00+00:00",
+      "title": "Gold price fall nearly 2% as oil surge and near-5% Treasury yields bolster Fed rate-hike expectations - Kitco AM Report - KITCO"
+    },
+    "29c7662d2f6ae9c1d0f5db2e26cc794e4d3bbe54d4f7aa67f184e41cd21a32ae": {
+      "ts": "2026-09-10T07:00:00+00:00",
+      "title": "Limitless Metals: $105 Oil, Rising Treasury Yields and Fed Rate-Hike Expectations Reshape 2026 Gold Outlook - markets.businessinsider.com"
+    },
+    "31ac3fc52f5192d8795bf96ad791f2568c74578714f4b8e810eb077cb782b8e3": {
+      "ts": "2026-09-09T07:00:00+00:00",
+      "title": "The Overlooked Chip Stock Poised to Outperform Nvidia, AMD, and Broadcom in the AI Semiconductor Boom - The Motley Fool"
+    },
+    "c4bf613021584cddf2b8a7d4b556e312d20270f5e4e259b86f131a854cbc3bf2": {
+      "ts": "2026-09-04T11:08:08+00:00",
+      "title": "Taiwan Semiconductor Scrambles to Feed the AI Boom - TradingView"
+    },
+    "8f79e42be96f219fc626f33401a7b27f4b64fb374fe3720bb87c798e8dae98bf": {
+      "ts": "2026-09-04T07:00:00+00:00",
+      "title": "Yields, dollar rise, stocks ease after solid US jobs report - Reuters"
+    },
+    "61c0cac3c5dd339c0c2e90d2daf2ccebaf7765601df2545725857d15101bd97d": {
+      "ts": "2026-09-03T07:00:00+00:00",
+      "title": "Broadcom Falls 6% as Soft Guidance Overshadows 221% AI Revenue Surge; NVIDIA Inches Higher, AMD Slips - 24/7 Wall St."
+    },
+    "5d9143a13cdd0d60a5746d37d7e8c2e82aa7491b61280da47324fa80c32ec1f0": {
+      "ts": "2026-08-25T07:00:00+00:00",
+      "title": "SMCI Stock +9.35%: AI Chip Rally Before Nvidia Earnings - StartupHub.ai"
+    },
+    "289fd265f7ee4315fbb5941fe92128eb4994c629508ab18088b602816b08fe7b": {
+      "ts": "2026-08-24T07:00:00+00:00",
+      "title": "Beyond Nvidia, AMD, and Broadcom: Why This Chip Stock Will Emerge as the Biggest Winner of the AI Semiconductor Boom - The Motley Fool"
+    },
+    "96b8678b27d088c4466f20f37945c24bee6bcff82acdcf726e019ec9cb361df7": {
+      "ts": "2026-08-22T07:00:00+00:00",
+      "title": "Prediction: This Artificial Intelligence (AI) Semiconductor Stock Will Outperform Nvidia Over the Next 3 Years - The Motley Fool"
+    },
+    "b653a1a77e11502dea4acaaa1b80fa5dfb6d5df0b4938937a8b1fcdbcdeacb2c": {
+      "ts": "2026-08-21T07:00:00+00:00",
+      "title": "The Best Semiconductor Stock to Buy Isn't AMD or Qualcomm: It's Nvidia, and Our Data Proves It - The Motley Fool"
+    },
+    "73cb7fdb2ecb521f8c113025a8b8a30ec45e78ee1539012bab562f28bb4f7dc2": {
+      "ts": "2026-08-15T07:00:00+00:00",
+      "title": "Not Nvidia. Not AMD. This Chip Stock Will Be the Biggest Winner of the Historic AI Semiconductor Boom. - The Motley Fool"
+    },
+    "fbca62123c15fa12b599c44ff113f86482a6e142d8fed468523d1f08c6aed8ba": {
+      "ts": "2026-08-05T07:00:00+00:00",
+      "title": "AMD Vs. Broadcom: Why Broadcom is Actually Nvidia’s Biggest Problem - 24/7 Wall St."
+    },
+    "e68801c89fac0a27a5d00d290c9d1d09b7a402e6c7a0cc87501c1910d34b3aa7": {
+      "ts": "2026-08-05T07:00:00+00:00",
+      "title": "Anthropic Is the Latest Company That Wants to Be an AI Chipmaker - 24/7 Wall St."
+    },
+    "3492701493b7654c8e82c88df2db0778962856c61727f71d44a7c787f3cc79db": {
+      "ts": "2026-07-29T07:00:00+00:00",
+      "title": "Semiconductor Crash: 3 Stocks to Buy Now While They Are Still on Sale - The Motley Fool"
+    },
+    "4b111d756a68ac0cd7dcb6e905a0489d0c18d443844a3bd7b471c7322d060f8f": {
+      "ts": "2026-07-28T07:00:00+00:00",
+      "title": "AMD Sinks 8%, Marvell Sinks 7%, Intel Fall 6% as AI Chip Trade Narrows to NVIDIA - 24/7 Wall St."
+    },
+    "a557e22479dab77052126a0976cc41bc1c07e758cbf5769e9cc11a145aa27548": {
+      "ts": "2026-07-17T07:00:00+00:00",
+      "title": "AMD Falls 5%, Intel Drops 4%, NVIDIA Slides 3% Before Recovering as Rotation Hits Semiconductor Stocks - 24/7 Wall St."
+    },
+    "2542e1fc8913b445c2ff484c1b34574807a4861df53bc4536068b63e46f67aaf": {
+      "ts": "2026-06-30T07:00:00+00:00",
+      "title": "Nvidia, AMD, Intel Lead AI Chip Stock Rally as Wall Street Rebounds - TradingView"
+    },
+    "ed0fe0407f2f231e4caf7ef8cb01428a6e5d5944194abc696da082453e871707": {
+      "ts": "2026-06-19T07:00:00+00:00",
+      "title": "AMD vs. NVDA: Which Artificial Intelligence (AI) Semiconductor Stock Dominates the Next Phase of CPUs, GPUs, and Robotics? - The Motley Fool"
+    },
+    "1a189bf34b1ab0f2ac204c1658a025257f76a2fe468f324c3700e8043bef3255": {
+      "ts": "2026-05-26T07:00:00+00:00",
+      "title": "Nvidia, AMD among group of winners as BofA thinks AI spending has 'staying power' (NVDA:NASDAQ) - Seeking Alpha"
+    },
+    "bd2e8f0b05622d16244bb9dd4f5799aebf9f1d97cda996962857297b9e561f5d": {
+      "ts": "2026-05-13T07:00:00+00:00",
+      "title": "Nvidia vs. AMD: The Better AI Chip Stock for 2026 - The Motley Fool"
+    },
+    "dbe359ff664d9e21d013b767d85c3fcc3bf55f29bc631e26759bc2283e4ec6e5": {
+      "ts": "2026-04-29T07:00:00+00:00",
+      "title": "This Super Semiconductor Stock Is Obliterating Nvidia, AMD, and Broadcom in 2026 - The Motley Fool"
+    },
+    "dc7e4bee4b011b84c57e21fe74f722e70664ec0d0b6f9a9851613304e91f1a5b": {
+      "ts": "2026-09-18T07:00:00+00:00",
+      "title": "How do changing interest rates affect the stock market in 2026 - U.S. Bank"
+    },
+    "8be8c494b9fbf1661108c718b1be9d475a007cc3002cccb61237bf227d7ec269": {
+      "ts": "2026-07-30T07:00:00+00:00",
+      "title": "Dow, S&P 500, Nasdaq Futures Extend Rally As Big Tech Earnings Revive AI Trade: AMZN, AAPL, NBIS, RDDT In Focus - Yahoo Finance"
+    },
+    "2409858852d1809d6f4961910f631bdd478b4b7b22aae19453150dfce86bab11": {
+      "ts": "2026-07-26T07:00:00+00:00",
+      "title": "Nasdaq, S&P 500, Dow Futures Rise As Iran Pause Eases Oil Fears Ahead Of Big Tech Earnings, Fed Meeting: ORCL, NVDA, VG, DEL In Focus - Yahoo Finance"
+    },
+    "600a71fc5b4001bdc35397f4f755d84ed2d46f5a53832d5b0fde34c8a49feb43": {
+      "ts": "2026-07-21T03:12:53+00:00",
+      "title": "Nasdaq Could Look to KOSPI for Directional Clues Beyond Earnings - forex.com"
+    },
+    "4689da7e4d3ab0669d65cbf2c4b3e043d0d58cf67c39c47859efe37881983454": {
+      "ts": "2026-05-20T07:00:00+00:00",
+      "title": "Dow, S&P 500, Nasdaq futures steady ahead of Nvidia earnings - Latest news from Azerbaijan"
+    },
+    "eddeeb9c44adaded2228256101905c03fdfed7a40337b7085743118af686f251": {
+      "ts": "2026-05-18T07:00:00+00:00",
+      "title": "Dow, S&P 500, Nasdaq futures tumble ahead of packed earnings week - Latest news from Azerbaijan"
+    },
+    "545c3a4cbb862cd4dd2d8e7157670a6886ce4e8ebc60eae265ae714c4a671b4d": {
+      "ts": "2026-05-05T07:00:00+00:00",
+      "title": "Why US stock market Dow Jones, S&P 500 and Nasdaq are surging big today: Dow jumps 350 points, Nasdaq jump - economictimes.com"
+    },
+    "0292d2b0b3a51a6ae3bc8404758c562d2f331d1e207682b608b515c3a2dbfb69": {
+      "ts": "2026-04-29T07:00:00+00:00",
+      "title": "S&P 500, Nasdaq, Dow futures jump ahead of Big Tech earnings, Fed decision - Latest news from Azerbaijan"
+    },
+    "28e611a74aa26716126a68620353ecbe6f5dbaf1eb58a5ab6cd175ab28a75b82": {
+      "ts": "2026-04-29T07:00:00+00:00",
+      "title": "Markets Steady Ahead of Fed Decision and Key Tech Earnings: Dow Jones, S&P, Nasdaq, Wall Street Futures - Yahoo Finance"
+    },
+    "1c1d81bfa703ae32beec5560f2eed8376dc06c04e34d7901ec729195bc2ecbca": {
+      "ts": "2026-04-26T07:00:00+00:00",
+      "title": "Mag 7 earnings bonanza and Powell's home stretch: What to watch this week - Yahoo Finance"
+    },
+    "7bad6004bb74b44e9d340e0993d5fb52a2696af7a00bc1338de3cc227ba27b22": {
+      "ts": "2026-01-28T08:00:00+00:00",
+      "title": "Stock Market Crash in 2026? Fed Chair Jerome Powell Has an Urgent Warning for Investors. - Yahoo Finance"
+    },
+    "ce75f1db1e7dd95fa7a078704b05c315dda18a4f496a74385a835c6631f689e8": {
+      "ts": "2025-11-17T08:00:00+00:00",
+      "title": "US stock market futures today: Dow, S&P 500, Nasdaq futures rise as tech stocks lead early rebound ahead of Nvidia earnings and jobs report - economictimes.com"
+    },
+    "7f2693f7212d85a996d2c4293721238d2049b7117c2476cdadcdc0e74102d95f": {
+      "ts": "2025-10-31T07:00:00+00:00",
+      "title": "US stock market futures today – Market rebounds: Dow, S&P 500, Nasdaq futures higher — here’s what is powe - economictimes.com"
+    },
+    "1e872f5c5fdc6c0260090546b95dce5ea084fe7aaca5cb8822b04c7595ffc281": {
+      "ts": "2025-10-28T07:00:00+00:00",
+      "title": "US stock market futures today — 5 key things to know before market open: Dow, S&P 500, Nasdaq are flat ear - economictimes.com"
+    },
+    "9de321658258b71e907968092742338248b1bb0b81f8f2b2a7363dcfcf4d83df": {
+      "ts": "2025-10-16T07:00:00+00:00",
+      "title": "US stock futures: Dow gains 200 points, S&P and Nasdaq rally on AI, Tech earnings — but Trump confirms US- - economictimes.com"
+    },
+    "ddda957c746dcaa9c072c9d49b48bb19c28e8430da225c7166ed51f3c4aa1b6b": {
+      "ts": "2025-10-15T07:00:00+00:00",
+      "title": "US stocks jump today: Dow, S&P 500, Nasdaq futures gain over 0.5% as Wall Street bets on rate cuts; Tesla - economictimes.com"
+    },
+    "c63de6dbccb536d9f023cd2a45383845d4115bdfcb6b8748a7674aa0702967f0": {
+      "ts": "2025-10-14T07:00:00+00:00",
+      "title": "US stock market futures crash today: Dow, S&P 500, Nasdaq futures drop over 1% as China retaliates; shippi - economictimes.com"
+    },
+    "ccff911cd57ecf3fe49b9267b956277193dbd8970dc918afdf255b8bc5f408cb": {
+      "ts": "2025-10-10T07:00:00+00:00",
+      "title": "Dow, S&P 500, Nasdaq futures steady as shutdown drags on; Intel rises on price target upgrade, Applied Dig - economictimes.com"
+    },
+    "6a2ac8105c0c9e171ce7b5732d1a7e4cbfa390dec9c3da9537d01a55cdecdeac": {
+      "ts": "2025-09-25T07:00:00+00:00",
+      "title": "US stock market futures today: Dow, S&P 500 & Nasdaq slips ahead of jobless data and Fed policy signals - economictimes.com"
+    },
+    "b9bd5c99369508c62dc61391798d088830715705aa1d5d19fe4a25ee9c6567de": {
+      "ts": "2025-09-17T07:00:00+00:00",
+      "title": "What the Fed's Rate Call Could Mean for the Stock Market - Investopedia"
+    }
+  },
+  "state": {}
+}
