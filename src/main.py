@@ -6,6 +6,7 @@ from .storage import Store
 from .calendar import preopen_state
 from .analyzer import analyze, report, urgent_messages
 from .earnings import upcoming_earnings
+from .finviz import collect_finviz
 from .hedge_funds import collect_13f
 from .telegram import send
 
@@ -22,10 +23,11 @@ def run_once():
     last_pre = store.get("last_preopen_date")
     today = op.date().isoformat()
     earnings = upcoming_earnings(days=5)
+    finviz = collect_finviz(days=5)
     funds = collect_13f()
 
     if is_pre and last_pre != today:
-        msg = report(ranked, op, mins, "source-check", earnings=earnings)
+        msg = report(ranked, op, mins, "source-check", earnings=earnings, finviz=finviz)
         if funds:
             msg += "\n\n🏦 13F / HEDGE-FUND DISCOVERY\n" + "\n".join(
                 f'• {x["title"]} — {x["source"]}' for x in funds[:5]
@@ -34,7 +36,7 @@ def run_once():
         store.set("last_preopen_date", today)
 
     # Urgent alerts are intraday-only; the main premarket report already contains
-    # the catalysts and the earnings calendar, so we avoid duplicate premarket noise.
+    # the catalysts, earnings, Finviz insider activity and 13F discovery.
     if not is_pre:
         for msg in urgent_messages(ranked):
             send(CONFIG.telegram_token, CONFIG.telegram_chat_id, msg)
@@ -42,6 +44,8 @@ def run_once():
     return {
         "collected": len(raw), "new": len(new), "preopen": is_pre,
         "open": op.isoformat(), "minutes": mins, "earnings": len(earnings),
+        "finviz_earnings": len(finviz.get("earnings", [])),
+        "finviz_insiders": len(finviz.get("insiders", [])),
     }
 
 
