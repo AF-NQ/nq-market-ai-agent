@@ -3,3 +3,4 @@ requests>=2.32.0,<3
 python-dateutil>=2.9.0,<3
 pytz>=2024.1
 pandas-market-calendars>=5.1,<6
+beautifulsoup4>=4.12,<5
