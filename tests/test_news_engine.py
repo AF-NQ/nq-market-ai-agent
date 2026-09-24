@@ -1,14 +1,16 @@
+from datetime import datetime, timezone
+
 from src.news_engine import build_catalysts, categories, direction, publisher
 
 
-def item(title, pub="Reuters", link="https://example.com/a", published="2026-09-21T18:00:00+00:00"):
+def item(title, pub="Reuters", link="https://example.com/a", published=None):
     return {
         "title": title,
         "summary": "",
         "publisher": pub,
         "source": "Google Finance News",
         "link": link,
-        "published": published,
+        "published": published or datetime.now(timezone.utc).isoformat(),
         "priority": 100,
     }
 
