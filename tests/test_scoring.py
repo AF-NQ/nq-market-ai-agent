@@ -44,3 +44,12 @@ def test_score_event_exposes_separate_metrics():
     assert metrics["market_impact"] > 0
     assert metrics["nq_relevance"] > 0
     assert 0 <= metrics["direction_confidence"] <= 100
+
+
+def test_hormuz_reopening_talks_are_fast_path_market_catalyst():
+    x = item("US and Iran discuss phased deal to reopen Hormuz and end US blockade, sources say")
+    metrics = score_event(x)
+    assert metrics["market_impact"] >= 88
+    assert metrics["nq_relevance"] >= 80
+    assert metrics["spx_relevance"] >= 80
+    assert metrics["equity_direction"] == "BULLISH"
