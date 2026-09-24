@@ -14,6 +14,16 @@ FEEDS = [
     ("Reuters Trump", "https://news.google.com/rss/search?q=" + quote_plus("site:reuters.com Trump tariffs markets") + "&hl=en-US&gl=US&ceid=US:en", 100),
     ("Reuters Global", "https://news.google.com/rss/search?q=" + quote_plus("site:reuters.com global markets Fed oil yields") + "&hl=en-US&gl=US&ceid=US:en", 100),
 
+    # Fast-path geopolitical / energy discovery. These are deliberately narrow
+    # because generic geopolitical feeds can bury a rare, market-moving headline
+    # inside a larger stream. The dedicated Reuters queries are especially
+    # important for intraday catalysts such as Hormuz negotiations/reopening.
+    ("Priority Reuters Hormuz", "https://news.google.com/rss/search?q=" + quote_plus("site:reuters.com Hormuz Iran US reopening talks oil") + "&hl=en-US&gl=US&ceid=US:en", 110),
+    ("Priority Reuters Iran Talks", "https://news.google.com/rss/search?q=" + quote_plus("site:reuters.com Iran US talks blockade shipping oil") + "&hl=en-US&gl=US&ceid=US:en", 110),
+    ("Priority Hormuz", "https://news.google.com/rss/search?q=" + quote_plus("Strait of Hormuz reopening shipping oil Iran US") + "&hl=en-US&gl=US&ceid=US:en", 105),
+    ("Priority Middle East Energy", "https://news.google.com/rss/search?q=" + quote_plus("Iran Gulf shipping oil supply disruption Hormuz markets") + "&hl=en-US&gl=US&ceid=US:en", 100),
+    ("Priority Taiwan Strait", "https://news.google.com/rss/search?q=" + quote_plus("Taiwan Strait blockade military action markets semiconductors") + "&hl=en-US&gl=US&ceid=US:en", 100),
+
     # Global Markets — Japan / China / Korea / Taiwan / Europe / India / Australia.
     ("Japan Markets", "https://news.google.com/rss/search?q=" + quote_plus("Japan Nikkei TOPIX BOJ yen JGB markets") + "&hl=en-US&gl=US&ceid=US:en", 90),
     ("China Markets", "https://news.google.com/rss/search?q=" + quote_plus("China Shanghai Shenzhen Hang Seng CSI 300 PBOC yuan markets") + "&hl=en-US&gl=US&ceid=US:en", 90),
@@ -68,7 +78,11 @@ def collect():
     for source, url, priority in FEEDS:
         try:
             feed = feedparser.parse(url, request_headers={"User-Agent": UA})
-            for e in feed.entries[:20]:
+            # Dedicated priority feeds get a deeper look-back so an important
+            # headline cannot be pushed out by unrelated items in the same RSS
+            # result. Normal feeds retain the original 20-entry budget.
+            limit = 40 if source.startswith("Priority ") else 20
+            for e in feed.entries[:limit]:
                 title = (getattr(e, "title", "") or "").strip()
                 link = (getattr(e, "link", "") or "").strip()
                 if not title or not link:
