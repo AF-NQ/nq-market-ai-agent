@@ -13,6 +13,7 @@ not the intrinsic impact of the event.
 import re
 
 from .news_engine import categories, direction, freshness_hours, nq_directness, source_quality
+from .priority_watch import is_priority_catalyst, priority_direction, priority_urgency_score
 
 
 # Approximate thematic importance, intentionally not source- or freshness-weighted.
@@ -161,6 +162,12 @@ def market_impact(item):
     if _contains_any(text, ("fed", "fomc", "powell")) and _contains_any(text, ("decision", "rate", "hike", "cut", "policy")):
         impact += 7
 
+    # Rare geopolitical/energy combinations get a fast-path floor. Without this,
+    # a generic category base can score a market-moving Hormuz development as only
+    # medium impact even when the event directly changes global energy-flow risk.
+    if is_priority_catalyst(item):
+        impact = max(impact, priority_urgency_score(item))
+
     return max(0, min(100, int(impact)))
 
 
@@ -193,12 +200,21 @@ def index_relevance(item, index):
     if index == "SPX" and "AI / SEMICONDUCTORS" in cats and not _contains_any(text, SPX_DIRECT_TERMS):
         value = min(value, 72)
 
+    # Hormuz is an unusually direct cross-asset transmission channel through oil,
+    # inflation expectations, rates and risk appetite.
+    if is_priority_catalyst(item):
+        value = max(value, 84 if index == "NQ" else 82)
+
     return max(0, min(100, int(value)))
 
 
 def equity_direction(item):
     """Directional pressure on US equities, not a futures-contract forecast."""
     text = _text(item)
+
+    priority_d = priority_direction(item)
+    if priority_d:
+        return priority_d
 
     for term, label in DIRECTION_RULES:
         if term in text:
@@ -238,6 +254,12 @@ def direction_confidence(item):
 
     if _contains_any(text, ("nasdaq", "s&p 500", "stock futures", "wall street", "equities")):
         base += 7
+
+    # Priority events get a modest confidence lift only when the fast-path rule
+    # supplies an explicit directional interpretation. This does not mean the
+    # event is guaranteed to move the market in that direction.
+    if priority_direction(item):
+        base += 12
 
     quality = source_quality(item)
     base += 8 if quality >= 100 else 4 if quality >= 82 else 0 if quality >= 55 else -8
