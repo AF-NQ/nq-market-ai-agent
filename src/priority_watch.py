@@ -14,6 +14,7 @@ def _text(item):
 HORMUZ_TERMS = ("hormuz", "strait of hormuz")
 HORMUZ_ACTION_TERMS = (
     "reopen", "reopens", "reopening", "open the strait", "open hormuz",
+    "close hormuz", "closure", "closed strait", "shipping halted",
     "phased deal", "phased path", "agreement", "deal", "talks", "negotiat",
     "blockade", "shipping", "navigation", "free passage",
 )
@@ -29,8 +30,6 @@ def is_priority_catalyst(item):
     if is_hormuz_catalyst(item):
         return True
 
-    # Keep the fast path extensible without turning every geopolitical mention
-    # into an alert. Require a concrete action/decision alongside the theme.
     text = _text(item)
     if "taiwan strait" in text and any(k in text for k in ("blockade", "invasion", "attack", "military action", "drill")):
         return True
@@ -47,7 +46,7 @@ def priority_direction(item):
     if is_hormuz_catalyst(item):
         if any(k in text for k in ("reopen", "reopening", "open the strait", "open hormuz", "phased deal", "phased path", "free passage")):
             return "BULLISH"
-        if any(k in text for k in ("close hormuz", "closure", "blockade of shipping", "shipping halted")):
+        if any(k in text for k in ("close hormuz", "closure", "closed strait", "blockade of shipping", "shipping halted")):
             return "BEARISH"
     if "taiwan strait" in text and any(k in text for k in ("blockade", "invasion", "attack", "military action")):
         return "BEARISH"
