@@ -37,7 +37,11 @@ jobs:
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           MARKET_TIMEZONE: America/New_York
           PREOPEN_MINUTES: '30'
-          PREOPEN_WINDOW_MINUTES: '5'
+          # Keep the intended ~30-minute premarket delivery, but allow a
+          # slightly wider recovery window so a delayed/missed scheduled run
+          # cannot silently skip the daily report. last_preopen_date in state
+          # guarantees that only one premarket report is sent per session.
+          PREOPEN_WINDOW_MINUTES: '10'
           STATE_PATH: data/state.json
         run: python -m src.main --once
 
