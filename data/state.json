@@ -11783,9 +11783,25 @@
     "a853684ae1f405d1c6acfea66f0b460012f983a1c659ce80b4dc8906f3fcd250": {
       "ts": "2026-10-02 11:53:05",
       "title": "Citi says rate volatility without Fed repricing is “concerning”"
+    },
+    "c27887794ea75708517a5402c4054ec886a983eadea81f7cfb562724de6b7946": {
+      "ts": "Fri, 02 Oct 2026 12:37:43 GMT",
+      "title": "SNAPSHOT Wall St futures extend gains after non-farm payrolls data - Reuters"
+    },
+    "df9438d799503669a06a73bb4e4cd8e4377416e2df6d186223d8b92a0e2a9f4c": {
+      "ts": "2026-10-02 12:35:33",
+      "title": "U.S. futures add to gains after softer-than-anticipated September jobs report"
+    },
+    "865bbb9f0068b421b6634658b7129df2bff27aa185915e63dac081789f96b5e1": {
+      "ts": "2026-10-02 12:34:45",
+      "title": "U.S. economy adds 29,000 jobs in September"
+    },
+    "2bd0cb149d50f1f39638dde65d8f9aef0b086518ebf15729d69200a176c4cb18": {
+      "ts": "2026-10-02 12:22:20",
+      "title": "AppLovin shares fall after court denies request against Unity"
     }
   },
   "state": {
-    "last_preopen_date": "2026-10-01"
+    "last_preopen_date": "2026-10-02"
   }
 }
