@@ -38,10 +38,10 @@ jobs:
           MARKET_TIMEZONE: America/New_York
           PREOPEN_MINUTES: '30'
           # Keep the intended ~30-minute premarket delivery, but allow a
-          # slightly wider recovery window so a delayed/missed scheduled run
-          # cannot silently skip the daily report. last_preopen_date in state
-          # guarantees that only one premarket report is sent per session.
-          PREOPEN_WINDOW_MINUTES: '10'
+          # Recovery window: send once when 30–60 minutes remain before the
+          # regular US open. GitHub scheduled runs can be delayed or dropped;
+          # last_preopen_date still guarantees only one report per session.
+          PREOPEN_WINDOW_MINUTES: '30'
           STATE_PATH: data/state.json
         run: python -m src.main --once
 
