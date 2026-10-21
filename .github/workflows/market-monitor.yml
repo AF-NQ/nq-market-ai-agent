@@ -37,11 +37,10 @@ jobs:
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           MARKET_TIMEZONE: America/New_York
           PREOPEN_MINUTES: '30'
-          # Keep the intended ~30-minute premarket delivery, but allow a
-          # Recovery window: send once when 30–60 minutes remain before the
+          # Recovery window: send once when 30–90 minutes remain before the
           # regular US open. GitHub scheduled runs can be delayed or dropped;
           # last_preopen_date still guarantees only one report per session.
-          PREOPEN_WINDOW_MINUTES: '30'
+          PREOPEN_WINDOW_MINUTES: '60'
           STATE_PATH: data/state.json
         run: python -m src.main --once
 
