@@ -34,4 +34,17 @@ def send(token, chat_id, text):
             timeout=20,
         )
         r.raise_for_status()
+        payload = r.json()
+        if not payload.get("ok"):
+            raise RuntimeError(f"Telegram API rejected sendMessage: {payload}")
+        result = payload.get("result", {})
+        chat = result.get("chat", {})
+        print({
+            "telegram_delivery_accepted": True,
+            "telegram_message_id": result.get("message_id"),
+            "telegram_chat_id": chat.get("id"),
+            "telegram_chat_type": chat.get("type"),
+            "telegram_chat_title": chat.get("title") or chat.get("username") or chat.get("first_name"),
+            "chunk_chars": len(c),
+        })
     return True
