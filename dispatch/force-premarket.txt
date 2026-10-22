@@ -1,1 +1,1 @@
-Force one immediate premarket report to Telegram. Update this file to trigger another forced send.
+Force one immediate premarket report to Telegram. Trigger refresh 2026-10-22 after adding Telegram delivery receipt diagnostics.
