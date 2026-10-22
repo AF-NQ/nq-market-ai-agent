@@ -1,0 +1,1 @@
+Force one immediate premarket report to Telegram. Update this file to trigger another forced send.
