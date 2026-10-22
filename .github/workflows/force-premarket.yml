@@ -37,8 +37,8 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           MARKET_TIMEZONE: America/New_York
-          PREOPEN_MINUTES: '30'
-          PREOPEN_WINDOW_MINUTES: '60'
+          PREOPEN_MINUTES: '15'
+          PREOPEN_WINDOW_MINUTES: '30'
           FORCE_PREMARKET: '1'
           STATE_PATH: data/state.json
         run: python -m src.main --once
