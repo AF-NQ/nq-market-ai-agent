@@ -1,4 +1,5 @@
 import argparse
+import os
 from .config import CONFIG
 from .sources import collect
 from .verify import relevance
@@ -23,11 +24,12 @@ def run_once():
     op, mins, is_pre = preopen_state(minutes=CONFIG.preopen_minutes, window=CONFIG.preopen_window_minutes)
     last_pre = store.get("last_preopen_date")
     today = op.date().isoformat()
+    force_premarket = os.getenv("FORCE_PREMARKET", "").strip() == "1"
     earnings = upcoming_earnings(days=5)
     finviz = collect_finviz(days=5)
     funds = collect_13f()
 
-    if is_pre and last_pre != today:
+    if (is_pre or force_premarket) and (force_premarket or last_pre != today):
         # The same headline-level equity-pressure enrichment used by the
         # Premarket Test is now part of the production report. Preserve the
         # original engine direction so CME Radar can independently map each
@@ -51,8 +53,10 @@ def run_once():
         radar_text = format_radar(ranked, limit=18)
         msg += "\n\n" + radar_text
 
-        send(CONFIG.telegram_token, CONFIG.telegram_chat_id, msg)
-        store.set("last_preopen_date", today)
+        sent = send(CONFIG.telegram_token, CONFIG.telegram_chat_id, msg)
+        print({"premarket_send_ok": bool(sent), "forced": force_premarket, "target_open": op.isoformat()})
+        if not force_premarket:
+            store.set("last_preopen_date", today)
 
     # Urgent alerts are intraday-only; the main premarket report already contains
     # the catalysts, earnings, Finviz insider activity, 13F discovery and CME Radar.
