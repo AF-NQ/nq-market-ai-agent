@@ -2,7 +2,11 @@ name: NQ Market Monitor
 
 on:
   schedule:
+    # Frequent polling for intraday catalyst alerts.
     - cron: '2,7,12,17,22,27,32,37,42,47,52,57 * * * *'
+    # Dedicated premarket recovery runs across US daylight/standard time.
+    # The Python window guard sends only when 30–90 minutes remain to the open.
+    - cron: '0 12,13,14 * * 1-5'
   workflow_dispatch:
 
 permissions:
