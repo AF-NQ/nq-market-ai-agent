@@ -4,9 +4,10 @@ on:
   schedule:
     # Frequent polling for intraday catalyst alerts.
     - cron: '2,7,12,17,22,27,32,37,42,47,52,57 * * * *'
-    # Dedicated premarket recovery runs across US daylight/standard time.
-    # The Python window guard sends only when 30–90 minutes remain to the open.
-    - cron: '0 12,13,14 * * 1-5'
+    # Dedicated checks near the 45-to-15-minute premarket window (UTC times
+    # for both US daylight and standard time).
+    - cron: '45 12,13 * * 1-5'
+    - cron: '15 13,14 * * 1-5'
   workflow_dispatch:
 
 permissions:
@@ -40,11 +41,10 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           MARKET_TIMEZONE: America/New_York
-          PREOPEN_MINUTES: '30'
-          # Recovery window: send once when 30–90 minutes remain before the
-          # regular US open. GitHub scheduled runs can be delayed or dropped;
-          # last_preopen_date still guarantees only one report per session.
-          PREOPEN_WINDOW_MINUTES: '60'
+          # Send once when 15–45 minutes remain before the regular US open.
+          # Dedicated cron checks target this interval across US DST changes.
+          PREOPEN_MINUTES: '15'
+          PREOPEN_WINDOW_MINUTES: '30'
           STATE_PATH: data/state.json
         run: python -m src.main --once
 
