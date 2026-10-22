@@ -1,0 +1,66 @@
+name: Force Premarket Telegram Report
+
+on:
+  push:
+    paths:
+      - 'dispatch/force-premarket.txt'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: nq-market-monitor
+  cancel-in-progress: false
+
+jobs:
+  force-premarket:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Send forced premarket report to Telegram
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          MARKET_TIMEZONE: America/New_York
+          PREOPEN_MINUTES: '30'
+          PREOPEN_WINDOW_MINUTES: '60'
+          FORCE_PREMARKET: '1'
+          STATE_PATH: data/state.json
+        run: python -m src.main --once
+
+      - name: Persist non-sensitive state
+        run: |
+          set -e
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if ! git diff -- data/state.json | grep -q '^'; then
+            exit 0
+          fi
+          cp data/state.json /tmp/state.json
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git reset --hard origin/main
+            cp /tmp/state.json data/state.json
+            git add data/state.json
+            if git diff --cached --quiet; then exit 0; fi
+            git commit -m "chore: update market state after forced report [skip ci]"
+            if git push origin HEAD:main; then exit 0; fi
+            echo "State push race on attempt ${attempt}; retrying..."
+          done
+          echo "Failed to persist market state after 3 attempts."
+          exit 1
