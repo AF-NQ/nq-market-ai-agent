@@ -45,6 +45,8 @@ jobs:
           # Dedicated cron checks target this interval across US DST changes.
           PREOPEN_MINUTES: '15'
           PREOPEN_WINDOW_MINUTES: '30'
+          # Premarket report has its own dedicated workflow; this one handles intraday alerts only.
+          PREMARKET_REPORT_ENABLED: '0'
           STATE_PATH: data/state.json
         run: python -m src.main --once
 
