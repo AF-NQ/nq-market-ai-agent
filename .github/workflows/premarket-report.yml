@@ -1,0 +1,73 @@
+name: NQ Premarket Report
+
+on:
+  schedule:
+    # 45, 30 and 15 minutes before 09:30 New York time, across US DST.
+    # Irrelevant UTC slots are harmless: Python checks the actual exchange calendar.
+    - cron: '45 12,13 * * 1-5'
+    - cron: '0 13,14 * * 1-5'
+    - cron: '15 13,14 * * 1-5'
+  workflow_dispatch:
+  push:
+    paths:
+      - 'dispatch/send-todays-premarket.txt'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: nq-market-premarket
+  cancel-in-progress: false
+
+jobs:
+  premarket:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Build and send premarket report
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          MARKET_TIMEZONE: America/New_York
+          PREOPEN_MINUTES: '15'
+          PREOPEN_WINDOW_MINUTES: '30'
+          # Schedule sends only in the 45–15 minute window. Manual/marker runs force a report now.
+          FORCE_PREMARKET: ${{ github.event_name == 'schedule' && '0' || '1' }}
+          STATE_PATH: data/premarket-state.json
+        run: python -m src.main --once
+
+      - name: Persist premarket state
+        run: |
+          set -e
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if ! git diff -- data/premarket-state.json | grep -q '^'; then
+            exit 0
+          fi
+          cp data/premarket-state.json /tmp/premarket-state.json
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git reset --hard origin/main
+            cp /tmp/premarket-state.json data/premarket-state.json
+            git add data/premarket-state.json
+            if git diff --cached --quiet; then exit 0; fi
+            git commit -m "chore: update premarket state [skip ci]"
+            if git push origin HEAD:main; then exit 0; fi
+            echo "State push race on attempt ${attempt}; retrying..."
+          done
+          echo "Failed to persist premarket state after 3 attempts."
+          exit 1
