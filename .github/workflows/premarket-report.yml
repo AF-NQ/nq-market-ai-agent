@@ -45,6 +45,7 @@ jobs:
           MARKET_TIMEZONE: America/New_York
           PREOPEN_MINUTES: '15'
           PREOPEN_WINDOW_MINUTES: '30'
+          PREMARKET_ONLY: '1'
           # Schedule sends only in the 45–15 minute window. Manual/marker runs force a report now.
           FORCE_PREMARKET: ${{ github.event_name == 'schedule' && '0' || '1' }}
           STATE_PATH: data/premarket-state.json
