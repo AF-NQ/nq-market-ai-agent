@@ -3,7 +3,7 @@ import requests
 
 def send(token, chat_id, text):
     if not token or not chat_id:
-        return False
+        raise RuntimeError("Telegram delivery is not configured: TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID is empty")
     url = f"https://api.telegram.org/bot{token}/sendMessage"
 
     # Split only at line boundaries so HTML tags are never cut in half.
