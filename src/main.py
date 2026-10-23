@@ -26,6 +26,7 @@ def run_once():
     today = op.date().isoformat()
     force_premarket = os.getenv("FORCE_PREMARKET", "").strip() == "1"
     premarket_enabled = os.getenv("PREMARKET_REPORT_ENABLED", "1").strip() != "0"
+    premarket_only = os.getenv("PREMARKET_ONLY", "0").strip() == "1"
     earnings = upcoming_earnings(days=5)
     finviz = collect_finviz(days=5)
     funds = collect_13f()
@@ -61,7 +62,7 @@ def run_once():
 
     # Urgent alerts are intraday-only; the main premarket report already contains
     # the catalysts, earnings, Finviz insider activity, 13F discovery and CME Radar.
-    if not is_pre or not premarket_enabled:
+    if (not is_pre or not premarket_enabled) and not premarket_only:
         for msg in urgent_messages(ranked):
             send(CONFIG.telegram_token, CONFIG.telegram_chat_id, msg)
 
