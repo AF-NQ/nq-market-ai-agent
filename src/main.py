@@ -17,7 +17,8 @@ def run_once():
     store = Store(CONFIG.database_path)
     # Keep the premarket-send marker shared between the dedicated workflow and
     # the main monitor fallback, while preserving each workflow's event store.
-    premarket_store = Store(os.getenv("PREMARKET_STATE_PATH", CONFIG.database_path))
+    premarket_state_path = os.getenv("PREMARKET_STATE_PATH", CONFIG.database_path)
+    premarket_store = store if premarket_state_path == CONFIG.database_path else Store(premarket_state_path)
     raw = collect()
     for x in raw:
         s, l, r = relevance(x)
