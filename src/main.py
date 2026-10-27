@@ -15,6 +15,9 @@ from .telegram import send
 
 def run_once():
     store = Store(CONFIG.database_path)
+    # Keep the premarket-send marker shared between the dedicated workflow and
+    # the main monitor fallback, while preserving each workflow's event store.
+    premarket_store = Store(os.getenv("PREMARKET_STATE_PATH", CONFIG.database_path))
     raw = collect()
     for x in raw:
         s, l, r = relevance(x)
@@ -22,7 +25,7 @@ def run_once():
     new = store.new_events(raw)
     ranked = analyze(new)
     op, mins, is_pre = preopen_state(minutes=CONFIG.preopen_minutes, window=CONFIG.preopen_window_minutes)
-    last_pre = store.get("last_preopen_date")
+    last_pre = premarket_store.get("last_preopen_date")
     today = op.date().isoformat()
     force_premarket = os.getenv("FORCE_PREMARKET", "").strip() == "1"
     premarket_enabled = os.getenv("PREMARKET_REPORT_ENABLED", "1").strip() != "0"
@@ -58,7 +61,7 @@ def run_once():
         sent = send(CONFIG.telegram_token, CONFIG.telegram_chat_id, msg)
         print({"premarket_send_ok": bool(sent), "forced": force_premarket, "target_open": op.isoformat()})
         if not force_premarket:
-            store.set("last_preopen_date", today)
+            premarket_store.set("last_preopen_date", today)
 
     # Urgent alerts are intraday-only; the main premarket report already contains
     # the catalysts, earnings, Finviz insider activity, 13F discovery and CME Radar.
