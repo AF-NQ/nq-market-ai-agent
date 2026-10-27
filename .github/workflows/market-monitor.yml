@@ -15,7 +15,7 @@ permissions:
 
 concurrency:
   group: nq-market-monitor
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   monitor:
@@ -45,8 +45,9 @@ jobs:
           # Dedicated cron checks target this interval across US DST changes.
           PREOPEN_MINUTES: '15'
           PREOPEN_WINDOW_MINUTES: '30'
-          # Premarket report has its own dedicated workflow; this one handles intraday alerts only.
-          PREMARKET_REPORT_ENABLED: '0'
+          # Main monitor is also a fallback premarket sender if the dedicated cron is delayed.
+          PREMARKET_REPORT_ENABLED: '1'
+          PREMARKET_STATE_PATH: data/premarket-state.json
           STATE_PATH: data/state.json
         run: python -m src.main --once
 
@@ -59,8 +60,9 @@ jobs:
           # Keep the freshly generated state while rebasing the commit on the
           # latest main. This avoids fetch-first failures when another commit
           # lands while the monitor is running.
-          if git diff -- data/state.json | grep -q '^'; then
+          if git diff -- data/state.json data/premarket-state.json | grep -q '^'; then
             cp data/state.json /tmp/state.json
+            cp data/premarket-state.json /tmp/premarket-state.json
           else
             exit 0
           fi
@@ -69,7 +71,8 @@ jobs:
             git fetch origin main
             git reset --hard origin/main
             cp /tmp/state.json data/state.json
-            git add data/state.json
+            cp /tmp/premarket-state.json data/premarket-state.json
+            git add data/state.json data/premarket-state.json
 
             if git diff --cached --quiet; then
               exit 0
