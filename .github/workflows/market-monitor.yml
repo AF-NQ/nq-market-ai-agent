@@ -10,7 +10,7 @@ on:
       timezone: America/New_York
     - cron: '57 8 * * 1-5'
       timezone: America/New_York
-    - cron: '7,14 9 * * 1-5'
+    - cron: '7,12 9 * * 1-5'
       timezone: America/New_York
   workflow_dispatch:
 
