@@ -2,11 +2,15 @@ name: NQ Premarket Report
 
 on:
   schedule:
-    # 45, 30 and 15 minutes before 09:30 New York time, across US DST.
-    # Irrelevant UTC slots are harmless: Python checks the actual exchange calendar.
-    - cron: '45 12,13 * * 1-5'
-    - cron: '0 13,14 * * 1-5'
-    - cron: '15 13,14 * * 1-5'
+    # Stagger checks away from the top of the hour (GitHub documents higher
+    # schedule delays/dropped jobs at busy times). New York timezone handles DST.
+    # Checks at 08:47, 08:57, 09:07 and 09:14 ET; Python validates the actual open.
+    - cron: '47 8 * * 1-5'
+      timezone: America/New_York
+    - cron: '57 8 * * 1-5'
+      timezone: America/New_York
+    - cron: '7,14 9 * * 1-5'
+      timezone: America/New_York
   workflow_dispatch:
   push:
     paths:
