@@ -4,10 +4,14 @@ on:
   schedule:
     # Frequent polling for intraday catalyst alerts.
     - cron: '2,7,12,17,22,27,32,37,42,47,52,57 * * * *'
-    # Dedicated checks near the 45-to-15-minute premarket window (UTC times
-    # for both US daylight and standard time).
-    - cron: '45 12,13 * * 1-5'
-    - cron: '15 13,14 * * 1-5'
+    # Staggered premarket fallback checks in New York local time, away from
+    # the top of the hour. Explicit timezone handles US daylight-saving changes.
+    - cron: '47 8 * * 1-5'
+      timezone: America/New_York
+    - cron: '57 8 * * 1-5'
+      timezone: America/New_York
+    - cron: '7,14 9 * * 1-5'
+      timezone: America/New_York
   workflow_dispatch:
 
 permissions:
