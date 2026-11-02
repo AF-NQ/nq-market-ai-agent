@@ -1,1 +1,1 @@
-Force one immediate premarket report to Telegram. Trigger refresh 2026-10-22 after adding Telegram delivery receipt diagnostics.
+Force one immediate premarket report to Telegram. Manual trigger 2026-11-02 after missed scheduled summary.
