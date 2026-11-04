@@ -24,7 +24,7 @@ GENERIC_PUBLISHERS = {
 MAX_CATALYST_AGE_HOURS = 48.0
 
 CATEGORY_RULES = {
-    "FED / RATES": ["fed", "federal reserve", "fomc", "interest rate", "rate cut", "rate hike", "powell", "hawkish", "dovish"],
+    "US POLITICS / CONGRESS": ["us election", "u.s. election", "midterm", "mid-term", "congress", "congressional", "senate", "senators", "house of representatives", "house majority", "congressional majority", "election results", "election outcome", "midterm sweep", "control of congress", "control of the house", "control of the senate", "projected winner", "race called"],\n    "FED / RATES": ["fed", "federal reserve", "fomc", "interest rate", "rate cut", "rate hike", "powell", "hawkish", "dovish"],
     "INFLATION / MACRO": ["cpi", "ppi", "inflation", "core inflation", "pce", "retail sales", "gdp", "ism", "consumer confidence"],
     "LABOR": ["payroll", "nonfarm", "jobs report", "jobless claims", "unemployment", "employment", "jolts", "wage growth"],
     "TREASURIES / YIELDS": ["treasury", "yield", "yields", "10-year", "2-year", "bond auction", "real yield"],
@@ -53,7 +53,7 @@ ANCHORS = {
     "tesla": "TSLA", "fed": "FED", "fomc": "FED", "powell": "FED", "cpi": "CPI", "ppi": "PPI",
     "payroll": "JOBS", "nonfarm": "JOBS", "unemployment": "JOBS", "treasury": "YIELDS", "yield": "YIELDS",
     "oil": "OIL", "crude": "OIL", "iran": "IRAN", "tariff": "TARIFFS", "nasdaq": "NQ", "s&p": "SPX",
-    "trump": "TRUMP", "xi": "XI", "china": "CHINA", "rare earth": "RARE_EARTHS",
+    "trump": "TRUMP", "xi": "XI", "china": "CHINA", "congress": "CONGRESS", "senate": "CONGRESS", "house of representatives": "CONGRESS", "midterm": "US_ELECTIONS", "election": "US_ELECTIONS", "rare earth": "RARE_EARTHS",
     "nikkei": "NIKKEI", "topix": "NIKKEI", "boj": "BOJ", "yen": "JPY", "jpy": "JPY", "jgb": "JGB",
     "hang seng": "HANG_SENG", "shanghai": "CHINA_EQ", "shenzhen": "CHINA_EQ", "csi 300": "CHINA_EQ", "pboc": "PBOC", "yuan": "CNY", "renminbi": "CNY",
     "kospi": "KOSPI", "samsung": "KOREA_SEMIs", "sk hynix": "KOREA_SEMIs", "taiex": "TAIEX", "tsmc": "TSMC",
@@ -200,7 +200,7 @@ def _similar(a, b):
     shared = len(ta & tb)
     if j >= 0.50 or (shared_anchors and shared >= 3 and j >= 0.25): return True
     for group in (
-        {"TRUMP", "XI"}, {"FED", "YIELDS"}, {"OIL", "IRAN"},
+        {"TRUMP", "XI"}, {"FED", "YIELDS"}, {"OIL", "IRAN"}, {"CONGRESS", "US_ELECTIONS"},
         {"BOJ", "JPY"}, {"PBOC", "CNY"}, {"TSMC", "TAIEX"},
         {"KOSPI", "KOREA_SEMIs"}, {"ECB", "EUR"},
     ):
@@ -229,7 +229,7 @@ def _freshness_component(item):
 def score_item(item, cluster_size=1):
     cats = categories(item)
     cat_weights = {
-        "FED / RATES": 18, "INFLATION / MACRO": 16, "LABOR": 16, "TREASURIES / YIELDS": 15,
+        "US POLITICS / CONGRESS": 16, "FED / RATES": 18, "INFLATION / MACRO": 16, "LABOR": 16, "TREASURIES / YIELDS": 15,
         "GLOBAL FX": 8, "JAPAN / BOJ": 9, "CHINA / PBOC": 9, "ASIA / SEMICONDUCTORS": 13,
         "EUROPE / ECB": 8, "AI / SEMICONDUCTORS": 18, "MEGA-CAP": 17, "EARNINGS": 16,
         "GEOPOLITICS": 8, "OIL / ENERGY": 8, "TARIFFS / TRADE": 9, "REGULATION": 9, "INDEX / FUTURES": 18,
@@ -251,7 +251,7 @@ def score_item(item, cluster_size=1):
 
 def _event_key(item):
     anchors = _anchors(item.get("title", "") + " " + item.get("summary", ""))
-    if {"TRUMP", "XI"}.issubset(anchors): return "TRUMP-XI"
+    text = (item.get("title", "") + " " + item.get("summary", "")).lower()\n    if "CONGRESS" in anchors and "US_ELECTIONS" in anchors and any(k in text for k in ("control", "majority", "sweep", "take congress", "take the house", "take the senate")): return "US-CONGRESS-CONTROL"\n    if {"TRUMP", "XI"}.issubset(anchors): return "TRUMP-XI"
     if {"FED", "YIELDS"}.issubset(anchors): return "FED-YIELDS"
     if {"OIL", "IRAN"}.issubset(anchors): return "OIL-IRAN"
     if {"BOJ", "JPY"}.issubset(anchors): return "BOJ-JPY"
