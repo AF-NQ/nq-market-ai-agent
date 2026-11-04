@@ -207,7 +207,16 @@ def index_relevance(item, index):
         value = min(value, 72)
 
     if "US POLITICS / CONGRESS" in cats:
-        value = max(value, 76 if index == "NQ" else 78)
+        # Election coverage is materially index-relevant even without a
+        # directional forecast. Raise the floor when the story reports an
+        # observed cross-market reaction rather than merely mentioning politics.
+        observed_market_reaction = _contains_any(
+            text,
+            ("stocks", "stock market", "markets", "dollar", "yields", "bonds",
+             "nasdaq", "s&p", "wall street", "equities"),
+        )
+        floor = (80 if index == "NQ" else 82) if observed_market_reaction else (76 if index == "NQ" else 78)
+        value = max(value, floor)
 
     # Hormuz is an unusually direct cross-asset transmission channel through oil,
     # inflation expectations, rates and risk appetite.
