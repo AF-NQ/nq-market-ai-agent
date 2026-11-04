@@ -47,3 +47,16 @@ def test_different_catalysts_remain_separate():
     catalysts = build_catalysts(items)
     assert len(catalysts) == 2
     assert {x["categories"][0] for x in catalysts} >= {"FED / RATES", "OIL / ENERGY"}
+
+
+
+def test_us_congress_election_is_recognized_and_clustered():
+    items = [
+        item("Democrats take US Congress in sweeping midterm repudiation", "Reuters", "https://example.com/election-1"),
+        item("Democrats close in on US House and make gains in Senate", "Reuters", "https://example.com/election-2"),
+    ]
+    assert "US POLITICS / CONGRESS" in categories(items[0])
+    catalysts = build_catalysts(items)
+    assert any("US POLITICS / CONGRESS" in x["categories"] for x in catalysts)
+    election = next(x for x in catalysts if "US POLITICS / CONGRESS" in x["categories"])
+    assert election["event_key"] == "US-CONGRESS-CONTROL"
