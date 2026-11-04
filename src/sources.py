@@ -14,6 +14,11 @@ FEEDS = [
     ("Reuters Trump", "https://news.google.com/rss/search?q=" + quote_plus("site:reuters.com Trump tariffs markets") + "&hl=en-US&gl=US&ceid=US:en", 100),
     ("Reuters Global", "https://news.google.com/rss/search?q=" + quote_plus("site:reuters.com global markets Fed oil yields") + "&hl=en-US&gl=US&ceid=US:en", 100),
 
+    # Dedicated political-risk discovery: election outcomes can change fiscal,
+    # tax, trade and regulatory expectations even when the headline omits index names.
+    ("Priority Reuters US Elections", "https://news.google.com/rss/search?q=" + quote_plus("site:reuters.com (US midterm elections OR US election results OR control of Congress OR Senate OR House of Representatives) markets") + "&hl=en-US&gl=US&ceid=US:en", 115),
+    ("Priority Reuters Congress Markets", "https://news.google.com/rss/search?q=" + quote_plus("site:reuters.com Congress Senate House election results stocks dollar bonds markets") + "&hl=en-US&gl=US&ceid=US:en", 112),
+
     # Fast-path geopolitical / energy discovery. These are deliberately narrow
     # because generic geopolitical feeds can bury a rare, market-moving headline
     # inside a larger stream. The dedicated Reuters queries are especially
