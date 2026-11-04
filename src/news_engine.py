@@ -24,7 +24,8 @@ GENERIC_PUBLISHERS = {
 MAX_CATALYST_AGE_HOURS = 48.0
 
 CATEGORY_RULES = {
-    "US POLITICS / CONGRESS": ["us election", "u.s. election", "midterm", "mid-term", "congress", "congressional", "senate", "senators", "house of representatives", "house majority", "congressional majority", "election results", "election outcome", "midterm sweep", "control of congress", "control of the house", "control of the senate", "projected winner", "race called"],\n    "FED / RATES": ["fed", "federal reserve", "fomc", "interest rate", "rate cut", "rate hike", "powell", "hawkish", "dovish"],
+    "US POLITICS / CONGRESS": ["us election", "u.s. election", "midterm", "mid-term", "congress", "congressional", "senate", "senators", "house of representatives", "house majority", "congressional majority", "election results", "election outcome", "midterm sweep", "control of congress", "control of the house", "control of the senate", "projected winner", "race called"],
+    "FED / RATES": ["fed", "federal reserve", "fomc", "interest rate", "rate cut", "rate hike", "powell", "hawkish", "dovish"],
     "INFLATION / MACRO": ["cpi", "ppi", "inflation", "core inflation", "pce", "retail sales", "gdp", "ism", "consumer confidence"],
     "LABOR": ["payroll", "nonfarm", "jobs report", "jobless claims", "unemployment", "employment", "jolts", "wage growth"],
     "TREASURIES / YIELDS": ["treasury", "yield", "yields", "10-year", "2-year", "bond auction", "real yield"],
@@ -251,7 +252,9 @@ def score_item(item, cluster_size=1):
 
 def _event_key(item):
     anchors = _anchors(item.get("title", "") + " " + item.get("summary", ""))
-    text = (item.get("title", "") + " " + item.get("summary", "")).lower()\n    if "CONGRESS" in anchors and "US_ELECTIONS" in anchors and any(k in text for k in ("control", "majority", "sweep", "take congress", "take the house", "take the senate")): return "US-CONGRESS-CONTROL"\n    if {"TRUMP", "XI"}.issubset(anchors): return "TRUMP-XI"
+    text = (item.get("title", "") + " " + item.get("summary", "")).lower()
+    if "CONGRESS" in anchors and "US_ELECTIONS" in anchors and any(k in text for k in ("control", "majority", "sweep", "take congress", "take the house", "take the senate")): return "US-CONGRESS-CONTROL"
+    if {"TRUMP", "XI"}.issubset(anchors): return "TRUMP-XI"
     if {"FED", "YIELDS"}.issubset(anchors): return "FED-YIELDS"
     if {"OIL", "IRAN"}.issubset(anchors): return "OIL-IRAN"
     if {"BOJ", "JPY"}.issubset(anchors): return "BOJ-JPY"
