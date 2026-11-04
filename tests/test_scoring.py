@@ -44,3 +44,22 @@ def test_score_event_exposes_separate_metrics():
     assert metrics["market_impact"] > 0
     assert metrics["nq_relevance"] > 0
     assert 0 <= metrics["direction_confidence"] <= 100
+
+
+
+def test_congressional_election_has_material_index_relevance_without_direction_guess():
+    x = item("Democrats take control of US Congress in midterm sweep", "Reuters")
+    metrics = score_event(x)
+    assert metrics["market_impact"] >= 70
+    assert metrics["nq_relevance"] >= 70
+    assert metrics["spx_relevance"] >= 74
+    assert metrics["equity_direction"] == "NEUTRAL"
+
+
+def test_election_story_with_observed_stock_rally_can_be_bullish():
+    x = item("Stocks rally, dollar dips after Democrats' midterm sweep", "Reuters")
+    metrics = score_event(x)
+    assert metrics["market_impact"] >= 68
+    assert metrics["nq_relevance"] >= 78
+    assert metrics["spx_relevance"] >= 82
+    assert metrics["equity_direction"] == "BULLISH"
