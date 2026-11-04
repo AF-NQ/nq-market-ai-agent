@@ -253,7 +253,7 @@ def score_item(item, cluster_size=1):
 def _event_key(item):
     anchors = _anchors(item.get("title", "") + " " + item.get("summary", ""))
     text = (item.get("title", "") + " " + item.get("summary", "")).lower()
-    if "CONGRESS" in anchors and "US_ELECTIONS" in anchors and any(k in text for k in ("control", "majority", "sweep", "take congress", "take the house", "take the senate")): return "US-CONGRESS-CONTROL"
+    if "CONGRESS" in anchors and "US_ELECTIONS" in anchors and any(k in text for k in ("control", "majority", "sweep", "take congress", "take us congress", "take the house", "take the senate")): return "US-CONGRESS-CONTROL"
     if {"TRUMP", "XI"}.issubset(anchors): return "TRUMP-XI"
     if {"FED", "YIELDS"}.issubset(anchors): return "FED-YIELDS"
     if {"OIL", "IRAN"}.issubset(anchors): return "OIL-IRAN"
