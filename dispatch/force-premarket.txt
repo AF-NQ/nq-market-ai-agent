@@ -1,1 +1,1 @@
-Force one immediate premarket report to Telegram. Manual trigger 2026-11-02 after missed scheduled summary.
+Force one immediate premarket report to Telegram. Manual trigger 2026-11-04.
