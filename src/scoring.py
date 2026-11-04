@@ -36,6 +36,7 @@ IMPACT_BASE = {
     "EUROPE / ECB": 44,
     "GLOBAL FX": 42,
     "USD": 50,
+    "US POLITICS / CONGRESS": 72,
 }
 
 NQ_BASE = {
@@ -57,6 +58,7 @@ NQ_BASE = {
     "EUROPE / ECB": 36,
     "GLOBAL FX": 40,
     "USD": 62,
+    "US POLITICS / CONGRESS": 76,
 }
 
 SPX_BASE = {
@@ -78,6 +80,7 @@ SPX_BASE = {
     "EUROPE / ECB": 40,
     "GLOBAL FX": 44,
     "USD": 66,
+    "US POLITICS / CONGRESS": 78,
 }
 
 NQ_DIRECT_TERMS = (
@@ -162,6 +165,9 @@ def market_impact(item):
     if _contains_any(text, ("fed", "fomc", "powell")) and _contains_any(text, ("decision", "rate", "hike", "cut", "policy")):
         impact += 7
 
+    if "US POLITICS / CONGRESS" in cats and _contains_any(text, ("control", "majority", "sweep", "midterm", "election")):
+        impact = max(impact, 72)
+
     # Rare geopolitical/energy combinations get a fast-path floor. Without this,
     # a generic category base can score a market-moving Hormuz development as only
     # medium impact even when the event directly changes global energy-flow risk.
@@ -199,6 +205,9 @@ def index_relevance(item, index):
     # than it is for NQ unless the headline explicitly references the S&P.
     if index == "SPX" and "AI / SEMICONDUCTORS" in cats and not _contains_any(text, SPX_DIRECT_TERMS):
         value = min(value, 72)
+
+    if "US POLITICS / CONGRESS" in cats:
+        value = max(value, 76 if index == "NQ" else 78)
 
     # Hormuz is an unusually direct cross-asset transmission channel through oil,
     # inflation expectations, rates and risk appetite.
