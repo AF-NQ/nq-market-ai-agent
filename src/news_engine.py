@@ -251,9 +251,22 @@ def score_item(item, cluster_size=1):
 
 
 def _event_key(item):
-    anchors = _anchors(item.get("title", "") + " " + item.get("summary", ""))
-    text = (item.get("title", "") + " " + item.get("summary", "")).lower()
-    if "CONGRESS" in anchors and "US_ELECTIONS" in anchors and any(k in text for k in ("control", "majority", "sweep", "take congress", "take us congress", "take the house", "take the senate")): return "US-CONGRESS-CONTROL"
+    combined = (item.get("title", "") + " " + item.get("summary", "")).lower()
+    anchors = _anchors(combined)
+    political_category = "US POLITICS / CONGRESS" in categories(item)
+    congress_control_language = any(
+        phrase in combined
+        for phrase in (
+            "control", "majority", "sweep", "take congress", "take us congress",
+            "take the house", "take the senate", "make gains", "close in",
+            "midterm", "election result", "election outcome",
+        )
+    )
+    # A follow-up headline may say "make gains in Senate" without repeating
+    # "election" or "midterm". The category plus outcome language is enough
+    # to keep it attached to the same congressional-control catalyst.
+    if political_category and congress_control_language:
+        return "US-CONGRESS-CONTROL"
     if {"TRUMP", "XI"}.issubset(anchors): return "TRUMP-XI"
     if {"FED", "YIELDS"}.issubset(anchors): return "FED-YIELDS"
     if {"OIL", "IRAN"}.issubset(anchors): return "OIL-IRAN"
