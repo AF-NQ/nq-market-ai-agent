@@ -1,101 +1,5 @@
 {
   "seen": {
-    "21dc482cb4ae1996128c4d49769dee60d2ee3fad14c8d94f06a577efcaa0b8a0": {
-      "ts": "Tue, 17 Nov 2026 12:36:25 GMT",
-      "title": "Nasdaq futures rise as tech stocks firm up ahead of Nvidia results, Anthropic IPO - Reuters"
-    },
-    "a3c8dd753410460497a3e627f445284d17114d39753e3e36ee88c1140bda1925": {
-      "ts": "Tue, 17 Nov 2026 12:42:02 GMT",
-      "title": "Is the US-Israel war on Iran turning into a ‘frozen conflict’? - Al Jazeera"
-    },
-    "95edc41605a18a7c016a8d115a6f82790f948069d267894bfc7fa8046c77becf": {
-      "ts": "Tue, 17 Nov 2026 13:17:00 GMT",
-      "title": "Oil Prices Rebound as Middle East Shipping Risks Persist - WSJ"
-    },
-    "d8e8ce959854d0fece478a51ee1f2f0111a3352cb0a1a8038d6eeca572f8a5d7": {
-      "ts": "Tue, 17 Nov 2026 13:23:57 GMT",
-      "title": "Trump says US trade deal with Thailand to be signed soon - Reuters"
-    },
-    "b133e9f7ffd368b17afe1b93cede3bdcf847a6935ff824eab581e9054b3f6fa4": {
-      "ts": "Tue, 17 Nov 2026 13:40:00 GMT",
-      "title": "Stock Market Today: Dow Jones, S&P 500, Nasdaq 100 Futures Trade Mixed Ahead of Nvidia’s Q3 Earnings— CBR - Benzinga"
-    },
-    "361c25bb5e7c3b35180a94a3e6a1d9ba855d6eb92bd617ac86ac98b8a7993eca": {
-      "ts": "Tue, 17 Nov 2026 13:40:37 GMT",
-      "title": "Stock Market Today: Dow Jones, S&P 500, Nasdaq 100 Futures Trade Mixed Ahead of Nvidia’s Q3 Earnings— CBRS, AMZN, RCAT in Focus (UPDATED) - TradingView"
-    },
-    "2f6b5a045329ebc7d985020529ab28d809a56259997a6404cda050209ece610b": {
-      "ts": "Tue, 17 Nov 2026 13:44:01 GMT",
-      "title": "Middle East latest: Crew missing after huge blast on tanker off Oman - The National"
-    },
-    "a5617324cfa086ae1f5ab93abfb31e61a1f05cd95d5a47b3bd9f2c89a7dc99dc": {
-      "ts": "Tue, 17 Nov 2026 13:57:55 GMT",
-      "title": "Oil Extends Fall on Signs of Revived Supplies and Vance Outlook - Bloomberg.com"
-    },
-    "6a3e2a8dbb37b2d3b41bf5c4165b4ae57486cf9ee7e2272d7275e04fc70cb6c4": {
-      "ts": "Tue, 17 Nov 2026 13:59:50 GMT",
-      "title": "APEC members expected to look past trade differences to agree summit text, official says - Reuters"
-    },
-    "3d6bdfb3b1a5374c0c4b24bac82952252afb68fe41a4dcdb8478a9d904588f88": {
-      "ts": "Tue, 17 Nov 2026 14:39:25 GMT",
-      "title": "The Real Energy Risk Is The Collapse Of The Hormuz Workarounds. - Forbes"
-    },
-    "4f68dd39bc8d8449498a3fb6a4b49c7025b83e4544d21b3fb74d0ac2443fbced": {
-      "ts": "Tue, 17 Nov 2026 14:39:55 GMT",
-      "title": "Fed needs to prepare for bond-market intervention during calm times, Hammack says - Reuters"
-    },
-    "4fbe7d5e35c82cf1a7f77145f3b028aa60250436164786fede2d6df26bd93a2b": {
-      "ts": "Tue, 17 Nov 2026 15:00:00 GMT",
-      "title": "US Stock Futures Fall as Nvidia Earnings and Fed Rate Outlook Weigh on Markets - Analytics Insight"
-    },
-    "5fc2d38375c9311bcaf1a155a03562941bfb7c5ec43ac5e9da65769d9dcebdba": {
-      "ts": "Tue, 17 Nov 2026 15:01:05 GMT",
-      "title": "KOSPI Falls Below 5,000 as IMF Raises Korea Growth Forecast - Seoul Economic Daily"
-    },
-    "f71e1ce9f1f34807b29fcfff42152ff56a73a602a876266f66fa47633cdc4977": {
-      "ts": "Tue, 17 Nov 2026 15:05:45 GMT",
-      "title": "White House ordered to hand over records in lawsuit over Trump's law firm crackdown - Reuters"
-    },
-    "2794ca8e3af03d95588d907288193ec9536f47a40111c72c66bfc8aa1c81c643": {
-      "ts": "Tue, 17 Nov 2026 15:11:45 GMT",
-      "title": "UN agency warns of Gaza hypothermia deaths without more supplies - Reuters"
-    },
-    "8efda15c494b6319e85279383d07ea510923b941991d3ee0a60d102fe4972f68": {
-      "ts": "Tue, 17 Nov 2026 15:21:41 GMT",
-      "title": "US markets edge lower on Tuesday ahead of Nvidia earnings; bond yields surge after fed official's hawkish comments - Upstox"
-    },
-    "fd57da7c7d5ea7df0adba5327a09ba77dc1a3206ae13f94e41fdcb668b88079c": {
-      "ts": "Tue, 17 Nov 2026 15:28:54 GMT",
-      "title": "North Macedonia, Greece say they uncovered Iran-linked assassination plot - Reuters"
-    },
-    "b4866265e6aacfad52a43f2f1c316234e8cff3ad190a5b0a9bf933639a1837c5": {
-      "ts": "Tue, 17 Nov 2026 15:40:40 GMT",
-      "title": "Wall St slips ahead of Nvidia results, Anthropic IPO - Reuters"
-    },
-    "a8210dd26b191c98ff3d28d89728781b24e514c0971d0d93e8ca65d1eccbc702": {
-      "ts": "Tue, 17 Nov 2026 15:48:09 GMT",
-      "title": "Vestas boss calls for tougher EU rules on Chinese software in wind sector - Reuters"
-    },
-    "373beb1e6a7679576d46c7bfcc5b60b180d30e5258951432bcbeac5c7b1d7560": {
-      "ts": "Tue, 17 Nov 2026 15:51:44 GMT",
-      "title": "What's Going On With AMD Stock Tuesday? (UPDATED) - Benzinga"
-    },
-    "59b52b2e6aa8bbd31d4d78252f2ed439c37cb210b80d8ee8166d549367bed434": {
-      "ts": "Tue, 17 Nov 2026 15:54:00 GMT",
-      "title": "Nasdaq 100 falls 1% as S&P 500 drops 0.8% amid growing Wall Street selloff - Business Upturn"
-    },
-    "b1add8f8d3356358f743f30607c36f2111d7b334467bd339a3234000f8e336ae": {
-      "ts": "Tue, 17 Nov 2026 15:54:40 GMT",
-      "title": "Shipping faces trade route rethink after Hormuz disruption, says ex-UK PM Tony Blair - TradeWinds News"
-    },
-    "e434f2e599b2d50e46b5c7c5dba455b1ffd50f27b018e33170b8615635d21834": {
-      "ts": "Tue, 17 Nov 2026 16:00:00 GMT",
-      "title": "Brent Stuck Near $93 as Hormuz Tanker Attacks Offset Gulf Export Surge - Crude Oil Prices Today | OilPrice.com"
-    },
-    "23ef81946633612567952023ea08f56d78395d7a508949ecdc2832ae6350e94d": {
-      "ts": "Tue, 17 Nov 2026 16:23:42 GMT",
-      "title": "Trump and Tehran gamble on time as Iran war stalemate deepens - Reuters"
-    },
     "99fdff7af4d42868abb50755c22d7062a3ccc2f1a6adf6b745a8100658af94f1": {
       "ts": "Tue, 17 Nov 2026 16:57:32 GMT",
       "title": "Middle East latest: 21 Indians evacuated following strikes on tanker - The National"
@@ -1648,6 +1552,10 @@
       "ts": "Tue, 24 Nov 2026 04:06:00 GMT",
       "title": "Taiex up 3,368 points, largest intraday point gain on Huang's return - Focus Taiwan"
     },
+    "a2d28c2be550738aec18d23ab931ccdf8c996d3a8d18da0c31efd0999e424694": {
+      "ts": "Tue, 24 Nov 2026 04:10:16 GMT",
+      "title": "IRGC: Three oil tankers hit mines, caught fire while transiting Hormuz with US support - report - The Jerusalem Post"
+    },
     "96118d506b473ce95553d1d59f9f7768884829593d10e15efd6966e01f95c73d": {
       "ts": "Tue, 24 Nov 2026 04:11:00 GMT",
       "title": "Oil Extends Decline on Signs of Continuing US-Iran Diplomacy - Bloomberg.com"
@@ -1904,6 +1812,10 @@
       "ts": "Tue, 24 Nov 2026 17:25:47 GMT",
       "title": "US consumer confidence jumps to highest level in nearly two years - Reuters"
     },
+    "68bbae0da2a4666199453f7cc076aa86de3e6801fe245afddc4d03f06a8d007c": {
+      "ts": "Tue, 24 Nov 2026 17:41:54 GMT",
+      "title": "Wall Street's 2027 earnings hopes may be dead on arrival unless the Fed blinks in December - Yahoo Finance"
+    },
     "4caf88492abf02221c19ce8e62eae12686a57a617bd13d1a81e0010d3cf308b7": {
       "ts": "Tue, 24 Nov 2026 17:53:42 GMT",
       "title": "OPEC+ Faces Its Most Consequential Supply Decision of the Year - gCaptain"
@@ -1924,6 +1836,10 @@
       "ts": "Tue, 24 Nov 2026 18:51:43 GMT",
       "title": "Trump awards Rudy Giuliani the Medal of Freedom - Reuters"
     },
+    "8eb6417c55046fbdb23a8182e9551231f4b5efa6599263476707e061e36f3831": {
+      "ts": "Tue, 24 Nov 2026 18:54:55 GMT",
+      "title": "Oil prices rise with focus on Iran war diplomacy - Transport Topics"
+    },
     "460721e56144d43418e73cdc5a82ea7d48ef13cde0f31c933d99f57edfc69c0e": {
       "ts": "Tue, 24 Nov 2026 19:00:00 GMT",
       "title": "Minutes of the Board's discount rate meetings on October 19 and October 28, 2026"
@@ -1931,6 +1847,10 @@
     "fcd0fbe279b3e8ab7719d404d09b25a4492c32695b122ac34b6112fb4e7cfba4": {
       "ts": "Tue, 24 Nov 2026 19:32:02 GMT",
       "title": "Canadian dollar hits 11-day high as investors raise BoC rate hike bets - Reuters"
+    },
+    "ccf15ce3a3f794ef0c59118c92fbb3e82b3a6eca0b0be8c3c4db358ab097b8eb": {
+      "ts": "Tue, 24 Nov 2026 19:56:50 GMT",
+      "title": "Oil touches three-month lows as rising supply offsets Hormuz threat - Yahoo Finance"
     },
     "7dd434fab189c308a50be2b691d058485492d6fbab66908c99397ab182052c5c": {
       "ts": "Tue, 24 Nov 2026 20:03:53 GMT",
@@ -4496,6 +4416,10 @@
       "ts": "Wed, 05 Aug 2026 07:00:00 GMT",
       "title": "NEWSLETTER: Deal to reopen Hormuz? - Reuters"
     },
+    "3345a249853ff9c3dfbb5dbb7e5ba4907b767fef48b5a0775fab8c65ecc3e1ff": {
+      "ts": "Wed, 05 Aug 2026 07:00:00 GMT",
+      "title": "European shares remain close to record highs as earnings support investor confidence: DAX, CAC, FTSE100 - Yahoo Finance UK"
+    },
     "f30f61b1bcc4572e4d78292d0ac474c5a137786a8dd68c75f9023486bcf94af3": {
       "ts": "Wed, 05 Aug 2026 07:29:38 GMT",
       "title": "Wall Street Outlook: Dow Jones Soars to a Record, Nasdaq Leads the Charge - FOREX.com"
@@ -5091,6 +5015,10 @@
     "75e022106b9e1cd7977a05a9ef5a2115051b3e4170ea24e3f8bb86cbb7a66bb5": {
       "ts": "Wed, 09 Jul 2025 07:00:00 GMT",
       "title": "US stock futures rise as Dow jumps 100 points, S&P 500 and Nasdaq gain; AES up 15%, Verona Pharma soars 20 - The Economic Times"
+    },
+    "7660a9db8f68882f8fc47fa7d861d2f3a207dff17c7b429f94d6bdf172cdf2b8": {
+      "ts": "Wed, 09 Nov 2022 08:00:00 GMT",
+      "title": "Biden vows to work with Republicans as control of U.S. Congress still unsettled - Reuters"
     },
     "827b04b73de0ad267a65cf648650692d7c4653ed466fde60f025535e3c6314b3": {
       "ts": "Wed, 09 Oct 2024 07:00:00 GMT",
@@ -8544,6 +8472,14 @@
       "ts": "Wed, 25 Nov 2026 01:19:00 GMT",
       "title": "Dollar boosted by safety bid as stocks tumble - Reuters"
     },
+    "a5fc223067904cf6a08eebad827befbad60623459852001ec3959bf9e5dc2c4a": {
+      "ts": "Wed, 25 Nov 2026 01:19:00 GMT",
+      "title": "Yen, Swiss franc gain as dollar slips in volatile AI-driven session - Reuters"
+    },
+    "864b85d9b589cdb885032c75439ff3d62e587cdbae5125947f000a9af7015304": {
+      "ts": "Wed, 25 Nov 2026 01:41:00 GMT",
+      "title": "AI Chip Boom to See Won Build on Best Year in Almost a Decade - Yahoo Finance"
+    },
     "7368922ff4503c6160b2cf69f50c673fe0e29b87edad65cbedd880806357b4e6": {
       "ts": "Wed, 25 Nov 2026 01:50:00 GMT",
       "title": "World stocks fall as new US tariffs loom, AI rebound fizzles - Reuters"
@@ -8584,6 +8520,10 @@
       "ts": "Wed, 25 Nov 2026 04:03:00 GMT",
       "title": "Jensen Huang Boost Fades Fast as Taiwan Stocks Tumble 8% - Bloomberg"
     },
+    "b2cec19162ee56fc08c4f932b72f9c1c9294c2c6807b14b2df2c387b386a3d1f": {
+      "ts": "Wed, 25 Nov 2026 04:56:04 GMT",
+      "title": "Iran claims LNG tanker ablaze in Hormuz after hitting mine - Arab News"
+    },
     "24f322925cbd4a6eb8242a8d5c554238a8f331affcab43fedba85d27781f61cd": {
       "ts": "Wed, 25 Nov 2026 05:31:00 GMT",
       "title": "Morning Bid: Who's afraid of Jamieson Greer? - Reuters"
@@ -8608,6 +8548,14 @@
       "ts": "Wed, 25 Nov 2026 08:25:29 GMT",
       "title": "Iran war live: Two oil tankers explode in Strait of Hormuz - Arabian Business"
     },
+    "972b3615e04606e98fdc25ae6e257d525bbb3315b8bd8702e09f7ba768958d4a": {
+      "ts": "Wed, 25 Nov 2026 08:29:22 GMT",
+      "title": "Iran says it is prepared to withstand US blockade, seeks to curb price rises - Reuters"
+    },
+    "02c58b572e9aa1a4c53fcbcc9b1bf74cf703cfe4a717b865c47ae57f81fb92e1": {
+      "ts": "Wed, 25 Nov 2026 08:54:08 GMT",
+      "title": "AI Chip Boom to See Won Build on Best Year in Almost a Decade - Bloomberg.com"
+    },
     "181f4bb8c24f5277ddd3a5fc1114269635afa07e417d6b414405788ff1fcb4f8": {
       "ts": "Wed, 25 Nov 2026 09:10:24 -0500",
       "title": "SEC Investor Advisory Committee to Host Dec. 3 Virtual Meeting"
@@ -8615,6 +8563,10 @@
     "96afec64c31245c66844e8425d09e180fb1039adb89250eb78e47921f0f8bdfb": {
       "ts": "Wed, 25 Nov 2026 09:14:28 GMT",
       "title": "Stock market today: Dow, S&P 500, Nasdaq futures fall ahead of inflation data - AOL.com"
+    },
+    "a801e5c9c756a89595fcbf9f41c9be02e6bf79295eacc5bcb4d9f1e11e80c53d": {
+      "ts": "Wed, 25 Nov 2026 09:24:00 GMT",
+      "title": "Taiex plunges over 1,900 points, retreating from previous session's rally - Focus Taiwan"
     },
     "1705a5fc525993c0364110c71f8141d6b3379eb140bbeb069cf81007cadbfd60": {
       "ts": "Wed, 25 Nov 2026 09:30:00 GMT",
@@ -8635,6 +8587,10 @@
     "4d84e12f8b7d601082b3149de5cf142cfb247b94b2718f87f8ee6415464346dc": {
       "ts": "Wed, 25 Nov 2026 10:27:51 GMT",
       "title": "Stock Market Today: Dow Jones, S&P 500 Futures Fall as Traders Bet on December Fed Hike; Trump Tells Huang to ‘Just Tell the Truth’—DELL, WDAY, ADSK in Focus - TradingView"
+    },
+    "a0a877557c05be31ad904be98ef8d25ae758b03a8ae2c32436859e8ee3099faa": {
+      "ts": "Wed, 25 Nov 2026 10:40:44 GMT",
+      "title": "The battle for Hormuz: America has the blockade, Iran has the geography - Firstpost"
     },
     "03d5e9fb588d41168ef8813de84fa3cdb163035b1cf98ae3c1af6755fcf79472": {
       "ts": "Wed, 25 Nov 2026 10:44:46 GMT",
@@ -8696,6 +8652,10 @@
       "ts": "Wed, 25 Nov 2026 13:43:10 GMT",
       "title": "US stock futures extend losses after economic data - Reuters"
     },
+    "c4a233132a4012bd1f48522d27b6b39f5912adf496a728ec589e5ce7fbb1f775": {
+      "ts": "Wed, 25 Nov 2026 13:55:00 GMT",
+      "title": "Nasdaq Futures Drop 2% as AI Selloff Deepens and New Tariff Plans Loom - BigGo Finance"
+    },
     "1938ce15e1c2422a58ce48f0c049d32badb3f0a9a3be1e86af241d9105ae48b1": {
       "ts": "Wed, 25 Nov 2026 14:08:58 GMT",
       "title": "VIEW US proposes new tariffs aimed at factory overcapacity - Reuters"
@@ -8703,6 +8663,10 @@
     "e38eb509d5bbbd27698e3eef5cac98854db52371c57aa4fa97492b4146888fcb": {
       "ts": "Wed, 25 Nov 2026 14:36:52 GMT",
       "title": "Iran war live: Forty tankers attacked in Hormuz in the last ten days - Arabian Business"
+    },
+    "20f1890aec782939615550bad265c54e6efa3d746f40a67169ddfa9274f9da4e": {
+      "ts": "Wed, 25 Nov 2026 15:38:19 GMT",
+      "title": "US grocers serve up Thanksgiving deals even as turkey prices climb - Reuters"
     },
     "710fa9719c3ed50a29339f929e2ef145ba29605405c6f45a84dae0ff540de244": {
       "ts": "Wed, 25 Nov 2026 16:05:00 GMT",
@@ -8740,6 +8704,10 @@
       "ts": "Wed, 25 Nov 2026 18:55:31 GMT",
       "title": "Trump unveils new tariffs over excess industrial capacity, undeterred by midterms defeat - Reuters"
     },
+    "60969d4a5c7ebfdab53dc1b8e188554ef8243c83cf92e825a10ee08baf007bd9": {
+      "ts": "Wed, 25 Nov 2026 19:08:50 GMT",
+      "title": "Iran dismisses US blockade, warns of broader confrontation - Iran International"
+    },
     "a6e05fbe1e948d783db804a62f21d911f93b58b7e625a6701ba8eb67aee270a5": {
       "ts": "Wed, 25 Nov 2026 20:00:00 GMT",
       "title": "Agencies announce dollar thresholds for applicability of truth in lending and consumer leasing rules for consumer credit and lease transactions"
@@ -8756,13 +8724,45 @@
       "ts": "Wed, 25 Nov 2026 20:18:21 GMT",
       "title": "US proposes surprise new tariffs on Brazil imports, including 10% duty on aircraft - Reuters"
     },
+    "638e3da0a940fa4ef34366e661d8275d435a992eaf0391e7b993e87d7460b1a1": {
+      "ts": "Wed, 25 Nov 2026 20:42:46 GMT",
+      "title": "Fed survey shows continued economic growth, sticky inflation in recent weeks - Reuters"
+    },
     "a8b843941bcd765c021980e00c5884bda7f90d9218bc8721217d071e88fae6a4": {
       "ts": "Wed, 25 Nov 2026 20:50:19 GMT",
       "title": "Volatility-weary investors side swiped as tariff mayhem adds to tech pain - Reuters"
     },
+    "42f7c5e70013922113ee880ecf8ed26cfda585b9a9442c1e8911ea0eb7bf4702": {
+      "ts": "Wed, 25 Nov 2026 21:56:08 GMT",
+      "title": "What Trump should do next about Iran - Atlantic Council"
+    },
+    "56e96ed7495fac7dda929499e213a35178489268e1f0f09828dd2bfe20f09624": {
+      "ts": "Wed, 25 Nov 2026 22:01:39 GMT",
+      "title": "‘No peace, no war’ limbo an unsustainable status quo for crude market - Hellenic Shipping News"
+    },
     "29d312a903f71bc1d75bd4bb6f9fe79e1bd19baa3d3831b59add8548fbc638cf": {
       "ts": "Wed, 25 Nov 2026 22:04:08 GMT",
       "title": "Nasdaq, S&P 500 end down, but well off lows as investors buy bargains - Reuters"
+    },
+    "749a225fbea62095e28bf12e536c5033115d83eb50e7c52b085848933b767580": {
+      "ts": "Wed, 25 Nov 2026 22:06:03 GMT",
+      "title": "Iran war live: Oil prices jump 3.5% after Houthis claim attack on Saudi Arabia refinery - Arabian Business"
+    },
+    "7a3da78649c29bcc48f60e96f9172ed13ce01b7aac341b955cbc7b081ae29805": {
+      "ts": "Wed, 25 Nov 2026 23:25:43 GMT",
+      "title": "US airlines face higher costs from proposed Embraer duty - Reuters"
+    },
+    "c701ed0a51c8c8fc45807d282eb6235621ef5a480a0870bcf4d4ec3e7e0a45a9": {
+      "ts": "Wed, 25 Nov 2026 23:31:00 GMT",
+      "title": "For Trump, doubling down on tariffs is about power, not popularity - Reuters"
+    },
+    "d26f845fabacd75aa9c4132125a4d8a40ba280a39e7b5b34cf90586dc5881541": {
+      "ts": "Wed, 25 Nov 2026 23:31:00 GMT",
+      "title": "Taiwan says it is confident of keeping previously agreed tariffs with US - Reuters"
+    },
+    "5b0085c17a1ac967d654da6b80b80e723dcdb2daa7d9ca689e6e8e3a648079ba": {
+      "ts": "Wed, 25 Nov 2026 23:41:43 GMT",
+      "title": "New Trump tariffs would likely increase sugar prices in the US - Reuters"
     },
     "ca1083e5273a16ee09fe7eec07f6cf4a148bd9abc8281bdfd89fe042159e30c3": {
       "ts": "Wed, 25 Sep 2024 07:00:00 GMT",
@@ -9999,1598 +9999,6 @@
     "e3daff8efffa2da65b84b7cbf39342cdbc35f3feb26b1f4f301e20473d76d0d5": {
       "ts": "Wed, 7 Oct 2026 18:00:00 GMT",
       "title": "Minutes of the Federal Open Market Committee, September 15-16, 2026"
-    },
-    "7660a9db8f68882f8fc47fa7d861d2f3a207dff17c7b429f94d6bdf172cdf2b8": {
-      "ts": "Wed, 09 Nov 2022 08:00:00 GMT",
-      "title": "Biden vows to work with Republicans as control of U.S. Congress still unsettled - Reuters"
-    },
-    "ecd9b98fa597bfc9681f2881312f8700dd88cb767a1043536418aec6fa7d7a94": {
-      "ts": "Tue, 08 Nov 2022 08:00:00 GMT",
-      "title": "How the U.S. midterms could ripple through the stock market - Reuters"
-    },
-    "d3da3c5e05f67751b767aad6c20379ffc44c4f67be398e8c2c77665ec6caa30f": {
-      "ts": "Tue, 03 Nov 2026 08:00:00 GMT",
-      "title": "Prediction markets price Democratic sweep as US midterm betting soars - Reuters"
-    },
-    "d94e72bd80062c37d063c9e4b1e28108e8282afdff88ded8b0c8a9c18ca036da": {
-      "ts": "Tue, 03 Nov 2026 08:00:00 GMT",
-      "title": "Sectors bracing for a pivot as US midterm elections loom - Reuters"
-    },
-    "e0389488c910c3fb24e8c11718bfcfbbb9491bac03c8ed53e23f5297415d30bf": {
-      "ts": "Thu, 19 Nov 2026 21:36:16 GMT",
-      "title": "Trump says no rush on Iran decision, looks to next year - Reuters"
-    },
-    "52d8508f5bc2ba9702e4c9b3590fa2bb4c3bb1693981a6284e7dec52128e1433": {
-      "ts": "Thu, 19 Nov 2026 11:04:00 GMT",
-      "title": "Day 3 of Trump's Asia tour: big summits, bigger spectacle and unfinished deals - Reuters"
-    },
-    "74172942522a9f4523a097c4fcea982a437129276d99ea99a47a8b0cb9d025de": {
-      "ts": "Thu, 10 Nov 2022 08:00:00 GMT",
-      "title": "Control of U.S. Congress hangs in balance as states labor to count ballots - Reuters"
-    },
-    "f2d52cb0598c6380227f069daeee58b3d78a8f99c80d1909e37b86cd9644b9d6": {
-      "ts": "Thu, 05 Nov 2026 20:19:17 GMT",
-      "title": "US midterm election results in graphics and charts - Reuters"
-    },
-    "17313db20cf151db52524b2c6fb5ee15d3697e26b9a29d284681908b68866739": {
-      "ts": "Sun, 22 Nov 2026 21:38:44 GMT",
-      "title": "North Carolina win gives Democrats biggest US House majority since early 1990s - Reuters"
-    },
-    "4acdc50648173f10a3ed44f5cbc3ee49ee968927d32b5c64da85fe6d01e5a77d": {
-      "ts": "Sun, 22 Nov 2026 11:05:00 GMT",
-      "title": "Schumer led Democrats to big Senate win. Now, some say they need a new leader - Reuters"
-    },
-    "fc797fd30d5880e6eafbf304766e59b4d6e542e7ab405f22ccc067a6497b448a": {
-      "ts": "Sat, 21 Nov 2026 14:23:43 GMT",
-      "title": "Democrats won big in the midterms. So now what? - Reuters"
-    },
-    "4d4b9601eeb4aecc4e2161004f2c5eaaf8a3f17a160fdbc577b9313aa6ff8c0e": {
-      "ts": "Mon, 26 Oct 2026 07:00:00 GMT",
-      "title": "The midterm downturn - Reuters"
-    },
-    "d8f5376c3c5767f966f6ed3d2a34ca96deea553a93b13992f88cd2f9ac4c96df": {
-      "ts": "Mon, 23 Nov 2026 14:28:00 GMT",
-      "title": "Trump rewrites the lame-duck rules with flex on Nvidia CEO - Reuters"
-    },
-    "64adaaea9a65d75967ebd596fcf46ff1638bcc2b8967e763a119ddacc0acd981": {
-      "ts": "Mon, 23 Nov 2026 11:05:46 GMT",
-      "title": "Most winnings on Polymarket midterm bets went to top 1% of bettors, report says - Reuters"
-    },
-    "868b843d38541fdeb45696329f7554e4da1b5f01606b319d396c223eca6c5606": {
-      "ts": "Mon, 23 Nov 2026 11:02:00 GMT",
-      "title": "After decades, Texas Democrats have political capital. This is how they plan to spend it - Reuters"
-    },
-    "6e3e89c53bd9c579ef9b26f5e64f1006b899afebef24e9bd28ab4b18a416c192": {
-      "ts": "Mon, 23 Nov 2026 02:24:45 GMT",
-      "title": "Trump orders federal contractors to notify White House before giving Congress information - Reuters"
-    },
-    "38d31a1f16357dab2969c95ed9af2be86ee7555fa3fbfd474db8525272b40f22": {
-      "ts": "Mon, 16 Nov 2026 08:00:00 GMT",
-      "title": "Interest in Trump’s meme coin dinner fades as $TRUMP sinks to record lows - Reuters"
-    },
-    "763c6402d04261d7401040f3242c3e38398c62395172e07a1e438cae44b3a961": {
-      "ts": "Mon, 02 Nov 2026 08:00:00 GMT",
-      "title": "The midterm election outcomes that could shape Trump's final two years - Reuters"
-    },
-    "2efa6cf505ed9ef4e6ea052766b242cb2538a78397c4778f516a1ef036d05b8f": {
-      "ts": "Mon, 02 Nov 2026 08:00:00 GMT",
-      "title": "Six things to watch as US voters decide control of Congress - Reuters"
-    },
-    "7298c14e144b32f837e3ef83e1ac0d2f744ca8b72ce378e86f9087d51047ae6d": {
-      "ts": "Fri, 30 Oct 2026 07:00:00 GMT",
-      "title": "When US midterm results are contested, Congress has final say - Reuters"
-    },
-    "1107485cf0ec6caccfd8e3ca6487c10f114c936a4999d41e95c9435f8d309613": {
-      "ts": "Fri, 20 Nov 2026 23:02:38 GMT",
-      "title": "Backing Trump, US Senate Republicans block Iran war resolution - Reuters"
-    },
-    "f8b3e809978cd59859976d6118269b9880eb883ad13ea31d7e94c1c095180c60": {
-      "ts": "Fri, 20 Nov 2026 22:33:34 GMT",
-      "title": "Fresh off China trip, Trump bobs and weaves in freewheeling press conference - Reuters"
-    },
-    "9fc5beea0ae8e235c62dcbca05efe7daf32bf7ed9125ebd755accaf246d7aaf0": {
-      "ts": "Fri, 20 Nov 2026 18:10:00 GMT",
-      "title": "Rare photos of uncontacted Amazon tribes - Reuters"
-    },
-    "fa8e3f3205c9ab88effb6e04895c0242908a1fb12048a82add496613ea1adf21": {
-      "ts": "Fri, 20 Nov 2026 18:01:41 GMT",
-      "title": "Congress struggles to avert US shutdown as Iran war divides lawmakers - Reuters"
-    },
-    "42d9de3c314484811d1c195d710a025cd6b035ad39b24ee501a2fca33edb7190": {
-      "ts": "Tue, 03 Nov 2026 08:00:00 GMT",
-      "title": "Stocks wobble as investors watch US midterm elections - Reuters"
-    },
-    "291823b9002b508d46789af72eff210f74c01b5dc13fda02a5a52050f8f2f568": {
-      "ts": "Tue, 03 Nov 2026 08:00:00 GMT",
-      "title": "Gold edges lower again as dollar, yields strengthen; US midterms in focus - Reuters"
-    },
-    "186a58e1b8b318ad08d6902f3d86bdd2b69f68571534a1862c9b333567f7b1ce": {
-      "ts": "Thu, 29 Oct 2026 07:00:00 GMT",
-      "title": "COMMENTARY: Biggest market impact of US midterms may be 2028 countdown - Reuters"
-    },
-    "5d0624b0f31450ab2680f2cf287f02f5405afd465f62c38d855a2ee4a553eebb": {
-      "ts": "Thu, 27 Oct 2022 07:00:00 GMT",
-      "title": "Recession fears threaten perfect track record of post-midterm U.S. stock gains - Reuters"
-    },
-    "c5eb9e2ecf49af338af5e57b16b8343bed6a374661e59199d739705b3470eb1a": {
-      "ts": "Thu, 10 Sep 2026 07:00:00 GMT",
-      "title": "Is Trump's $5,000 'dividend' legal and how would it work? - Reuters"
-    },
-    "dc8ec948cf97f689fd39a3d9042c71ca8d9479fd821848c49fe2908fa762ba54": {
-      "ts": "Thu, 05 Nov 2026 08:00:00 GMT",
-      "title": "Indian shares log biggest gains in seven months on oil slide, foreign flows - Reuters"
-    },
-    "7ee3c14f0487e3ed4b41d123556090c9949155488bc60cfb8347c92e2b8d557b": {
-      "ts": "Mon, 24 Feb 2025 08:00:00 GMT",
-      "title": "Giuliani has fully satisfied Georgia election workers' $148 million judgment - Reuters"
-    },
-    "d6a81d7eb096b9e5ac9b1b4813f262a272719084ffd720f467fd3d9c354b5fda": {
-      "ts": "Mon, 05 Oct 2026 07:00:00 GMT",
-      "title": "Brazil markets' Bolsonaro rally sends stock exchange to record high - Reuters"
-    },
-    "b8d066441cdb593a32651535708f5d90e8d77898c4123f16c815a55530d14581": {
-      "ts": "Mon, 02 Nov 2026 08:00:00 GMT",
-      "title": "The midterm races Wall Street and other financial firms are watching - Reuters"
-    },
-    "7da7d797239b1d9a934b5b201e89d9fd0f1907ffc37693ffca3251515de5cb9c": {
-      "ts": "Fri, 24 Oct 2025 07:00:00 GMT",
-      "title": "Argentina braces for market turbulence as midterm elections loom - Reuters"
-    },
-    "b8b8825c2637f9239b6b3137dd766897ea7e5a960098fa86abf6974347aedd8a": {
-      "ts": "Fri, 08 Nov 2024 08:00:00 GMT",
-      "title": "After Trump win, investors savor 'red sweep' possibilities - Reuters"
-    },
-    "1114b5e3cc60057c765f12124fd4594b0df06579949703114b8bf71204744c05": {
-      "ts": "Fri, 06 Nov 2026 08:00:00 GMT",
-      "title": "Musk has little to show for his record spending on Republican campaigns in US midterms - Reuters"
-    },
-    "7979efad002cb23292f4aae10483c5cbc14143abbc173c2cfc9946e2850d885d": {
-      "ts": "Tue, 17 Nov 2026 05:50:54 GMT",
-      "title": "US, Iran exchange fire despite talks with mediators - Reuters"
-    },
-    "7f9312da2f2020c9f714d348753d6167e916558250060702d9ffa48cbac7bfcd": {
-      "ts": "Tue, 04 Aug 2026 07:00:00 GMT",
-      "title": "Qatar says mediators make progress in efforts to end US-Iran war - Reuters"
-    },
-    "1a3d3f0d622d578bc34f5377f0e3305056418548b92267f7e5af184beb3b6cce": {
-      "ts": "Tue, 04 Aug 2026 07:00:00 GMT",
-      "title": "Oil prices settle 5% lower after claims of progress in US-Iran talks - Reuters"
-    },
-    "3bde6d5948dacc20dfe4f87333e62556c1b6b4f8a78b5a2f6dbed7612d0b15dd": {
-      "ts": "Tue, 02 Jun 2026 07:00:00 GMT",
-      "title": "Oil prices rise to one-week high as Iran reviews US proposal to halt war - Reuters"
-    },
-    "d546ee1b4a3525795842058baedb696a3bcb489c9239c0fc3ca7d76a840f35b1": {
-      "ts": "Thu, 30 Apr 2026 07:00:00 GMT",
-      "title": "US seeks international help to reopen Strait of Hormuz as crude prices surge - Reuters"
-    },
-    "bdd086d6ad32bf4bfb9dd273cb3d9d4f589bfd7f2f6586b88aa4d4c080cc5b5f": {
-      "ts": "Thu, 23 Apr 2026 07:00:00 GMT",
-      "title": "Iran seizes vessel in Strait of Hormuz, defying US naval superiority - Reuters"
-    },
-    "fe3cdf0676943cdfbb3b9b929f3197e9ace771b92ca1fd4de724c92af93700db": {
-      "ts": "Thu, 19 Nov 2026 06:43:07 GMT",
-      "title": "Ukraine was main topic at Trump-Putin meeting, Kremlin says - Reuters"
-    },
-    "72e08024041cc55dec4205f69e4469f3924f5df8a1b3ee0d21a4593d9540b9d5": {
-      "ts": "Thu, 02 Apr 2026 07:00:00 GMT",
-      "title": "Britain says 40 countries discuss reopening Strait of Hormuz after Iran blockade - Reuters"
-    },
-    "dcb828662ff649b34b202c798a693268d21b488a2bc075daa13a24bc120af381": {
-      "ts": "Thu, 02 Apr 2026 07:00:00 GMT",
-      "title": "UK to host talks with 35 countries on reopening Strait of Hormuz - Reuters"
-    },
-    "9c80c48c09b876a7707b92d23ec52446ca776ca2b649775fab54de5e22ebe64b": {
-      "ts": "Sun, 22 Nov 2026 21:54:56 GMT",
-      "title": "Israel's Eisenkot condemns arson attacks by Jewish settlers in West Bank - Reuters"
-    },
-    "4b8d4adeb9dbb25917d5d1020abbcacb8fffd7014fb71077ef80c76c90996365": {
-      "ts": "Sun, 19 Apr 2026 07:00:00 GMT",
-      "title": "US seizes Iranian cargo ship, Tehran vows to retaliate - Reuters"
-    },
-    "d7a3ab02d5ec3b90c5d09484616fe466bb24d033c8680571ab05736d678c5e9c": {
-      "ts": "Sun, 14 Jun 2026 07:00:00 GMT",
-      "title": "US, Iran reach preliminary agreement to end war, signing set for Friday - Reuters"
-    },
-    "d8c77b44f51f33b1618289395420b6120e039976742acfa98992bfae35f80ba9": {
-      "ts": "Sun, 12 Apr 2026 07:00:00 GMT",
-      "title": "US military to block ships from Iranian ports after talks yield no agreement - Reuters"
-    },
-    "064350248a9d30294fe0b3c92c2663396a2ef87db749c7446bac0251eedce9ef": {
-      "ts": "Sun, 09 Aug 2026 07:00:00 GMT",
-      "title": "Iran says Oman deal is in 'final stages' but US must act to open Hormuz - Reuters"
-    },
-    "eb3f7226809946c831943b85eca2533bf0cd3a3604fa116cbe62945f8056cb89": {
-      "ts": "Sun, 09 Aug 2026 07:00:00 GMT",
-      "title": "Hopes for Hormuz deal fade as Trump demands Iranian reparations - Reuters"
-    },
-    "912a2ecb64ec62513aa5d1da9f5bac00053c63da8808b3fd1885887ef43a5fcc": {
-      "ts": "Sun, 08 Nov 2026 08:00:00 GMT",
-      "title": "Trump says he is highly unlikely to order Iran strikes if talks progress - Reuters"
-    },
-    "9a248399132b7a9d48d555701767d9bbb8ccad1b8b3450c893d425eaf3a14290": {
-      "ts": "Sat, 26 Sep 2026 07:00:00 GMT",
-      "title": "Trump rejects Iranian proposal to open Hormuz and end fighting - Reuters"
-    },
-    "972bbb706ad49dcaaf5ee3a800be7da0b3db17494b44e727c464b876251a1d9e": {
-      "ts": "Sat, 23 May 2026 07:00:00 GMT",
-      "title": "Axios says proposed US-Iran deal involves opening strait during 60-day ceasefire extension - Reuters"
-    },
-    "b1f991ed6629afdf1963ed00ce3f004c94d824954cdc930f3128a9092c1fd08b": {
-      "ts": "Sat, 18 Apr 2026 07:00:00 GMT",
-      "title": "Iran tightens control of Strait of Hormuz, Trump warns against 'blackmail' - Reuters"
-    },
-    "57449f530e83c2c644b91c31df011dc08f6b0ad07ee1089797c80ae584d3644d": {
-      "ts": "Sat, 13 Jun 2026 07:00:00 GMT",
-      "title": "Trump says deal to end war will be signed on Sunday, Iran questions timing - Reuters"
-    },
-    "6cc72731a4465012b5553b4a51194734f69de57f08c52f2dd7fbcdc9bf6d057c": {
-      "ts": "Sat, 08 Aug 2026 07:00:00 GMT",
-      "title": "Iran's Revolutionary Guard says re-opening Strait of Hormuz does not depend on talks with Oman - Reuters"
-    },
-    "e55c6006bf4daec9c348a38c22905c922822fafd6f429b4e2a373b5c513057bf": {
-      "ts": "Sat, 08 Aug 2026 07:00:00 GMT",
-      "title": "Iran says deal on Strait of Hormuz is close but not enough to open the waterway - Reuters"
-    },
-    "0208de7c1bdd65a5674f87f746cad6d42177ba49fad75a6ae463092aea3acca1": {
-      "ts": "Mon, 27 Apr 2026 07:00:00 GMT",
-      "title": "Iran oil tankers turned back by US blockade, Hormuz traffic sparse - Reuters"
-    },
-    "f75e1d4355c4be9c6976c38da5c49910335412637d6733489953935ff0805e44": {
-      "ts": "Mon, 27 Apr 2026 07:00:00 GMT",
-      "title": "US reviews latest Iranian proposal to end war stalemate - Reuters"
-    },
-    "729598c271e69f42592bc123d6ab583440a1266d7b43fdc13724e6c1a004c5b0": {
-      "ts": "Mon, 25 May 2026 07:00:00 GMT",
-      "title": "Oil tumbles nearly 7% as US and Iran seen moving closer to deal - Reuters"
-    },
-    "50f6d899970bb49fcecca6b2100815788df209f1bd8931e6f9d0e15d0c3b946a": {
-      "ts": "Mon, 23 Nov 2026 21:03:00 GMT",
-      "title": "Zelenskiy says intelligence shows Russia planning new strikes on Ukraine - Reuters"
-    },
-    "0edf4e447b06cfa24751b661dacd3db534f0aa85ebd0351dcdc87f6b7466ddb9": {
-      "ts": "Mon, 23 Nov 2026 10:01:04 GMT",
-      "title": "Iran says it will use all its tools to confront US naval blockade - Reuters"
-    },
-    "9444ce6cfe93d39cf694c3ee8011fdcda0e36eedf9c5b3d3085fbc774bd8f791": {
-      "ts": "Mon, 23 Nov 2026 08:00:00 GMT",
-      "title": "How Nvidia CEO Jensen Huang got entangled in a China chip and spy scandal - Reuters"
-    },
-    "2a908d4d4314fd2bf775c8eda550a407a8e110149adaa4e39cb294960efb1813": {
-      "ts": "Mon, 20 Apr 2026 07:00:00 GMT",
-      "title": "Fate of Iran peace talks uncertain as deadline approaches for end of ceasefire - Reuters"
-    },
-    "8cad90a83d606f59181e64fbc90b8f6493bd06c95856d9a5943bcd367ebb7c3e": {
-      "ts": "Mon, 15 Jun 2026 07:00:00 GMT",
-      "title": "Oil settles at three-month low after Trump says deal signed to end Iran war - Reuters"
-    },
-    "83f00565c6108bdc3eb7f34dd6f5fb923f2b9bc7a3ed0603414d098dbcdcf09c": {
-      "ts": "Mon, 15 Jun 2026 07:00:00 GMT",
-      "title": "US and Iran sign ceasefire agreement, details remain unclear - Reuters"
-    },
-    "76983c788221bbf1c4a78b7227470fcc0f61fc859caac5bf58a89977616824c1": {
-      "ts": "Mon, 15 Jun 2026 07:00:00 GMT",
-      "title": "Global leaders react to announcement of US-Iran peace agreement - Reuters"
-    },
-    "88ec143563073bcd4c81905b4cf07107d30ade245870341c2f3ed8f473aaa9e3": {
-      "ts": "Mon, 14 Sep 2026 07:00:00 GMT",
-      "title": "Houthis attack Saudi Arabia as Gulf-Iran talks are postponed - Reuters"
-    },
-    "3e573cc793c1801e812ffe2570e2032cada02f3469ec72bcb51e58a6f66d0379": {
-      "ts": "Mon, 13 Apr 2026 07:00:00 GMT",
-      "title": "US begins blockade of Iran's ports, Tehran threatens retaliation - Reuters"
-    },
-    "7c23f7e62dbcd28118a60f38348491b296e6f56b0da9c9f8f7fac743e3db1c67": {
-      "ts": "Mon, 13 Apr 2026 07:00:00 GMT",
-      "title": "Oil prices jump 4% on US blockade of Iran after talks break down - Reuters"
-    },
-    "34d07e276f29adb6aa554379f23b7e7247be0ebe8ae772b922e1a57087fc47b1": {
-      "ts": "Mon, 13 Apr 2026 07:00:00 GMT",
-      "title": "Wall Street rallies, oil stays higher as investors hope for US-Iran resolution - Reuters"
-    },
-    "44027b8fc02f565aa2d144ab7262a6518eb392944ee506288927c9ec2d35401d": {
-      "ts": "Mon, 13 Apr 2026 07:00:00 GMT",
-      "title": "US blockade of Iran will be major military endeavor, experts say - Reuters"
-    },
-    "3a5947e95d4fa15029f08301865d3a298e66ab18cb63f2433bd81d69b2f7b8b9": {
-      "ts": "Mon, 13 Apr 2026 07:00:00 GMT",
-      "title": "Dollar fades as oil retreats from highs with US blockade in effect - Reuters"
-    },
-    "b3b1638987c8cbf6e31b9e6a07319b65bec3810691aa031e755b3622d299d95a": {
-      "ts": "Mon, 13 Apr 2026 07:00:00 GMT",
-      "title": "Indian shares slide as US to blockade Iran ports after failed peace talks - Reuters"
-    },
-    "d9f700cadd9138459763972a4f1779df0a4fe5d6cd22e4b2421fa873109b718e": {
-      "ts": "Mon, 10 Aug 2026 07:00:00 GMT",
-      "title": "Oil climbs 5% as Iran, US both demand compensation and Hormuz hopes fade - Reuters"
-    },
-    "56f36f407f386411fcfa69dad2910c85053afb847bcfd07da61e488459aa9284": {
-      "ts": "Mon, 02 Nov 2026 08:00:00 GMT",
-      "title": "Iran says contacts over ending war continue after talks finish with no breakthrough - Reuters"
-    },
-    "4f01227341258c63d3bf6426da222477e5dd2fbfd89b3255d2bbb16a5022eaa3": {
-      "ts": "Fri, 29 May 2026 07:00:00 GMT",
-      "title": "Explainer: What's included in talks to end the Iran war and reopen Hormuz? - Reuters"
-    },
-    "6a39acc3b29abed71cadd1cc562533dab8ecb01a2e8fad5ce1b7c9cc82dad60e": {
-      "ts": "Fri, 28 Aug 2026 07:00:00 GMT",
-      "title": "Iran lashes out at US sanctions amid economic toll at home - Reuters"
-    },
-    "27371594686dd347b711e92e367d413f91b66286b7b306e7b635e719c8cfb4da": {
-      "ts": "Fri, 25 Sep 2026 07:00:00 GMT",
-      "title": "US and Iran discuss phased deal to reopen Hormuz and end US blockade, sources say - Reuters"
-    },
-    "b0b195b54e1bfd6f9d2f57dc1e6e87f8a9c050935378fff108aaf6be5202cac3": {
-      "ts": "Fri, 20 Nov 2026 16:58:09 GMT",
-      "title": "Flesh-eating screwworm cases surge in US, keeping ranchers on alert - Reuters"
-    },
-    "6d52be85e49bb113665c8aab477d14ce6099ee6f4a5b436f8ad3cef16d975fb9": {
-      "ts": "Fri, 20 Nov 2026 14:27:44 GMT",
-      "title": "US Treasury presses Singapore and Malaysia on Iran sanctions compliance - Reuters"
-    },
-    "15933372e0e3e99ae8034c1159a2654fb536a75f0b05e540840568882d6ee09a": {
-      "ts": "Fri, 20 Nov 2026 11:04:14 GMT",
-      "title": "Why Jeffrey Epstein loved Russia: women, oligarchs and a shot at redemption - Reuters"
-    },
-    "acce2c95c23f3690eb77f2cca5e5afbf22770c8d6b6544b6b0abe014377d19fa": {
-      "ts": "Fri, 17 Apr 2026 07:00:00 GMT",
-      "title": "Iran reopens Strait of Hormuz, but says U.S. must end naval blockade - Reuters"
-    },
-    "7b9b75a8804a4cce430f600a42a89366a71895982a7368ea05c108fd11a8c4fc": {
-      "ts": "Fri, 14 Aug 2026 07:00:00 GMT",
-      "title": "US says it can keep naval blockade on Iran 'indefinitely,' vows more economic pressure - Reuters"
-    },
-    "54df8013929b4ee79e58cc3f1d2fc4676967191d020f027ef39f2e47af132bd2": {
-      "ts": "Fri, 12 Jun 2026 07:00:00 GMT",
-      "title": "U.S., Iran signal peace deal near as Tehran claims victory - Reuters"
-    },
-    "b772cccbf324ea2ed14878a73db258b655c816f8aae2e08692c6530c50e2341c": {
-      "ts": "Fri, 01 May 2026 07:00:00 GMT",
-      "title": "Iran threatens painful response if US renews attacks - Reuters"
-    },
-    "749a225fbea62095e28bf12e536c5033115d83eb50e7c52b085848933b767580": {
-      "ts": "Wed, 25 Nov 2026 22:06:03 GMT",
-      "title": "Iran war live: Oil prices jump 3.5% after Houthis claim attack on Saudi Arabia refinery - Arabian Business"
-    },
-    "60969d4a5c7ebfdab53dc1b8e188554ef8243c83cf92e825a10ee08baf007bd9": {
-      "ts": "Wed, 25 Nov 2026 19:08:50 GMT",
-      "title": "Iran dismisses US blockade, warns of broader confrontation - Iran International"
-    },
-    "ccf15ce3a3f794ef0c59118c92fbb3e82b3a6eca0b0be8c3c4db358ab097b8eb": {
-      "ts": "Tue, 24 Nov 2026 19:56:50 GMT",
-      "title": "Oil touches three-month lows as rising supply offsets Hormuz threat - Yahoo Finance"
-    },
-    "ac8f050196d79d8b236d96f265062cf7841398be871f5529b4238c9fd13d7a76": {
-      "ts": "Tue, 11 Aug 2026 07:00:00 GMT",
-      "title": "Iran, US set new conditions during Hormuz talks: What does this mean? - Al Jazeera"
-    },
-    "f97f8c9a69a72746255cb23e11aa96225d68f989714c69550f579bed631a87bf": {
-      "ts": "Tue, 08 Sep 2026 07:00:00 GMT",
-      "title": "U.S. forces hit IRGC-linked oil tankers as oil nears $100 a barrel - CBS News"
-    },
-    "bbbc6d2a7d8243b417b500113d40081ff31e9462e54ceae07a77fb5acc796ad7": {
-      "ts": "Tue, 06 Oct 2026 07:00:00 GMT",
-      "title": "Hormuz ship attacks surge: Are increased oil exports sustainable? - Al Jazeera"
-    },
-    "3d1b39bed34f8a0f8cfefdb52ef9cf1171196b94a775ff72cd769c9b01c29afe": {
-      "ts": "Tue, 03 Nov 2026 08:00:00 GMT",
-      "title": "Iran plays down hope for deal to end war after new U.S. strikes on eve of midterm elections - CBS News"
-    },
-    "671c4971c87f084f3cfd9f1e443a575b7a62961c6c22b0feb635eb347995a750": {
-      "ts": "Thu, 12 Nov 2026 23:06:13 GMT",
-      "title": "Some 60 Ships Passed Through Strait of Hormuz on Wednesday, US Official Says - EnergyNow"
-    },
-    "bf4874a1ce61aaed48d3ce5383c62553993bc23d4772d7006cf5febddd844c4f": {
-      "ts": "Sun, 04 Oct 2026 07:00:00 GMT",
-      "title": "Iran says Hormuz to remain closed until US meets conditions - Al Jazeera"
-    },
-    "985c68bbccaf11e45313fb7ee693fe1a58d636ecd07b316f1cc0c0060677615c": {
-      "ts": "Sun, 01 Nov 2026 07:00:00 GMT",
-      "title": "Negotiators ‘braced for worst’ over US-Iran talks to reopen strait of Hormuz - The Guardian"
-    },
-    "ab67d4a974e9d74a8535584d68ca0b384d0159f7dda03aa0e050364a4ecbd13f": {
-      "ts": "Sat, 26 Sep 2026 07:00:00 GMT",
-      "title": "Trump says he has rejected Iranian proposal to reopen Strait of Hormuz - NBC News"
-    },
-    "7fa375fa7d0b95bb919642b6bd2bfbc87029cfdc334c3947d8fb49264f0dd3c3": {
-      "ts": "Sat, 26 Sep 2026 07:00:00 GMT",
-      "title": "Trump rejects Iran's proposal to reopen the Strait of Hormuz, and other Middle East news - PBS"
-    },
-    "e34785a88f6d46fdd6605a50ae4cc97203fe1f1a0940b3ce150003be41b6978b": {
-      "ts": "Sat, 21 Nov 2026 21:00:04 GMT",
-      "title": "Iran says held talks with Qatari mediators, urges US to accept conditions - Al Jazeera"
-    },
-    "b6e6ffcc124d8dc46c5df599baab6ca5937dbf7a1cd1623faec7331331cba411": {
-      "ts": "Mon, 28 Sep 2026 07:00:00 GMT",
-      "title": "Iran touts Hormuz attacks as oil flows increase despite tensions - Al Jazeera"
-    },
-    "6e95010839a2d9955dbf589efe51d5e013d94c295ba97b93d93d5f2631846524": {
-      "ts": "Mon, 28 Sep 2026 07:00:00 GMT",
-      "title": "Mediators still working on U.S.-Iran deal after Trump rejected latest Tehran proposal - PBS"
-    },
-    "7d2d364c202a116cbf0ed889d9ec3bd931ec27522d118668c4527060e54ea042": {
-      "ts": "Mon, 23 Nov 2026 11:30:00 GMT",
-      "title": "Iran developing chemical weapons, Israeli defense minister says - CBS News"
-    },
-    "7e49e747cdae32c04ff02da5fa79c3d3e92fa3c2ecd93c6752822d90c1e325d1": {
-      "ts": "Mon, 03 Aug 2026 07:00:00 GMT",
-      "title": "An Emerging Deal Could Cement Iran’s Control of Strait of Hormuz - The New York Times"
-    },
-    "6e9c38ee1b5cb76c174df82dcc83f5728c137dcdd89070a053873f677b3e8552": {
-      "ts": "Mon, 02 Nov 2026 08:00:00 GMT",
-      "title": "The New York Times. . Iran is prepared to reopen the Strait of Hormuz in two days if the U.S. agrees to a set of demands, its foreign ministry said on Monday, after a week of intensified negotiations to avert a return to war. https://nyti.ms/4iyFLH9 - Facebook"
-    },
-    "1155965aba011f3caa2846be3007390755883677a63062089fd0af9747b17e27": {
-      "ts": "Fri, 25 Sep 2026 07:00:00 GMT",
-      "title": "Iran has suggested a deal to reopen the Strait of Hormuz in 7 days - PBS"
-    },
-    "89e843aa0c04aeceff75841109f6c8a3c938f30beeb4d19f879cd9ece2c54730": {
-      "ts": "Fri, 25 Sep 2026 07:00:00 GMT",
-      "title": "What’s in Iran’s seven-day plan to reopen the Strait of Hormuz? - Al Jazeera"
-    },
-    "e640fbafc0e2b3f508efc42f93316ed4aab0613bfa2d2c92b6e1ef2fd0dbf20f": {
-      "ts": "Fri, 06 Nov 2026 08:00:00 GMT",
-      "title": "More ships attacked in Persian Gulf, oil prices rebound slightly after post-midterm plunge - CBS News"
-    },
-    "5b0085c17a1ac967d654da6b80b80e723dcdb2daa7d9ca689e6e8e3a648079ba": {
-      "ts": "Wed, 25 Nov 2026 23:41:43 GMT",
-      "title": "New Trump tariffs would likely increase sugar prices in the US - Reuters"
-    },
-    "c701ed0a51c8c8fc45807d282eb6235621ef5a480a0870bcf4d4ec3e7e0a45a9": {
-      "ts": "Wed, 25 Nov 2026 23:31:00 GMT",
-      "title": "For Trump, doubling down on tariffs is about power, not popularity - Reuters"
-    },
-    "d26f845fabacd75aa9c4132125a4d8a40ba280a39e7b5b34cf90586dc5881541": {
-      "ts": "Wed, 25 Nov 2026 23:31:00 GMT",
-      "title": "Taiwan says it is confident of keeping previously agreed tariffs with US - Reuters"
-    },
-    "7a3da78649c29bcc48f60e96f9172ed13ce01b7aac341b955cbc7b081ae29805": {
-      "ts": "Wed, 25 Nov 2026 23:25:43 GMT",
-      "title": "US airlines face higher costs from proposed Embraer duty - Reuters"
-    },
-    "56e96ed7495fac7dda929499e213a35178489268e1f0f09828dd2bfe20f09624": {
-      "ts": "Wed, 25 Nov 2026 22:01:39 GMT",
-      "title": "‘No peace, no war’ limbo an unsustainable status quo for crude market - Hellenic Shipping News"
-    },
-    "638e3da0a940fa4ef34366e661d8275d435a992eaf0391e7b993e87d7460b1a1": {
-      "ts": "Wed, 25 Nov 2026 20:42:46 GMT",
-      "title": "Fed survey shows continued economic growth, sticky inflation in recent weeks - Reuters"
-    },
-    "20f1890aec782939615550bad265c54e6efa3d746f40a67169ddfa9274f9da4e": {
-      "ts": "Wed, 25 Nov 2026 15:38:19 GMT",
-      "title": "US grocers serve up Thanksgiving deals even as turkey prices climb - Reuters"
-    },
-    "a9f70b1870ce8f7d9e815d05035edfbe8eb8d59aa50c324c115d6f93b5e7366f": {
-      "ts": "Tue, 17 Mar 2026 05:57:35 GMT",
-      "title": "The Strait of Hormuz: Global Economic Shock and the Limits of Military Power - Al Jazeera Centre for Studies"
-    },
-    "1463c55b36df58566f3ca99e67c908575aa1cce888b99a8be335a676bf182f3c": {
-      "ts": "Tue, 16 Feb 2021 08:00:00 GMT",
-      "title": "Semiconductors and the U.S.-China Innovation Race - Foreign Policy"
-    },
-    "b62b4276a5c5ca3092810255e3fa7773583cf2f5b31a314db8af0d16152d73bd": {
-      "ts": "Tue, 14 Apr 2026 07:00:00 GMT",
-      "title": "Hormuz chaos sparks warning: China could strangle Taiwan without firing a shot - Fox News"
-    },
-    "50180a6b6f3f888623ffd8a59d8a182b2c6186eebc1d93562f7a9b26a3c5115c": {
-      "ts": "Tue, 14 Apr 2026 07:00:00 GMT",
-      "title": "15 charts that explain why the Strait of Hormuz shutdown matters for the global economy - Atlantic Council"
-    },
-    "2702b3f8dd04641970c003a5b7999c44c24477c5cc87b1639490b383a923f343": {
-      "ts": "Tue, 13 Oct 2026 18:00:00 GMT",
-      "title": "Minutes of the Board's discount rate meetings on August 17, September 9, and September 16, 2026"
-    },
-    "679646fb85ff36da5d4b483aff533e761b860a9ec518e2d3006f069654d54d17": {
-      "ts": "Tue, 12 May 2026 07:00:00 GMT",
-      "title": "How the Hormuz Blockade Is Disrupting Chip Supply Chains - Bloomberg.com"
-    },
-    "7c2419078c9107ba16e1490e9bba87ab7d2d83967c8c64cb33878e63e880d980": {
-      "ts": "Tue, 12 Dec 2023 08:00:00 GMT",
-      "title": "Will China Invade Taiwan? A Potential Timeline for Conflict - Global Guardian"
-    },
-    "de7991e0837948270d3fab90215d503b41a4691cb34d94951f62ed1d2ba3dcc8": {
-      "ts": "Tue, 11 Aug 2026 07:00:00 GMT",
-      "title": "Oil prices rise as traders question progress toward Strait of Hormuz deal - World Oil"
-    },
-    "7d679c00d64c13e19ad7b29039c14d5dcedaa38d04cdd3be62bfb8ad05b4bd84": {
-      "ts": "Tue, 10 Nov 2026 11:15:35 -0500",
-      "title": "SEC Announces Enforcement Annual Results for Fiscal Year 2026"
-    },
-    "acef815e1ebfb86d9c338d2a23ab716f7d9be77d8f19aa3006a412a5e72238f4": {
-      "ts": "Tue, 06 Oct 2026 16:30:24 -0400",
-      "title": "SEC Seeks Final Judgment Against Former Western Asset Co-CIO Ken Leech in Cherry Picking Case"
-    },
-    "2073704f4a4dda75bee408e28e4bac50787effb5153bf34fa74745c2b6a40afe": {
-      "ts": "Tue, 06 Oct 2026 10:37:55 -0400",
-      "title": "SEC to Host Virtual National Compliance Outreach Seminar for Investment Companies and Investment Advisers"
-    },
-    "cec7595d08dad976eb93b8d8097bf1d249572abaa768bb8623d0287528e53a1f": {
-      "ts": "Thu, 8 Oct 2026 20:30:00 GMT",
-      "title": "Federal Reserve Board announces enforcement action against American Express Company to address, among other things, the firm’s failure to sufficiently detect and report certain suspicious activity related to money laundering"
-    },
-    "f32cef7c4346fce4566e56f140eb289e0d3b028760321db8f50285b5ada40fbd": {
-      "ts": "Thu, 5 Nov 2026 16:00:00 GMT",
-      "title": "Federal Reserve Board announces termination of enforcement action with Allegiant United Holdings, LLC, Nano Financial Holdings, Inc., and Nano Banc"
-    },
-    "072ff9645537d5cabf32f9098d794b6a526c647030a5f5d0707e30596ac83020": {
-      "ts": "Thu, 29 Oct 2026 20:30:00 GMT",
-      "title": "Federal Reserve Board announces approval of application by The Bank of Nova Scotia"
-    },
-    "15b9d2c49061774abfc63f528ebcdf18012bb6a342f6b6a64e3ff4eb34dc238a": {
-      "ts": "Thu, 29 Oct 2026 12:42:37 -0400",
-      "title": "Two Entities Charged in $130 Million Fraud Scheme That Used False SEC Filings to Boost Investor Confidence"
-    },
-    "e9ce84e24d12c94a12e4cdc7f4a073fb6d474d51a14ccde4bbc093f0a80b744d": {
-      "ts": "Thu, 26 Nov 2026 01:35:00 GMT",
-      "title": "Asia shares bounce, AI and tariffs lurk in background - Reuters"
-    },
-    "61c4773ddb0f56b306ef58b705b95a994e9e8594907913798d17928f9dff3645": {
-      "ts": "Thu, 19 Nov 2026 21:02:01 GMT",
-      "title": "Oil settles flat as Hormuz disruptions offset global surplus fears - Reuters"
-    },
-    "95957ded84fd341ef4237d86fbdd38871d0843c2e7a6f20f0e48776ad0329464": {
-      "ts": "Thu, 19 Nov 2026 16:00:00 GMT",
-      "title": "Federal Reserve Board issues enforcement action with former employee of First Security Bancorp"
-    },
-    "188a00bc246e2b9666634485cee71f98384ffaafa5aeaf6d24bb4a1b18da47ee": {
-      "ts": "Thu, 19 Nov 2026 09:39:02 -0500",
-      "title": "SEC: Eight Entities Used Fake Crypto Asset Trading Platforms to Steal More Than $37 Million From U.S. Investors"
-    },
-    "8b48b3b6fa4bd4c69862f3917b6f87e6f8fe07dcd0adccd4d32b70cc60d6aa52": {
-      "ts": "Thu, 19 Mar 2026 07:00:00 GMT",
-      "title": "The Iran war tests Taiwan’s energy resilience - Atlantic Council"
-    },
-    "870af5a89bb7dc414478772ef2a200d6ca798009b1d48cc8d79a003a9917aa56": {
-      "ts": "Thu, 19 Mar 2026 07:00:00 GMT",
-      "title": "The Iran war is threatening supply of a little-thought-of resource — helium. What it means for markets - CNBC"
-    },
-    "b3c51782b9fd67beec17a1abd3bd97f592eb5dc660a48179e4c0fb0b866920a9": {
-      "ts": "Thu, 16 Apr 2026 07:00:00 GMT",
-      "title": "Helium Shortage Threatens AI Chips Amid Iran War Disruption - MarketWise"
-    },
-    "108684e52bfdb079cbdb23a30dae43437e1756f34044eea53d9f63f7db9a3d8a": {
-      "ts": "Thu, 16 Apr 2026 07:00:00 GMT",
-      "title": "What if the Taiwan Strait were blockaded? - ThinkChina"
-    },
-    "f1d98b5ca0e605eafbcac0062b1dfd969eea60bfdf17d6fd79f0c15e8a4a5906": {
-      "ts": "Thu, 15 Oct 2026 07:40:24 GMT",
-      "title": "Energy & MLP Insights: Market Implications of a Third Gulf War - Global X ETFs"
-    },
-    "eb103b0865eeb0f9697d1eb3881c97060ce6701e96f48ee2f04e073aca2e3e9b": {
-      "ts": "Thu, 12 Nov 2026 18:30:00 GMT",
-      "title": "Federal Reserve Board announces pricing, effective January 1, 2027, for payment services the Federal Reserve Banks provide to banks and credit unions, and changes to streamline and adjust their check services"
-    },
-    "b896d5faedb717af694425903e454a290ac4870de8f0879c56ed5579603c728e": {
-      "ts": "Thu, 12 Nov 2026 17:45:00 GMT",
-      "title": "Federal Reserve announces revised tentative schedule of Federal Open Market Committee meetings in 2027"
-    },
-    "aa6dda14242e6f60991f1d9d04d8f9f66f66521d60101093e8b64f98cf0edb07": {
-      "ts": "Thu, 12 Nov 2026 16:00:00 GMT",
-      "title": "Federal Reserve Board issues enforcement action with former employee of United Community Bank"
-    },
-    "0227f80b3da1421ee6fa1f55c1f7eefee146b79e41725b85e83adf7e44a4decd": {
-      "ts": "Thu, 10 Sep 2026 07:00:00 GMT",
-      "title": "Tensions between the US and Iran at the Strait of Hormuz have caused Brent oil prices to spike to $101.21 a barrel. #PricePatrol | via ANC 24/7 Link to the full story in the comments section. - Facebook"
-    },
-    "3be102540c726a8c8bf487371b58beadac0d81b7e53524d9c48d81a1fd64ce82": {
-      "ts": "Thu, 10 Sep 2026 07:00:00 GMT",
-      "title": "Oil soars to $109, pushing up chances of US interest rate increase - Al Jazeera"
-    },
-    "674aab42feb38dd18cce7d43f499a895e4ed2b77efa719d8247be6824e3501c6": {
-      "ts": "Thu, 10 Apr 2025 07:00:00 GMT",
-      "title": "Expert Analysis | Taiwan: A Geopolitical Powder Keg that could reshape Global Balances - The Hague Centre for Strategic Studies"
-    },
-    "358a1e3d6ad01724798e70200b7b4caefd225f61581fff05d1aa82922eeb8e87": {
-      "ts": "Thu, 09 Jul 2026 07:00:00 GMT",
-      "title": "Not So Strait-Forward: Hormuz, Iran, and the Future of Gulf Oil and Gas Flows - Council on Foreign Relations"
-    },
-    "911ebf43da50472fcde110c62c9908dde781211ee7343d55591d2c82c48c5866": {
-      "ts": "Thu, 08 Oct 2026 07:00:00 GMT",
-      "title": "Oil jumps 5% as Hormuz tanker attacks escalate, US Gulf hurricane shuts in production - Oil & Gas Journal"
-    },
-    "99765ae7b3457b658fb104fbd5a865bb024a4ecec13350ba3bbb292141b3937a": {
-      "ts": "Thu, 06 Jul 2023 07:00:00 GMT",
-      "title": "Will China’s Reliance on Taiwanese Chips Prevent a War? - Council on Foreign Relations"
-    },
-    "2ca4d99b1bbb4e3fd634843cf186853e1146869ed736053fb49b20f7ddf2172e": {
-      "ts": "Thu, 01 Oct 2026 12:16:07 -0400",
-      "title": "SEC Proposal Would Address How Investment Advisers and Funds Can Custody Crypto Assets Under the Federal Securities Laws"
-    },
-    "b68e6e67eb685d49d69d6e0122e8bc9aa27547af45fb6c742b328d71a48d2561": {
-      "ts": "Thu, 01 Oct 2026 11:03:35 -0400",
-      "title": "SEC’s Division of Examinations Announces New Exam Handbook"
-    },
-    "86f765f5f172302c315504e1d011bfa43e87d2ef23f615f3529d0556cf2bafab": {
-      "ts": "Sun, 23 Oct 2022 07:00:00 GMT",
-      "title": "TSMC: the Taiwanese chipmaker caught up in the tech cold war - Financial Times"
-    },
-    "75aff948f3b33731bb55f6ea30bdb34e8d6122c644e2cb4d8cd704e1a2213a1b": {
-      "ts": "Sun, 22 Nov 2026 12:04:00 GMT",
-      "title": "Correction or deeper reckoning? Investors seek signs US stock selling will abate - Reuters"
-    },
-    "91cbc58c9a22740c7accf07c8918ef38989a01bd5fc5c53c2f8809fe4071796f": {
-      "ts": "Sat, 21 Nov 2026 04:12:30 GMT",
-      "title": "Gold's slide deepens as AI rout, rate-hike bets hurt bullion - Reuters"
-    },
-    "ae6cc6d36739e7911a3ae22d006b8cc57543b7274ab1bbc106a77c6e2782fdb4": {
-      "ts": "Sat, 21 Nov 2026 01:40:06 GMT",
-      "title": "Wall St ends sharply lower on AI selloff, S&P 500, Dow in correction - Reuters"
-    },
-    "ffe9e035b908e7c8da8fd475e8881656f891ad0ef30b01f1087bb9770e56cd19": {
-      "ts": "Mon, 9 Nov 2026 21:00:00 GMT",
-      "title": "Federal Reserve Board announces approval of two applications by Mutual Federal Bancorp, MHC, and MFB Bancorp, Inc."
-    },
-    "3b2f8aca7933f3d1f8543a2e255f26c9f318c532e225fd77a86405e1d5e79345": {
-      "ts": "Mon, 29 Dec 2025 08:00:00 GMT",
-      "title": "China stages record drills designed to encircle Taiwan - Reuters"
-    },
-    "e1c926e173242f0aac5542a1c02705b60abef3b126dbe679f2b8daccf9bbf964": {
-      "ts": "Mon, 27 Jul 2026 20:42:21 GMT",
-      "title": "How Disruptive Would a Chinese Invasion of Taiwan Be? - American Enterprise Institute - AEI"
-    },
-    "6256487a18a2e8e056939aa81e491313d30a8540352cc60c323a376ddff48bca": {
-      "ts": "Mon, 23 Nov 2026 22:07:16 GMT",
-      "title": "COMMENTARY: TRADING DAY Market euphoria as Huang returns to Nvidia - Reuters"
-    },
-    "5edc2d3daf2186c76b1d9e4c7691f5bcc06c3aab9da231315fb3e55a644092e7": {
-      "ts": "Mon, 23 Nov 2026 22:05:14 GMT",
-      "title": "Wall Street soars on Huang's return to Nvidia, Treasury yields rise - Reuters"
-    },
-    "7e88f64060373fbe120a10ead5b5cef775ddee770062d05a32763226e31775eb": {
-      "ts": "Mon, 23 Nov 2026 21:31:33 GMT",
-      "title": "TSX posts biggest daily gain since April 2025, led by tech and mining - Reuters"
-    },
-    "afd944237e9332dd38203c068b16305f38677b4b96ad7cf4d0ea781c77966731": {
-      "ts": "Mon, 23 Nov 2026 21:08:00 GMT",
-      "title": "Oil Prices Fall as Traders Weigh Supply Surplus, Gulf Attacks - WSJ"
-    },
-    "95d6fb5c7c89373c2bb4edbcae1d8a71e3a0a00c5d8ef018d4e0d4f42ef0367f": {
-      "ts": "Mon, 23 Nov 2026 20:21:47 GMT",
-      "title": "Oil slumps to 3-month low on increased Middle East flows, Libyan pipeline restart - Yahoo Finance"
-    },
-    "5b53fae7824af2697f752242305b76c2d84e430aa2d0be2c6e83e8cdf9eb805a": {
-      "ts": "Mon, 23 Nov 2026 18:27:43 GMT",
-      "title": "Canadian dollar falls for 10th straight session as oil slides - Reuters"
-    },
-    "30ec91a440b75cf217b65855a4361855315df359769d0ba88c4d2fd06577f561": {
-      "ts": "Mon, 23 Nov 2026 18:21:41 GMT",
-      "title": "Three-Week Crude Pullback Tests Fragile Persian Gulf Supply Gains - Hart Energy"
-    },
-    "1ccd19f7162df3dfe8fe152c61b0214ed42befa68b222b829b131622950bed3c": {
-      "ts": "Mon, 23 Nov 2026 17:21:00 GMT",
-      "title": "Europe's STOXX logs strongest day in over six months on tech boost - Reuters"
-    },
-    "de753bf476185cc66ea8adfa2a21e0ecda468a94b9c722a5dfa58e8c247a8d3f": {
-      "ts": "Mon, 23 Nov 2026 14:41:48 GMT",
-      "title": "Gold rises as bargain hunters step in after steep weekly drop - Reuters"
-    },
-    "7616519226ca8e6e95c3c887a3cebb3ec3a56540e94a1b20d35a0e3743a07166": {
-      "ts": "Mon, 23 Nov 2026 14:00:00 GMT",
-      "title": "Oil prices dip as ample supply balances Persian Gulf tensions - Transport Topics"
-    },
-    "d049d978755936db7861c0e0402445bf81e9f0e57a3a0d5db1058a4a542f4691": {
-      "ts": "Mon, 23 Nov 2026 13:28:07 GMT",
-      "title": "Morgan Stanley turns most bullish on stocks since April after last week's selloff - Reuters"
-    },
-    "3d64b5163b8d73bbdc8065110edf9e86446234c8116839411dbf7220ffa49181": {
-      "ts": "Mon, 23 Nov 2026 11:40:13 GMT",
-      "title": "COMMENTARY: Morning Bid: Wall Street reprieve or recovery? - Reuters"
-    },
-    "5500d41990b3e3e177497f5e47e561523683353a6ace18bc62247fb7db924427": {
-      "ts": "Mon, 23 Nov 2026 11:04:36 GMT",
-      "title": "Mapping the Market: More losses could be ahead for beaten-down S&P 500 - Reuters"
-    },
-    "9888445b3e735b1b97fe8186c8a530da3f492b2ded9936870201f599c35e4df1": {
-      "ts": "Mon, 23 Nov 2026 07:55:00 GMT",
-      "title": "Wall Street rebounds as Jensen Huang returns as Nvidia CEO - Reuters"
-    },
-    "cfee5f66e22f5004845e61467e83876133bacca82624c1c5d07de3aaff47ed93": {
-      "ts": "Mon, 23 Nov 2026 01:33:00 GMT",
-      "title": "Foreign inflows lend support to rupee, bonds; oil in focus - Reuters"
-    },
-    "b886475570f69f6f03b96b8902af083585c77f7ace2dc2f213200837c953520f": {
-      "ts": "Mon, 20 Oct 2025 07:00:00 GMT",
-      "title": "What cost is China willing to bear to invade Taiwan? - Indo-Pacific Defense FORUM"
-    },
-    "39bd2709f0911ed2cc6dbf94f5dfe16ae387e765880dc2bf280674d59681fa7a": {
-      "ts": "Mon, 20 Jul 2026 07:00:00 GMT",
-      "title": "S&P Global: Escalating US-Iran conflict disrupts maritime traffic, oil markets - Oil & Gas Journal"
-    },
-    "802e44972d8b5b976ba749abeb9a60b062d7b65fff38bee1d8e538bb64d5c662": {
-      "ts": "Mon, 20 Jul 2026 07:00:00 GMT",
-      "title": "Iran's Houthi allies declare maritime embargo against Saudi Arabia, escalating threat to oil market - CNBC"
-    },
-    "dc93ff7b328348c1bd9ce6c64bc5487494c417a035f85d9a486e27b61e2b726a": {
-      "ts": "Mon, 19 Oct 2026 13:19:43 -0400",
-      "title": "SEC Announces Roundtable on Machine-Understandable Data in the Age of Super Intelligence"
-    },
-    "efed9d914733a6191ee380d005b1720ffeec8457327e085fd5b61d8951967c1b": {
-      "ts": "Mon, 17 Nov 2025 08:00:00 GMT",
-      "title": "Chinese Coercion of Taiwan’s Energy Lifelines: A Contest Taiwan and the West Can’t Afford to Lose - Foundation for Defense of Democracies"
-    },
-    "9053e69929a249f42c9dbe997474dc11aa8aedc86b205d4276ac876fea86e7ff": {
-      "ts": "Mon, 16 Mar 2026 07:00:00 GMT",
-      "title": "Iran War Chokepoints Begin to Cast Doubt on Global Chip Supply - Bloomberg.com"
-    },
-    "2de38baffc7e80764aa0f9c5d77086504c21d07dbe06db5b809b87419c363888": {
-      "ts": "Mon, 15 Jun 2026 07:00:00 GMT",
-      "title": "US-Iran deal: When will oil prices fall? - DW.com"
-    },
-    "cc3b19fa0d0b24f078e39d5cf9153e566728ac92ca0df44e796abd2162093bdf": {
-      "ts": "Mon, 11 Aug 2025 18:43:27 GMT",
-      "title": "Report Launch: Lights Out? Wargaming a Chinese Blockade of Taiwan - CSIS | Center for Strategic and International Studies"
-    },
-    "350911398d60940c026c045d4c75fe4d62962f892812d6c4e75a4af422e1691d": {
-      "ts": "Mon, 08 Jun 2026 07:00:00 GMT",
-      "title": "From chokepoint to crisis: The Strait of Hormuz and global oil markets - Brookings"
-    },
-    "89eab20781320a219561277f54705466dcc7cb137eaf43954311e4f65a4e7078": {
-      "ts": "Mon, 08 Jun 2026 07:00:00 GMT",
-      "title": "From Strait of Hormuz disruption to energy market realignment - Oil & Gas Journal"
-    },
-    "2282910f378b7ba1634d0aa19511d6601f1d36e969b4a3b516f6eeecb9e520a0": {
-      "ts": "Mon, 08 Jan 2024 08:00:00 GMT",
-      "title": "Xi, Biden and the $10 Trillion Cost of War Over Taiwan - Bloomberg.com"
-    },
-    "5e750d898adde239668a6660c11412853087be796d309ea204faa316e5aa5f97": {
-      "ts": "Mon, 06 Jul 2026 07:00:00 GMT",
-      "title": "Can the World Withstand Another Oil Shock After the Iran War? - Modern Diplomacy"
-    },
-    "fb1dd5a206068bc3ccdcede99eac0089728cfdbd18bd000cc383035e36b9ef3f": {
-      "ts": "Mon, 05 Oct 2026 08:47:36 -0400",
-      "title": "SEC Coordinates with Global Financial Regulators to Raise Fraud Awareness During World Investor Week"
-    },
-    "fbf61b522e14c4cd5e45a1ebf51dcd86da2713b0bed382fee15c755814a5d941": {
-      "ts": "Fri, 9 Oct 2026 14:00:00 GMT",
-      "title": "Federal Reserve Board releases results of the 2025 Survey of Consumer Finances, which provides the public and policymakers with detailed insights into the economic condition of American families"
-    },
-    "8891fff26dbd765283b324e42fca0402093e414a6353851fd596443daa5aad57": {
-      "ts": "Fri, 30 Oct 2026 15:30:00 -0400",
-      "title": "SEC Issues Exemptive Relief from Treasury Clearing Requirements for Certain Inter-Affiliate and Non-U.S. Repo Transactions"
-    },
-    "86c1e1149ca3cf6d3eb63b981e1928b0650c349cd6aaf5a4158d9cb5055a3e97": {
-      "ts": "Fri, 30 Oct 2026 07:00:00 GMT",
-      "title": "Oil flows are up as Iran war turmoil eases. Why do prices keep rising? - Al Jazeera"
-    },
-    "54eb2d8b548f299996fbce5be617e79e32f5888a6a85d4100394226819468860": {
-      "ts": "Fri, 30 Jun 2023 07:00:00 GMT",
-      "title": "Why war with China over Taiwan could ruin the global economy - NBC News"
-    },
-    "24afe83014668b5218583ae77c3d7764f03a434c71453520e48c4ab0b42a53cd": {
-      "ts": "Fri, 23 Sep 2022 07:00:00 GMT",
-      "title": "China blockade would be act of war, Taiwan would not surrender, official says - Reuters"
-    },
-    "247b7cf70f8860d09fe714ddff619c58a4da9cbb75acdbd37ac8bf729e339379": {
-      "ts": "Fri, 23 Oct 2026 10:10:00 -0400",
-      "title": "SEC Announces Fiscal Year 2027 Examination Priorities"
-    },
-    "e37e985da8291e945c4e83db80fe5efa94b24f48f0b5851ff693a96ecc414dee": {
-      "ts": "Fri, 20 Nov 2026 23:02:38 GMT",
-      "title": "Tech leads global stocks rout, Treasury yields fall - Reuters"
-    },
-    "34724553f6c84bd98e02f0da2e9cfff978369ac846e7384c0bbcbb48869d4385": {
-      "ts": "Fri, 20 Nov 2026 22:16:35 GMT",
-      "title": "AI tech rout prompts US investors to rush into value stocks - Reuters"
-    },
-    "f9b105464b4ffc3819099f260736568b50f6289e9af635852c368930f4d318d3": {
-      "ts": "Fri, 20 Nov 2026 21:15:00 GMT",
-      "title": "Federal Reserve announces College Fed Challenge winners"
-    },
-    "a43d4f2e7aec115d4c92fb083fa8655a818914a552c15af4c91528321ac4fa10": {
-      "ts": "Fri, 20 Nov 2026 17:34:51 GMT",
-      "title": "Canadian dollar falls for third straight week as stock market selloff deepens - Reuters"
-    },
-    "869ba0ea3a11c1051fdaa5e2eded3e9acf3d637cc5edfc023dab79d0bb113c0d": {
-      "ts": "Fri, 20 Nov 2026 15:13:44 GMT",
-      "title": "The snowballing selloff in global markets - Reuters"
-    },
-    "8eca88bb1ddff0b69cd954c574b8c94abc638cce4e0421d02c006e0c55ca3ff9": {
-      "ts": "Fri, 20 Nov 2026 15:00:00 GMT",
-      "title": "Federal Reserve Board releases results from survey of senior financial officers at banks about their strategies and practices for managing reserve balances"
-    },
-    "9d5d0f085dc9ce31bc08510dfb020b5aa3c873c7317dd030a2629e9f51e53ab7": {
-      "ts": "Fri, 20 Nov 2026 13:03:24 -0500",
-      "title": "SEC Issues Proposal to Restructure the Consolidated Audit Trail"
-    },
-    "6f2beeabf731d3d04249de4aa03e801fbc9534f5ffdac697a4f61b395fc14ffd": {
-      "ts": "Fri, 20 Nov 2026 10:29:56 GMT",
-      "title": "Iran war, Trump’s Hormuz moves threaten global oil supply; Indian chemical sector faces feedstock and cost.. - ET Chemicals"
-    },
-    "e5c668faec62fc659e853265e572fb697cea3181bb490f3477f6554c7bd15840": {
-      "ts": "Fri, 20 Nov 2026 09:28:28 -0500",
-      "title": "SEC Charges Indianapolis-Based Backward Hat Capital and Its Co-Founders With $560 Million Dollar Offering Fraud and Obtains Emergency Relief"
-    },
-    "a77f227d14c9e5c52567841a9d8222d47d80933fde0178147470079b62d3488d": {
-      "ts": "Fri, 20 Nov 2026 04:57:37 GMT",
-      "title": "Anthropic's blockbuster debut tests Wall Street's faith in AI boom - Reuters"
-    },
-    "0e04bbb153734b161bb12994edad4f42056d2ba8588cf4c4bfc6d67f099a1257": {
-      "ts": "Fri, 20 Nov 2026 02:05:44 GMT",
-      "title": "Oil gains on Iran war worries and short-covering ahead of Thanksgiving holiday - Reuters"
-    },
-    "6189b520c6e32c1a3a2f59b6657f06b0e2b2731c53aa346357b042bafd786c9c": {
-      "ts": "Fri, 20 Mar 2026 07:00:00 GMT",
-      "title": "A strategy for staying out: Recalibrating US support to Taiwan - Brookings"
-    },
-    "c3face692243a9cf637aae0120ca79d06838547c877c661920344198c3c31edf": {
-      "ts": "Fri, 17 Apr 2026 07:00:00 GMT",
-      "title": "How Hormuz Could Shape China’s Taiwan Strategy - Time Magazine"
-    },
-    "b76136f0570eac463e75f76ed029441ac267d7e96cb6b99b4039d5a13bd6b8cf": {
-      "ts": "Fri, 16 Oct 2026 15:00:00 GMT",
-      "title": "Federal Reserve Board announces termination of enforcement actions with Gardner Bancshares, Inc. and Small Business Bank"
-    },
-    "60990467509fc2a401d693c63eee8024924ab71f909f39f311f5aeeecfe6148d": {
-      "ts": "Fri, 13 Nov 2026 21:15:00 GMT",
-      "title": "Agencies extend comment period for proposed third-party risk management guidance"
-    },
-    "be8a710ca572a879adef56590f2e712fc271d11e4b2b13219edf0e85c225f7bf": {
-      "ts": "Fri, 13 Nov 2026 11:57:00 -0500",
-      "title": "SEC Proposes Executive and Director Compensation Disclosure Reforms"
-    },
-    "1340d887c293e93de9e74c2777d09c6e7f2e8b51d00c92823357cb2794aa9660": {
-      "ts": "Fri, 11 Sep 2026 07:00:00 GMT",
-      "title": "Oil falls but head for 8% weekly gain on tight supply; US diesel hits record - Reuters"
-    },
-    "cb8516da185bbf8e7be0760e4b961e72aed460b2acc755f48dfb3b30f1160feb": {
-      "ts": "Fri, 10 Jul 2026 07:00:00 GMT",
-      "title": "Strait of Hormuz traffic plunges as US, Iran resume fighting - Al Jazeera"
-    },
-    "9604aedc33c9312ae52c19e9242c975f648eebcbe5c4eb4480aff05b61e3ae6d": {
-      "ts": "Fri, 09 Oct 2026 10:59:00 -0400",
-      "title": "SEC Proposes Expanding Securities Eligible for Cross Trading by Registered Funds"
-    },
-    "e0a5affbb8b6d11f07d27454b6bb2a3703b7a5fc29b33e0d1c3cf0bd4996a2fd": {
-      "ts": "Fri, 09 Oct 2026 07:00:00 GMT",
-      "title": "Oil falls as Trump comments on Iran talks ease supply concerns - The Business Times"
-    },
-    "cb76e49aaa6f5323e968f53249114e618c4b43325b9724688300c926b458fc0e": {
-      "ts": "Fri, 09 Jan 2026 08:00:00 GMT",
-      "title": "A $10-trillion reckoning: how a Chinese invasion of Taiwan would upend markets - TradingView"
-    },
-    "d23175a14e6de413de7e1b5495723db142f634913884cd057ccee216e3f0ca3d": {
-      "ts": "Fri, 05 Jun 2026 07:00:00 GMT",
-      "title": "Iran war squeezes critical supplies and global alliances - GIS Reports"
-    },
-    "4fea5df90e93728562e7c4a7caef040a5b6bc10e9aae27fd37246663ee3fe84c": {
-      "ts": "Tue, 17 Mar 2026 09:54:17 GMT",
-      "title": "What the war in Iran means for China - Bruegel"
-    },
-    "a51111f5d01b5a8f7942e2d33fbc6f1ead1366072f423cb0460fca06e4043444": {
-      "ts": "Tue, 17 Mar 2026 07:00:00 GMT",
-      "title": "How the Iran war could trigger a European energy crisis - Atlantic Council"
-    },
-    "8a543469a0b35b882b3539d862b7ca14d2f53c730ebd14e21449655dbd2777bd": {
-      "ts": "Thu, 23 Jul 2026 07:00:00 GMT",
-      "title": "Conflict-Driven Chokepoint Disruptions - Council on Foreign Relations"
-    },
-    "36365012273d2c0a0bb2601fec21fa3fe2d125504b024fe8fd91cbfb03ee03bf": {
-      "ts": "Thu, 20 Aug 2026 07:00:00 GMT",
-      "title": "‘Tremendous costs’: Can Trump stop other countries from trading with Iran? - Al Jazeera"
-    },
-    "5af4ec14b86d3427871049dfafb5653d7a624c2f47a3e69493069b2f7d932cf2": {
-      "ts": "Thu, 06 Aug 2026 07:00:00 GMT",
-      "title": "Russian and Chinese Strategic Gains from the US–Iran War - Small Wars Journal"
-    },
-    "e4fa129d7753067ed6716644e3883b3f761b02214e38ef876450f7b96a4249df": {
-      "ts": "Thu, 01 Oct 2026 07:00:00 GMT",
-      "title": "Five Energy Market Factors That Could Tip the Scales in the Middle East War - International Crisis Group"
-    },
-    "50d1a29b5e087011c705da701540144e75cecbc2e176b27933f14d4c8b80924e": {
-      "ts": "Sun, 26 Jul 2026 07:00:00 GMT",
-      "title": "What lies ahead for Iran’s economy as scope of US war grows beyond Hormuz? - Al Jazeera"
-    },
-    "f257bcdd3d8b656675c45173090aa392800c4f4f786efae58099db8dd8e9b589": {
-      "ts": "Sun, 18 Oct 2026 07:00:00 GMT",
-      "title": "EU Market Open: Trump touted that significant progress is being made between Russia and Ukraine; European stocks set for a weaker open - Newsquawk"
-    },
-    "e3dd9bafd35401f5345e8f09e35c3ade9652c9183fe6222638eaab9be5c26e85": {
-      "ts": "Sat, 06 Jun 2026 07:00:00 GMT",
-      "title": "US energy firms benefit from Strait of Hormuz closure: Rosneft CEO Sechin - Business Standard"
-    },
-    "e2dc71c463aeecba30a0af1a84fefb1602f8bf5cc4097e44ef4d7a601c953fdf": {
-      "ts": "Mon, 31 Aug 2026 07:00:00 GMT",
-      "title": "Xi, Modi and Putin attend SCO summit: What’s on the agenda? - Al Jazeera"
-    },
-    "4abd05f9b067e9c44c0af0c82271b7b90f94d4492ea5aac240d687dcdc72fc71": {
-      "ts": "Mon, 30 Mar 2026 07:00:00 GMT",
-      "title": "How Russia and China are winning the war in Iran - Peterson Institute for International Economics"
-    },
-    "159802cabd6ca72222c6eefbd258f64bf949f7e18276e0f94b9cb70beb326dc6": {
-      "ts": "Mon, 23 Mar 2026 07:00:00 GMT",
-      "title": "Trump is fighting two wars with Iran. He needs to win both. - Atlantic Council"
-    },
-    "70468a831ae765b0ce51028be08336e363ca49b4aed9bb58867a11ff9399914b": {
-      "ts": "Mon, 02 Mar 2026 08:00:00 GMT",
-      "title": "After the strike: The danger of war in Iran - Brookings"
-    },
-    "b4142967d6b3ac56b6a1c89ee082ca110555e4e7cfda82fdb871f6f1a90b9a1e": {
-      "ts": "Fri, 27 Mar 2026 07:00:00 GMT",
-      "title": "Ten lessons from the first month of the Iran war - Atlantic Council"
-    },
-    "ca36a0701e1d1ed6888e3093a4b967a81dceba15f59f18be92bfdb30808d0363": {
-      "ts": "Fri, 27 Mar 2026 07:00:00 GMT",
-      "title": "The Iran war’s economic fallout won’t stop at oil—agriculture and aluminum are next - Atlantic Council"
-    },
-    "588f014074c16ddf78c9a745da502ab95a03fe51b9a7de532e91babe4ae14f1e": {
-      "ts": "Fri, 14 Aug 2026 07:00:00 GMT",
-      "title": "Hormuz traffic slows further after US threatens more economic pressure on Iran - Reuters"
-    },
-    "8adc9292e034755198873614986c05903b5b827cbc9d6f3943ff91f94f860f60": {
-      "ts": "Fri, 05 Jun 2026 07:00:00 GMT",
-      "title": "India's energy security at a crossroads: The Hormuz crisis and an opportunity for US-India cooperation - Atlantic Council"
-    },
-    "81d57c18c61cfa994ba70db6b917f419cefaee0352220d40fd3772e96335d19c": {
-      "ts": "Tue, 17 Feb 2026 08:00:00 GMT",
-      "title": "USD valuation drivers: AUD/USD, USD/JPY and USD/CNH outlook - IG"
-    },
-    "e1901c7631ad2b835144cd3a3b5c67569f1a140e89d089f18c1f06743f72042a": {
-      "ts": "Tue, 16 Jun 2026 07:00:00 GMT",
-      "title": "Japan’s Nikkei hits record high, yen steady after BOJ hikes rates as expected - The Business Times"
-    },
-    "b9723e01ece39497ce08731b00dea17f11370213f1aa4d6911e6304272f63758": {
-      "ts": "Tue, 11 Jun 2024 07:00:00 GMT",
-      "title": "China’s Currency Campaign - Stiftung Wissenschaft und Politik"
-    },
-    "e296cfffc5583529a79696edacea0b03df23ad3b5d7ae5f9b7b5b90948341500": {
-      "ts": "Tue, 06 Oct 2026 07:00:00 GMT",
-      "title": "TAIEX hits record high, rising 2.55% - Taipei Times"
-    },
-    "ff751645e9909d19f555f5fdc8abbad091dbfbd84d69bcd94ccd774283d018be": {
-      "ts": "Tue, 03 Nov 2026 08:00:00 GMT",
-      "title": "Dollar Rises With T-note Yields - TradingView"
-    },
-    "167884977c0c6233dec641478881d9e2762fe44f1e9fb0c3c75723bf66e35c86": {
-      "ts": "Tue, 01 Sep 2026 07:00:00 GMT",
-      "title": "Nikkei Edges Lower as 10-Year Yield Hits 3% - News On Japan"
-    },
-    "623e14d98bb5f717e660318e30052a1bc423466a55ed0d7c06eca0382e4bea58": {
-      "ts": "Thu, 26 Nov 2026 00:05:00 GMT",
-      "title": "Dollar-yen stuck around 159 despite Thanksgiving holiday thin trading; month-end flows eyed - BigGo Finance"
-    },
-    "bbc2be69e13e009ef5bf119f553414f66b7bf0e9ef9dd7ca1be5c5963702ff49": {
-      "ts": "Thu, 23 Jan 2025 08:00:00 GMT",
-      "title": "Japanese yen rallies, bond yields climb after BOJ hikes rates - Reuters"
-    },
-    "bbdca580b24d698bd3134cce27e88a47f31180eabbfa96fcd1b5e2d216413a9b": {
-      "ts": "Thu, 22 Oct 2026 07:00:00 GMT",
-      "title": "China's A-shares slump on heavy volume, Shanghai Composite loses 3,700 mark as mystery funds snap up broad-based ETFs against the trend - BigGo Finance"
-    },
-    "5acefeccb9d85441c6749409209bb500ba99189c1dfd835124f6a8d33580304b": {
-      "ts": "Thu, 16 Jul 2026 07:00:00 GMT",
-      "title": "Taiex ends little changed as TSMC's rebound erases earlier losses - Focus Taiwan"
-    },
-    "99904d18284119d95fc40f13703f1d5910b99f227f7b52a349c7b027a646ceec": {
-      "ts": "Thu, 09 Jul 2026 07:00:00 GMT",
-      "title": "Hong Kong stocks retreat as regional tech volatility offsets short covering - South China Morning Post"
-    },
-    "e1c15d90a10f2fc3ba5af31451447196ca6f214385e06b3d9b20b8191764b7e5": {
-      "ts": "Thu, 08 May 2025 07:00:00 GMT",
-      "title": "China unveils monetary support to stem US tariff impact - ThinkChina"
-    },
-    "79081c2ac02711b65ede98bf2be62bcd518d2856bd176661c84809f74086d06a": {
-      "ts": "Thu, 03 Apr 2025 07:00:00 GMT",
-      "title": "China stocks, yuan tumble after bigger-than-expected Trump tariffs - Reuters"
-    },
-    "84ddaefcd4c0e6432114d4a2bb1bf0c65eee04312be7f6ee514831a3715b237c": {
-      "ts": "Sun, 30 Aug 2026 07:00:00 GMT",
-      "title": "Nikkei Tumbles as Fed's Warsh Signals Possible Rate Hikes - BigGo Finance"
-    },
-    "bb120d2036ca18635b5835437959cbf37185a68e8cab7a80f5d8d0d00ab522d1": {
-      "ts": "Sun, 08 Feb 2026 08:00:00 GMT",
-      "title": "Takaichi Win Primes Japan Stocks for Gains, Damps Yen and Bonds - Bloomberg.com"
-    },
-    "bcb47791040cae77c6b4e6f2d28e88042eb0a375a86bf6ca4b9f63f96813940e": {
-      "ts": "Sun, 05 Oct 2025 07:00:00 GMT",
-      "title": "Japan's stocks zoom, yen slumps as Takaichi win dims BOJ hike bets - Reuters"
-    },
-    "287e0977220c76dbbc39a51d804cb936916de881c9ecc6f5736c9d3568ac1490": {
-      "ts": "Sun, 04 Oct 2026 07:00:00 GMT",
-      "title": "October 2026 Monthly - Seeking Alpha"
-    },
-    "81405ef1fa660e10a49e36b7220b7279c8201cae0797801c74d40b3238f43c97": {
-      "ts": "Sat, 19 Sep 2026 07:00:00 GMT",
-      "title": "China Holds Loan Prime Rate Steady for 16th Month, Staying Cautious Amid Global Tightening - BigGo Finance"
-    },
-    "4daf15081ce9ddc28ec4322322c0d3115c294ab74c1e9e379309ba496f71c980": {
-      "ts": "Sat, 12 Apr 2025 12:06:34 GMT",
-      "title": "Peoples Bank of China and Chinese interest rates explained - FOREX.com"
-    },
-    "a019a5d404d6edce9e0b1cf83056ce4369425ed97b242659df2eb9306f3dec36": {
-      "ts": "Sat, 11 Jul 2026 07:00:00 GMT",
-      "title": "A-Shares Post Third Straight Weekly Loss as Market Faces Pivotal Moment; ChangXin Memory Technologies IPO and Commercial Space Breakthrough in Focus Next Week - finance.biggo.com"
-    },
-    "0dc1deae5776cff10071c2515f32af60435eaa52e1dcae698a4611ad32e220cd": {
-      "ts": "Mon, 31 Aug 2026 07:00:00 GMT",
-      "title": "Nikkei Nearly Erases 1,500-Point Drop as TOPIX Extends Winning Streak - News On Japan"
-    },
-    "37a16c0be0240c23c8c682979d03614f9a539a39e8908171c280b6ba71ea1625": {
-      "ts": "Mon, 31 Aug 2026 07:00:00 GMT",
-      "title": "Why the head of Taiwan’s stock exchange wants you to look past TSMC—and embrace the ‘technology island’ - Fortune"
-    },
-    "d7553db880d2f03ca01f5d4a8bb6b423ef799ef3517de575076ae14559f3de20": {
-      "ts": "Mon, 30 Sep 2024 07:00:00 GMT",
-      "title": "China’s beleaguered real estate shares jump almost 10% after Beijing makes its ‘strongest housing pledge to date’ - Fortune"
-    },
-    "af383b49175b993e57edb6f383af4be692d0493a970665f3775ed8b32cb7c0f6": {
-      "ts": "Mon, 30 Sep 2024 07:00:00 GMT",
-      "title": "China stocks surge in biggest single-day rally since 2008 on stimulus cheer - Reuters"
-    },
-    "6eae9cc1481ca27f583c05a8188ab4443e1b8d1c2bdf4d39b77b976ccac9c169": {
-      "ts": "Mon, 26 Oct 2026 07:00:00 GMT",
-      "title": "Economic Calendar - German Ifo index, Middle East escalation, and Wall Street giants' earnings - XTB.com"
-    },
-    "397f40e48e8a75e52ad340072e73c387e6b93449af9b99e5a4aef4d1e76b963e": {
-      "ts": "Mon, 23 Nov 2026 17:52:34 GMT",
-      "title": "Taiwan loosens margin call rules in bid to steady AI-spooked market - Reuters"
-    },
-    "5783443971a17289454c9f47beaa7add159e38525e766eb86605d6c16fcbf5af": {
-      "ts": "Mon, 23 Nov 2026 11:27:05 GMT",
-      "title": "Why is the Japanese Yen trimming gains as investors assess the BoJ’s scope for tightening? - www.tmgm.com"
-    },
-    "7360ebf06ff6ae1f3669cd97ea06d6635220f258950111e712b2f1229098215c": {
-      "ts": "Mon, 23 Nov 2026 11:10:28 GMT",
-      "title": "Japanese Yen pares gains as investors ponder BoJ’s tightening scope - FXStreet"
-    },
-    "8df69bed3f7aec549c68db9a90e2398265593769d8e16c8cf249969ac3f3661b": {
-      "ts": "Mon, 23 Nov 2026 08:41:04 GMT",
-      "title": "Taiwan Stocks Rebound in 2% Range on Market-Stabilization Measures... Shanghai Stocks Also Edge Higher - 파이낸셜뉴스"
-    },
-    "60e660d5cf57bd0875b590ab805f9a4c210fd529ac103f34c94ac37f2a79f8fe": {
-      "ts": "Mon, 23 Nov 2026 02:13:49 GMT",
-      "title": "Euro remains above YTD low as USD pair trades below 1.1000 ahead of flash PMIs - www.tmgm.com"
-    },
-    "cf158139a88b7ef554712f022201320cf47df360f049a74295d8eae4cebfe653": {
-      "ts": "Mon, 22 Jun 2026 07:00:00 GMT",
-      "title": "Understanding the quiet currency wars: How major economies manipulate exchange rates - businessreport.co.za"
-    },
-    "6648e0fd3b73a08904c5138295f4b0621a1c210116330d1e6e24e3b25ab3c74e": {
-      "ts": "Mon, 21 Sep 2026 07:00:00 GMT",
-      "title": "Tokyo Market Closed as Yen Intervention Watch Dominates Silver Week - News On Japan"
-    },
-    "0623044edcdba4f32cca565673b56d2eb0b1a0165bd32063fdc431aa52d5c27e": {
-      "ts": "Mon, 21 Sep 2026 07:00:00 GMT",
-      "title": "Taiwan benchmark Taiex rises to record intraday high as tech stocks advance - CNBC"
-    },
-    "29a81a788c16dc6d55502977613ebe07a7743627db1cd13830c2625196f8470a": {
-      "ts": "Mon, 20 Jul 2026 07:00:00 GMT",
-      "title": "Taiwan shares extend losses but TSMC bounces back - Focus Taiwan"
-    },
-    "892f54f099614743f93725c1f3783a1cfdc24c33f67470e95ac5dc13bcb03e7c": {
-      "ts": "Mon, 19 Oct 2026 07:00:00 GMT",
-      "title": "Dollar Gains on Euro Weakness and Higher Crude Prices - TradingView"
-    },
-    "be9ba474c19213444092d4ebb4e122686bc505ecf3ec319435b0451f98e4a4a7": {
-      "ts": "Mon, 15 Jun 2026 07:00:00 GMT",
-      "title": "JGBs steady, Nikkei eases from record high as BOJ rate decision looms - investingLive"
-    },
-    "6f1990dd8dcb89563f557bcb87a8833c5bc25c76d15cc6fb0686d37f84634a39": {
-      "ts": "Mon, 14 Sep 2026 07:00:00 GMT",
-      "title": "Preview: Goldman Sachs sees yen and Nikkei risk building on faster BoJ rate path - investingLive"
-    },
-    "e396e6f2dff5a993e99d643ef2359c6434ed3417b3844cfb8ca1a92665b908a8": {
-      "ts": "Mon, 14 Sep 2026 07:00:00 GMT",
-      "title": "Philadelphia Semiconductor Index Plunges Nearly 6%; TSMC and Delta Electronics Buck the Trend to Support Taiwan Stocks as TAIEX Rebounds to Hold 45,800 - BigGo Finance"
-    },
-    "032782d63c2b5e054e241ad17d0d5704426dd0888daab1573b3a2e10df788b42": {
-      "ts": "Mon, 11 Dec 2023 08:00:00 GMT",
-      "title": "Investors in China's lagging markets to play defence in 2024 - Reuters"
-    },
-    "a570aa69964d09318cd52e867eb19d3a2b98e1da383f50b6b066e329a417e1ac": {
-      "ts": "Mon, 09 Feb 2026 08:00:00 GMT",
-      "title": "Instant View: Japan's markets react to Takaichi's historic election victory - Reuters"
-    },
-    "852ccf7d5cea00702591ed59299c266f590fa79c14db7eb4556c465bd82f9283": {
-      "ts": "Mon, 05 Oct 2026 07:00:00 GMT",
-      "title": "Japan Markets Face BOJ, Yen and AI Test in First Full Week of October - News On Japan"
-    },
-    "fc64128806b2f8a90211207614787f799f8ee7a7cf059fb1e108adbaafb9fe0d": {
-      "ts": "Mon, 02 Nov 2026 08:00:00 GMT",
-      "title": "China Unveils Measures to Boost Markets after Big Falls in October - Asia Financial"
-    },
-    "1a839fe96e054805ada0b646c6c2703e7dc1aaf7d4a488f527255c342af5b99a": {
-      "ts": "Mon, 02 Nov 2026 08:00:00 GMT",
-      "title": "US sell-offs pose challenge for TAIEX - Taipei Times"
-    },
-    "2f559c5bcec8da26d1e665f87d087b220cad5d5277d73d9c7c6f4ba3e1c73400": {
-      "ts": "Mon, 02 Nov 2026 04:35:00 GMT",
-      "title": "Yuan Pins Near Four-Year Peak as Dollar Holds Firm Before US Midterms - finance.biggo.com"
-    },
-    "3390dec5bead689bfe1203ba49034e591bc75a66c0616b6e47f4f5f2903c7d8e": {
-      "ts": "Fri, 31 Jul 2026 07:00:00 GMT",
-      "title": "Taiex posts record one-day point gain as TSMC hits 10% limit - Focus Taiwan"
-    },
-    "0b765600028faafc9d23b3a934388dad83e0fd76ba24c94bea1c17c74c37f8dc": {
-      "ts": "Fri, 31 Jul 2026 07:00:00 GMT",
-      "title": "ANALYSIS: How AI has rewired Taiwan’s stock market - Taipei Times"
-    },
-    "ad73af2da1788a71614d90b0e6109927075769d7a75c4c31a27072a613660b69": {
-      "ts": "Fri, 19 Dec 2025 08:00:00 GMT",
-      "title": "Japan 10-year bond yields hit 26-year high after BOJ rate rise - Nikkei Asia"
-    },
-    "0411cdc1339cea08fd7de4284daeb83109d9799ba16b2dbfecba94495c6ebd13": {
-      "ts": "Fri, 19 Dec 2025 08:00:00 GMT",
-      "title": "Love Language - by Arthur Hayes - Crypto Trader Digest | Arthur Hayes"
-    },
-    "e3fd7732955a066b93cc9aa16f566f2609bb03cee1365258a469be93a711f955": {
-      "ts": "Fri, 18 Sep 2026 07:00:00 GMT",
-      "title": "Nikkei Rallies as BOJ Rate Hike Weakens Yen and Lifts AI Shares - News On Japan"
-    },
-    "78fa296418ef354c11d02c1dd09089cb174a93b4b1b26aa566057d0c17e03ac5": {
-      "ts": "Fri, 16 Oct 2026 07:00:00 GMT",
-      "title": "Dollar Pressured as Fed Chair Powell Refrains from Forward Guidance - TradingView"
-    },
-    "f07c8fa3b23076ed8ab19f656762592730c1024e4aa8c053f8f5daedea3571ee": {
-      "ts": "Fri, 14 Aug 2026 07:00:00 GMT",
-      "title": "Nikkei Extends Rally as TOPIX Hits Fresh High - News On Japan"
-    },
-    "aa30c7acceff94a2298edd48dca4ad631b4a179d29d2c33be9745d5ae83ddbd0": {
-      "ts": "Fri, 14 Aug 2026 07:00:00 GMT",
-      "title": "Euro flattens against Japanese Yen, ECB-BoJ to raise rates in September - FXStreet"
-    },
-    "2e5a3ab0cd3c690dc30c6db27d2389b260bd6c0e0f7889d41562b08a9c545adb": {
-      "ts": "Fri, 09 Oct 2026 07:00:00 GMT",
-      "title": "Dollar Strengthens with T-Note Yields - TradingView"
-    },
-    "8fff9e870a09464b7027a8dc5a03819035d9598bd39b4f14df444a5bf7c0eaa1": {
-      "ts": "Fri, 06 Sep 2024 07:00:00 GMT",
-      "title": "China’s stocks fall on growth jitters, Typhoon Yagi disrupts Hong Kong markets - South China Morning Post"
-    },
-    "864b85d9b589cdb885032c75439ff3d62e587cdbae5125947f000a9af7015304": {
-      "ts": "Wed, 25 Nov 2026 01:41:00 GMT",
-      "title": "AI Chip Boom to See Won Build on Best Year in Almost a Decade - Yahoo Finance"
-    },
-    "65d25258f59f9b6d0d5942ec6677256843b54339e8ca336c2f2da406eee0963a": {
-      "ts": "Tue, 15 Sep 2026 07:00:00 GMT",
-      "title": "European Stocks Fall as Oil Tops $113 Ahead of Federal Reserve Meeting: DAX, CAC, FTSE100 - Yahoo Finance UK"
-    },
-    "e72b0fb6746f65b40d7818b518c0a0739db64bff704e5afe20cdfa368a334985": {
-      "ts": "Tue, 12 May 2026 07:00:00 GMT",
-      "title": "Asia's trillion-dollar titans are powering — and distorting — its fastest growing stock markets - CNBC"
-    },
-    "9fbca6e2f573647f79e6b4632e1bdc50bc354398f254f3c08613e38799741d1f": {
-      "ts": "Tue, 08 Sep 2026 07:00:00 GMT",
-      "title": "European Stocks Fall as Oil Prices and German Political Uncertainty Weigh: DAX, CAC, FTSE100 - Yahoo Finance UK"
-    },
-    "1295470c2d1bfb39b59dab42adf26ee26076f0df23ff791f603695e16795283b": {
-      "ts": "Tue, 06 Oct 2026 07:00:00 GMT",
-      "title": "South Korea’s $60 Billion Semiconductor Exports to Drive the KOSPI’s Resurgence - The Diplomat – Asia-Pacific Current Affairs Magazine"
-    },
-    "8b699093feaf3e865f744036de3340e77816c1dad149a199782ae5107a8644b2": {
-      "ts": "Tue, 03 Mar 2026 08:00:00 GMT",
-      "title": "European stocks close 3% lower as Middle East conflict intensifies - CNBC"
-    },
-    "d32ebc4a4fe1be60971c91caddf6ea33994446b56cc88eec8b64952c75549e83": {
-      "ts": "Thu, 26 Nov 2026 01:05:00 GMT",
-      "title": "South Korea's KOSPI Rebounds Over 1% at Open; Bank of Korea Rate Decision to Set Direction - BigGo Finance"
-    },
-    "5df83341353b0a6673ae412d1e93a0c691fcf5048120a49ee0fc2be643b50a47": {
-      "ts": "Thu, 18 Dec 2025 08:00:00 GMT",
-      "title": "European markets close higher following central bank bonanza - CNBC"
-    },
-    "febdcf0d226ede86a51b3fe2b86115d5d197e55ddf1ed091ff671ef6a35b6cec": {
-      "ts": "Thu, 04 Jun 2026 07:00:00 GMT",
-      "title": "Can South Korea’s stock market boom continue? - Investors' Chronicle"
-    },
-    "b30ac09905d45326ed0d2a27d642eb75853d82a49a084442b04964d5324c9e45": {
-      "ts": "Thu, 02 Jul 2026 07:00:00 GMT",
-      "title": "European stocks trade cautiously as central bank signals temper optimism: DAX, CAC, FTSE100 - Yahoo Finance UK"
-    },
-    "3c487fd203741fae49f5bfaba41e7527f25dcf1e737e069572eeff80683a7527": {
-      "ts": "Thu, 01 Oct 2026 07:00:00 GMT",
-      "title": "European Stocks Fall as Fourth Quarter Begins With Energy and Inflation Concerns: DAX, CAC, FTSE100 - Yahoo Finance UK"
-    },
-    "6e632d775513ff0a84a9c4a1547a2bc3f55b2892f702cae8ebb008da4877eb6c": {
-      "ts": "Sun, 25 Oct 2026 07:00:00 GMT",
-      "title": "In South Korea, Samsung and SK Hynix turn the KOSPI into a near‑pure AI stock bet - Capmad"
-    },
-    "73f9c55592528ac01b1dfb2b68ba9bdf9f9507a3bb0852b270078379c10e2486": {
-      "ts": "Mon, 27 Apr 2026 07:00:00 GMT",
-      "title": "European markets close lower as Iran reportedly makes peace proposal - CNBC"
-    },
-    "b8d6a3e551ca92482e16b2f4d3c2ee3bccbb74fb9c6db3d72e4d997ea5916399": {
-      "ts": "Mon, 26 Oct 2026 23:45:26 GMT",
-      "title": "European Stock Markets Today: FTSE MIB, DAX 40, CAC 40 and FTSE 100 Rally as Oil and Bond Yields Ease - BBN Times"
-    },
-    "a5946929362c7358a1dd0b2a8711d2edb775bbb7182c36ddea5ebd0e991082d2": {
-      "ts": "Mon, 23 Nov 2026 14:47:44 GMT",
-      "title": "European Stocks Rally as Nvidia Reinstates Jensen Huang, Sending Semiconductor Shares Sharply Higher: DAX, CAC, FTSE100 - Yahoo Finance UK"
-    },
-    "a7a42e47667e35bc4cbf36d4efc1a4ac233c12435d2a4bbf5028d9af004a7c1c": {
-      "ts": "Mon, 23 Nov 2026 11:25:34 GMT",
-      "title": "Asia AI rout puts governments in a bind - Breakingviews"
-    },
-    "391730a12e5f62b15ee66590aa1dac84181b8a3f3aab2d46656673a46fb9471c": {
-      "ts": "Mon, 23 Nov 2026 08:00:00 GMT",
-      "title": "Kospi's historic rout sparks debate over where bottom lies: 4,600 vs 4,100 - KED Global"
-    },
-    "506449ae6741d4278637fd707b8f95873f54ef37dc5baeeff209805589e9cf6f": {
-      "ts": "Mon, 23 Nov 2026 03:45:50 GMT",
-      "title": "South Korea's KOSPI drops 5% as AI fears trigger broader stock sell-off (KRWX:BATS) - Seeking Alpha"
-    },
-    "f0fa0797f79f11d7f512150f2dcb381a72d8c6b2bf11f6981e9ca4e6b75f3ccf": {
-      "ts": "Mon, 23 Nov 2026 03:45:00 GMT",
-      "title": "South Korea's KOSPI drops 5% as AI fears trigger broader stock sell-off - TradingView"
-    },
-    "976b32265967b54a29cefefb0bd3909f965c3362df7db648b091f0d1a6d4a09b": {
-      "ts": "Mon, 18 May 2026 07:00:00 GMT",
-      "title": "Here’s why DAX, CAC 40, FTSE 100, and Stoxx 50 indices are crashing - CryptoRank"
-    },
-    "1d306b90f2327b366a025037a334cb9bec56d505e0726b18a304d841bc0df01f": {
-      "ts": "Mon, 18 May 2026 07:00:00 GMT",
-      "title": "European Markets Trade Mixed as Investors Monitor Middle East Tensions: DAX, CAC, FTSE100 - Yahoo Finance UK"
-    },
-    "954bc0bd3455aefe9f2dcff2058420802d752c5f90c2e844cd27b657c48598d3": {
-      "ts": "Mon, 15 Dec 2025 08:00:00 GMT",
-      "title": "European markets close higher but defense, pharma stocks falter - CNBC"
-    },
-    "1aae87a1bdbc14e9c11a0f020bcf4e941edc37f16470303452aa7667e6ec32d5": {
-      "ts": "Mon, 14 Sep 2026 07:00:00 GMT",
-      "title": "European Stocks Fall as AI Safety Warnings and Rate Expectations Weigh on Markets: DAX, CAC, FTSE100 - Yahoo Finance UK"
-    },
-    "6c797376e6d1705681fb55e706c0159205770fe8bedbe07b83e0b4425ec23961": {
-      "ts": "Mon, 12 Oct 2026 07:00:00 GMT",
-      "title": "Why Is the Korean Won Rising While Samsung and SK Hynix Fall? - BeInCrypto"
-    },
-    "27c87d0511d4584c652cbc4a38d0227ccea976e9c471dd7bd8b3592ccae0f5fd": {
-      "ts": "Mon, 06 Jul 2026 07:00:00 GMT",
-      "title": "European Stocks Hold Near Record Highs as Investors Await Fed Minutes and Central Bank Signals: DAX, CAC, FTSE100 - Yahoo Finance UK"
-    },
-    "c7ea0c21cbd4cddb47ac3f4fd6484096fef7e47d7b64e8585926fc3b2327fbdd": {
-      "ts": "Fri, 20 Feb 2026 08:00:00 GMT",
-      "title": "European stocks close higher after U.S. Supreme Court strikes down Trump's tariffs - CNBC"
-    },
-    "ccc8dd703c10f5cb000097f59ffd1c134335957c51c8ee45e0a3795ffbba2e48": {
-      "ts": "Fri, 09 Oct 2026 07:02:00 GMT",
-      "title": "Europe opens higher with ECB minutes, data in focus - Breakingthenews.net"
-    },
-    "b6fb4ae1900f8fdc9249041590e6a98e117226c63a08b4067f4ce02ceb51b788": {
-      "ts": "2026-11-26 03:00:27",
-      "title": "Oil little changed as Hormuz attacks threaten rebound in Gulf crude shipments"
-    },
-    "df060210f12a0cb2d32f1dce3d5b8ee55bb01c3fa79dc7aff70e22e604a9ecd4": {
-      "ts": "2026-11-26 02:52:47",
-      "title": "Trump admin weighed using Cold War law to reinstate Nvidia CEO Huang, WaPo reports"
-    },
-    "7b3443b35fe543488a6f14a80df31be91b13a39b6a684b147ee30e6924942afb": {
-      "ts": "2026-11-26 02:45:06",
-      "title": "U.S. judge blocks FCC from revoking Disney’s ABC TV licenses"
-    },
-    "ae79649d1cccdbc43576fb8b6c93b043e75e90dbbc51be2b6c553aa230a659b7": {
-      "ts": "2026-11-26 02:41:46",
-      "title": "Nvidia chips reach Chinese-owned U.S. firms despite export curbs, CBS reports"
-    },
-    "e2312603e2b5b2de2831a9b265f22e301b96a5abaf6a56ab5111783113ac359e": {
-      "ts": "2026-11-26 02:33:16",
-      "title": "Asian tech stocks jump as bargain buyers boost battered AI trade"
-    },
-    "18b85ba33cbd155636efa59c7878142ec07f8bd5578f1590ac49d8f2ad66f550": {
-      "ts": "2026-11-26 02:05:06",
-      "title": "Black Friday: unlock the AI picks up as much as 93% since entry"
-    },
-    "6a48b667471bb7d5ea27930a8b737ecf505897a13c044bb24f0ea1914cafb2f2": {
-      "ts": "2026-11-26 01:10:58",
-      "title": "Bank of Korea hikes interest rates to 2-yr high"
-    },
-    "eecdc7abf14d260ccb0af597e435e0b4956c5d19e70542998badc1e9c471f556": {
-      "ts": "2026-11-26 00:57:33",
-      "title": "Flight Centre probes data breach in booking system, shares fall"
-    },
-    "ad6a015c0d8ebb63ea97509f9a402e7fa38402f50cc06de60ecee473a9617219": {
-      "ts": "2026-11-25 23:43:43",
-      "title": "U.S. stock futures turn higher as tech rebound holds after wild swings on Wall St"
-    },
-    "168fd30d9b755f1aaec338dd3d0b07090f0976cdb9c928d3f571b7236637d13d": {
-      "ts": "2026-11-25 23:02:43",
-      "title": "Bitcoin recovers after hit from ETF outflows, AI rout, and hot U.S. economic data"
-    },
-    "afed61908137d227a491cca2de59200e37c943d4427bbac79c62a2d2554343f0": {
-      "ts": "2026-11-25 22:41:15",
-      "title": "Oil prices rise, Brent settles above $90 a barrel for first time in over a week"
-    },
-    "0f70a30efec6f13acf9fa2b19ea73b4e755ffb8b85cd835fc88020f09fb7bac3": {
-      "ts": "2026-11-25 22:32:01",
-      "title": "Cathay General Bancorp stock rises on $200M buyback expansion"
-    },
-    "22aad78e4778d7bb95d31b25a240aa1ef206c204af01d53a8d0c596a85584e32": {
-      "ts": "2026-11-25 22:15:22",
-      "title": "Enterprise password manager 1Password reports breach of developer systems"
-    },
-    "9200e30fc11ba1c7632a15dfdcb481918d60de737d6e607f1f7e03806988f72c": {
-      "ts": "2026-11-25 21:44:47",
-      "title": "Vertex shares drop 7.5% as FDA extends review for kidney drug povetacicept"
-    },
-    "48e502dc8b4267620f5d0d7b4bdf7355bb3411145f2d15a9594d32c51c43f718": {
-      "ts": "2026-11-25 21:38:42",
-      "title": "Gold inches up as dollar reverses course, but gains capped by hot data, AI rout"
-    },
-    "0eab4f22815cccfb2d5e1f367a33f9efa2ca5ded5a92a6a41d8d4cd4208cbd8a": {
-      "ts": "2026-11-25 21:32:33",
-      "title": "Macy’s postpones 100th Thanksgiving Day Parade to Saturday due to storm, NBC says"
-    },
-    "22a7c9a71f8090d2e9cc801f6bf0cdcb95e70ae32dee4e8c82e7c897b579e2ef": {
-      "ts": "2026-11-25 21:28:24",
-      "title": "JPMorgan sees $450B in AI bond issuance in 2027"
-    },
-    "e5697f7cf5a872c9a98d39e5fcbd80289f173010fbaea72c8449f35d860c5ad3": {
-      "ts": "2026-11-25 21:21:44",
-      "title": "Palo Alto Networks sued over alleged accounting fraud claims"
-    },
-    "8196d600bffcf0de56c69c96dab0b4d2c4628bfb2acca993a0b1b9339efa01dd": {
-      "ts": "2026-11-25 21:19:23",
-      "title": "Neuralink secures FDA approval for first U.S. pivotal brain-chip trial"
-    },
-    "c5f371a0cf3f37929e551a1a4c8699c3a7b5d234ffca5b93a3151c889d66f52b": {
-      "ts": "2026-11-25 21:18:43",
-      "title": "Dollar reverses course after earlier gains driven by hot U.S. data, AI rout"
-    },
-    "dcc4ca0e4532321f69cc344fcfd0e9d8cefdc8ca2b92f250e07e0050b6a6b562": {
-      "ts": "Tue, 15 Sep 2026 07:00:00 GMT",
-      "title": "Dollar higher as oil lifts yields and Fed hike looms - Reuters"
-    },
-    "02578ca7989535450542d416d606700ae1655dabe48265234828df8db9621f31": {
-      "ts": "Tue, 06 Oct 2026 07:00:00 GMT",
-      "title": "3 Overlooked Growth Stocks Powering Every AI Chip Nvidia and AMD Build - The Motley Fool"
-    },
-    "11e53d09803e10017a147396ab3af62a20bd18006f82e529697a2b1c5b0498d2": {
-      "ts": "Tue, 06 Oct 2026 07:00:00 GMT",
-      "title": "Nasdaq hits record as dollar and Treasury yields climb, oil prices ease - Euronext Markets: Real-time Stock Market Data | live"
-    },
-    "59aea3f1aea6f2c85682b0dc6d98a25c0881af208e1faf5a35426a86466d0005": {
-      "ts": "Tue, 01 Sep 2026 07:00:00 GMT",
-      "title": "Global bonds extend selloff, oil prices surge on renewed US-Iran strikes - Reuters"
-    },
-    "d28a4b40281a777dc3b2f58982b115729fed22eb56dbefe7052be7471a1cfc9c": {
-      "ts": "Thu, 24 Sep 2026 07:00:00 GMT",
-      "title": "Bond yields surge to fresh two-decade highs, but oil prices are buffeted by Iran headlines - NBC News"
-    },
-    "bb634d0e8c27a8c7b23cab90cef5ccc8d5f789825b50a6daf6d144595cb3304d": {
-      "ts": "Thu, 24 Sep 2026 07:00:00 GMT",
-      "title": "Oil jump sends 30-year yields to two-decade high - Reuters"
-    },
-    "b98dbf5bb90a91f7474fb6215e6d820d63875607e8e10e55e7b672212d0730dc": {
-      "ts": "Thu, 17 Sep 2026 07:00:00 GMT",
-      "title": "Dollar pauses after Fed rally as yields, oil retreat - Reuters"
-    },
-    "c02862183470fce58e2ae0b7641301178d3eaf83b6a2e396aa9cf044d36ccbcd": {
-      "ts": "Thu, 05 Nov 2026 08:00:00 GMT",
-      "title": "AMD Stock Crashes 13% as Nvidia Falls 6%, Erasing Wall Street's Post-Election Rally - Coinpaper"
-    },
-    "dc519f37ad1bfab31d30f8e2833e38d2e525b01596baf5bff14001d3001e8397": {
-      "ts": "Thu, 03 Sep 2026 07:00:00 GMT",
-      "title": "Bond selloff deepens as oil prices and public debt fears jolt markets - Reuters"
-    },
-    "d97e95c6dbae79c801660ec1328141f7fde6f5da0c7dac3d652413bbd0bff1be": {
-      "ts": "Sun, 30 Aug 2026 07:00:00 GMT",
-      "title": "Not Nvidia. Not AMD. This Semiconductor Giant Will Be the Ultimate Winner of the Artificial Intelligence (AI) Hardware Race. - Yahoo Finance"
-    },
-    "96b8678b27d088c4466f20f37945c24bee6bcff82acdcf726e019ec9cb361df7": {
-      "ts": "Sat, 22 Aug 2026 07:00:00 GMT",
-      "title": "Prediction: This Artificial Intelligence (AI) Semiconductor Stock Will Outperform Nvidia Over the Next 3 Years - The Motley Fool"
-    },
-    "73cb7fdb2ecb521f8c113025a8b8a30ec45e78ee1539012bab562f28bb4f7dc2": {
-      "ts": "Sat, 15 Aug 2026 07:00:00 GMT",
-      "title": "Not Nvidia. Not AMD. This Chip Stock Will Be the Biggest Winner of the Historic AI Semiconductor Boom. - The Motley Fool"
-    },
-    "031793c9c8b36eaa75630b258efd8ccd669769d598edb03534359c7a1f3631c9": {
-      "ts": "Sat, 03 Oct 2026 07:00:00 GMT",
-      "title": "Prediction: This AI Chip Stock Will Be the Biggest Winner of 2027 (Hint: It’s Not Nvidia, AMD, or Broadcom) - The Motley Fool"
-    },
-    "5d90c80367ff33795b53f4be4ce78d8433fd7848f99dbf7d3152261f3c02e6e5": {
-      "ts": "Mon, 28 Sep 2026 07:00:00 GMT",
-      "title": "Stocks fall as higher oil prices, Treasury yields weigh - Reuters"
-    },
-    "289fd265f7ee4315fbb5941fe92128eb4994c629508ab18088b602816b08fe7b": {
-      "ts": "Mon, 24 Aug 2026 07:00:00 GMT",
-      "title": "Beyond Nvidia, AMD, and Broadcom: Why This Chip Stock Will Emerge as the Biggest Winner of the AI Semiconductor Boom - The Motley Fool"
-    },
-    "8e5da5927daf1c85a7604166e6c74bd21a979438203df53f105bda31cf0b6b13": {
-      "ts": "Mon, 23 Nov 2026 21:54:57 GMT",
-      "title": "Stock Market Today, Nov. 23: Advanced Micro Devices Climbs on AI-Chip Rebound After Nvidia Reinstates Jensen Huang as CEO - The Motley Fool"
-    },
-    "8b5fc24cae9b7516e43416d25d18b68a2b0e648c198aed877eac97a579d53dae": {
-      "ts": "Mon, 16 Nov 2026 08:00:00 GMT",
-      "title": "NVIDIA Falls 4% Ahead of Earnings as Elon Musk Joins Calls to Reinstate Jensen Huang; AMD Drops 6%, Taiwan Semiconductor Slides 5% - 24/7 Wall St."
-    },
-    "fbd789a3bd897714e0cbc3da015eab7b768513092d3133641301988b4d75811a": {
-      "ts": "Mon, 12 Oct 2026 07:00:00 GMT",
-      "title": "AI Stocks Sell-Off: All 30 Major Chip Stocks Fall as Nvidia Falles & Nasdaq Weakens - Coinpaper"
-    },
-    "fab55112f0869c9012bd301f1fd690b93c47841f746228780990d7893d3418ae": {
-      "ts": "Mon, 09 Nov 2026 08:00:00 GMT",
-      "title": "Today’s Market Recap: Oil Plunge Boosts US Stocks as Dow Surges 1,100 Points, Nasdaq Rises 2.74%; AMD Jumps Over 13%, Nvidia Falls Over 4% - TradingKey"
-    },
-    "41568c491be8e9615837bfe87ac467831d9598e8108c81746cabb429982e59b2": {
-      "ts": "Mon, 05 Oct 2026 07:00:00 GMT",
-      "title": "Nasdaq hits record as dollar and Treasury yields climb, oil prices ease - Reuters"
-    },
-    "e0101d06d19b5915af06071e72f20d7b38c77ab564e4d15464c823f88615aef3": {
-      "ts": "Mon, 05 Oct 2026 07:00:00 GMT",
-      "title": "Nasdaq hits record as dollar and Treasury yields climb, oil prices ease - Yahoo Finance"
-    },
-    "fe50a061163ff59a8c638f75e8fc23ef67030c3403329f5c0d3a789863ad7ec7": {
-      "ts": "Fri, 25 Sep 2026 07:00:00 GMT",
-      "title": "Meet the Super Semiconductor ETF With 34.7% of Its Assets Parked in Intel, AMD, Micron, and Nvidia - The Motley Fool"
-    },
-    "bfb659b0677cc1e876e7c50fdaadbdf5a631707ade940eb8e8735f36b622cb44": {
-      "ts": "Fri, 25 Sep 2026 07:00:00 GMT",
-      "title": "Dollar dips as oil eases, yen jumps on Japan remarks - Reuters"
-    },
-    "2bef6e1da0baa1c19220760270df7a75a5b08975973878ad85a2cf83e4f10462": {
-      "ts": "Fri, 25 Sep 2026 07:00:00 GMT",
-      "title": "Battered bonds draw support from falling oil prices - Reuters"
-    },
-    "8a6716ce74075828f6d7818e243adb37c1e567340f8521d3df5cd57c12d7558d": {
-      "ts": "Fri, 21 Aug 2026 07:00:00 GMT",
-      "title": "The Best Semiconductor Stock to Buy Isn't AMD or Qualcomm: It's Nvidia, and Our Data Proves It - Yahoo Finance"
-    },
-    "b653a1a77e11502dea4acaaa1b80fa5dfb6d5df0b4938937a8b1fcdbcdeacb2c": {
-      "ts": "Fri, 21 Aug 2026 07:00:00 GMT",
-      "title": "The Best Semiconductor Stock to Buy Isn't AMD or Qualcomm: It's Nvidia, and Our Data Proves It - The Motley Fool"
-    },
-    "f56b1c10f84c34eee7239138af190715d96e2079ca76ca00589ae9604cc7b33c": {
-      "ts": "Fri, 13 Nov 2026 21:52:10 GMT",
-      "title": "Wall Street closes mixed as Nvidia and AMD sink; Nasdaq still posts its best week since August - MLQ.ai"
-    },
-    "48ca750c2a48f459e05b96712932a4caa001ebfaec39e5810ddc82b71a35d3b9": {
-      "ts": "Fri, 11 Sep 2026 07:00:00 GMT",
-      "title": "Wall Street jumps, oil lower ahead of Fed vote next week - Reuters"
-    },
-    "8f79e42be96f219fc626f33401a7b27f4b64fb374fe3720bb87c798e8dae98bf": {
-      "ts": "Fri, 04 Sep 2026 07:00:00 GMT",
-      "title": "Yields, dollar rise, stocks ease after solid US jobs report - Reuters"
-    },
-    "c4a233132a4012bd1f48522d27b6b39f5912adf496a728ec589e5ce7fbb1f775": {
-      "ts": "Wed, 25 Nov 2026 13:55:00 GMT",
-      "title": "Nasdaq Futures Drop 2% as AI Selloff Deepens and New Tariff Plans Loom - BigGo Finance"
-    },
-    "68bbae0da2a4666199453f7cc076aa86de3e6801fe245afddc4d03f06a8d007c": {
-      "ts": "Tue, 24 Nov 2026 17:41:54 GMT",
-      "title": "Wall Street's 2027 earnings hopes may be dead on arrival unless the Fed blinks in December - Yahoo Finance"
-    },
-    "ef9ad6f0335c6f6821085b4c77a5e25c7a26f7e950aae8c1b3796427c56a3fe5": {
-      "ts": "Tue, 13 Oct 2026 07:00:00 GMT",
-      "title": "Sensex, Nifty Rise as Oil Eases and RBI Steps Lift Sentiment - HDFC Sky"
-    },
-    "8771e17ad277eff55ed5c07c3758a66d655953eebe4304217fc2c7dab610bcc8": {
-      "ts": "Tue, 06 Oct 2026 07:00:00 GMT",
-      "title": "Indian stocks rebound strongly as Asia firms; RBI decision holds the key to market momentum - The New Indian Express"
-    },
-    "b43a80bfca6d5d4aee37fd2a865b3daba0af0a3ee61b7f967f8333467a8f03c3": {
-      "ts": "Tue, 01 Sep 2026 07:00:00 GMT",
-      "title": "Foreign buying in Indian stocks hits 23-month high in August, depository data shows - Reuters"
-    },
-    "21e96832cbc6ec3b6d96d96019118e5b5aaf02d784453003230bf6ce5176caed": {
-      "ts": "Thu, 08 Oct 2026 07:00:00 GMT",
-      "title": "India's Sensex slumps to 32-month low on oil surge, foreign exodus - Reuters"
-    },
-    "e00230cd91d60ce70fbae070406dcce1194a6aac3bc4c0a9010840dbeba2acf0": {
-      "ts": "Thu, 08 Oct 2026 07:00:00 GMT",
-      "title": "Indian stocks tank after RBI hikes repo rate; over Rs 10 lakh crore of investors’ wealth wiped out - Deccan Herald"
-    },
-    "f255b5f9651590c009245cd81f4d9ec0ad7f28eb9f06c34d3ff877c755614184": {
-      "ts": "Thu, 08 Oct 2026 07:00:00 GMT",
-      "title": "Stock markets decline in early trade as RBI signals more tightening - The New Indian Express"
-    },
-    "6e5a2f8d0c6a49e8113e38a2b2004de2e2416fa08f480b7e950c2b80fb88fa56": {
-      "ts": "Sun, 19 Jul 2026 07:00:00 GMT",
-      "title": "S&P 500, Nasdaq 100 Forecast for Next Week: Is This It? - FOREX.com"
-    },
-    "5e519b6f78c3cf4844aacda4142467d4c673b0d4147e1eef3f27ce32dae8fe7a": {
-      "ts": "Sun, 16 Aug 2026 07:00:00 GMT",
-      "title": "Dow Futures Slip, S&P 500, Nasdaq Futures Climb Ahead Of Key Retail Earnings, Fed Minutes: NLST, AVGO, LUNR, MRK Stocks In Focus - Yahoo Finance"
-    },
-    "4971546e40212829a2c163e73038b4cfa339a8a3b12260bae2ed6ff034618ecb": {
-      "ts": "Sun, 06 Sep 2026 07:00:00 GMT",
-      "title": "Stock Market Investors Just Got a Warning From the Federal Reserve. History Says This Will Happen Next. - Yahoo Finance"
-    },
-    "fb42e2340c957b21dd3615618f05b7e95c5afe514a8c6f93259b7fab77f0fbca": {
-      "ts": "Sun, 04 Oct 2026 07:00:00 GMT",
-      "title": "Dow, S&P 500, Nasdaq Futures Rise After Soft Jobs Report As Markets Await Fed Minutes: IBRX, SMCI, VST, SOFI Stocks In Focus - Yahoo Finance"
-    },
-    "35cb5d236b639c73b4468b07840a66008d7ce4ca50b18fa7838bae07ff36e56b": {
-      "ts": "Sat, 17 Oct 2026 07:00:00 GMT",
-      "title": "Nifty, Sensex see firm recovery after RBI's support to rupee - bfsi.economictimes.indiatimes.com"
-    },
-    "97067ea142a41dc49b5cc97e0415c1c5da6d430e44e20a24cdd35b446d440094": {
-      "ts": "Mon, 12 Oct 2026 07:00:00 GMT",
-      "title": "Sensex, Nifty Drop as IT & FMCG Weigh; Rupee Recovers - HDFC Sky"
-    },
-    "b929edd2e09813cda2c75b3d00edabbec3568fe3a53e043b6ba56506d83678d6": {
-      "ts": "Mon, 12 Oct 2026 07:00:00 GMT",
-      "title": "Sensex settles 950 pts lower from day's high, Nifty ends near 22,350: Five key factors behind market... - Moneycontrol.com"
-    },
-    "2207068c44e2d80ce90dbbbc7da63b198c2e1d971fadf7a2def511b3a2af01bb": {
-      "ts": "Mon, 12 Oct 2026 07:00:00 GMT",
-      "title": "RBI measures to support rupee weigh on govt bonds, domestic equities - Business Standard"
-    },
-    "5562e1ad363336bc5e5c3fe3ba6d6334df79c567900c2d3c5ab4fe22a1e9d634": {
-      "ts": "Fri, 28 Aug 2026 07:00:00 GMT",
-      "title": "RBI to conduct ₹6 trillion VRRR auction to soak up excess liquidity - Business Standard"
-    },
-    "d92b85efffb3dc349a4c6800b725ee79c55790d6a1dd16441a49c6febd83fcc0": {
-      "ts": "Fri, 20 Nov 2026 13:10:41 GMT",
-      "title": "US Stock Market Today: S&P 500 Futures Slip As Hawkish Fed And Strong Dollar Bite - Yahoo! Finance Canada"
-    },
-    "bba927797f645ed77555527ab6df7bef0279a942a996b616381516331fe5a885": {
-      "ts": "Fri, 20 Nov 2026 09:44:57 GMT",
-      "title": "Anthropic Shares Slide After IPO as US Futures Fall and Global Technology Sell-Off Continues: Dow Jones, S&P, Nasdaq, Wall Street - Yahoo Finance UK"
-    },
-    "e10235799ef50a68f03c1c2c4d0a3e63096948ff82d6525b267fa2562eebcd06": {
-      "ts": "Fri, 20 Nov 2026 02:48:00 GMT",
-      "title": "Nasdaq, Dow, S&P 500 Futures Slip As Anthropic’s Record Debut Fails To Lift AI Stocks: SLV, GLD, AMD, NVDA In Focus - TradingView"
-    },
-    "7af12547471bd3f64cea49befcded3f0da624f964917849e917e7906754108e7": {
-      "ts": "Tue, 17 Mar 2026 07:00:00 GMT",
-      "title": "ASX finishes RBA day in the green, led by banks and miners - SMH.com.au"
-    },
-    "3cb3f1ca17b44a2fb9069095ea4f845f22faae281af154b71516279dd923f013": {
-      "ts": "Tue, 16 Jun 2026 07:00:00 GMT",
-      "title": "Australian Dollar Softens, ASX Perks Up After Mildly Hawkish RBA Hold - FOREX.com"
-    },
-    "8a12f5f21f75c1a7acd590d34f4072c82ebf3ff63bcc220ad49f2b66854b69b7": {
-      "ts": "Tue, 11 Aug 2026 07:00:00 GMT",
-      "title": "ASX gains as RBA keeps rates on hold; oil stocks rally, SGH, Life360 plunge - SMH.com.au"
-    },
-    "c3cf68fe2714d126253b60c7cb8d6e333af0feaba5ef0b8c79981ec131f8281e": {
-      "ts": "Tue, 09 Dec 2025 08:00:00 GMT",
-      "title": "RBA’s grim rate warning drags ASX lower - News.com.au"
-    },
-    "1d46d00acf8aca7c0de0cac296a98eb425ef3fb9c9fb8721f58d9dc02f2a9b6b": {
-      "ts": "Tue, 03 Mar 2026 08:00:00 GMT",
-      "title": "ASX slumps on Iran oil crisis, RBA jitters - The Australian"
-    },
-    "16de9014225a80d6ae6fdb0e01f9d79daa860a2257ef3fab247823646707c697": {
-      "ts": "Tue, 03 Feb 2026 17:41:57 GMT",
-      "title": "Australian Dollar Surges on RBA Hike: Which ASX Stocks Win and Lose from a Stronger Currency? - Stocks Down Under"
-    },
-    "a8e7ee221a428b9aee375ce889dd5a6a99b87d5f046b9f61679edbeeea76b273": {
-      "ts": "Tue, 03 Feb 2026 08:00:00 GMT",
-      "title": "‘Buffer’: Jump in dollar helps every household - News.com.au"
-    },
-    "2c49807451c0a185eaba5a0246a471231dfa862f210f6cb00781a61016fee0d1": {
-      "ts": "Thu, 27 Aug 2026 02:57:35 GMT",
-      "title": "AUD/USD, ASX 200: Household Spending Bolsters RBA Hike Bets - FOREX.com"
-    },
-    "f5fd299acd222cc2e916551af19db1a2ae0c070bb134032964a5d8ac02d5e0f0": {
-      "ts": "Thu, 23 Jul 2026 07:00:00 GMT",
-      "title": "Australia jobs surge keeps RBA rate hike firmly in play as ASX pares gains - proactiveinvestors.com.au"
-    },
-    "e098adee59f75d297cc0cfc1ae343d3d42e7ac737d180e724a47d3d3f0b197c9": {
-      "ts": "Thu, 18 Jul 2024 07:00:00 GMT",
-      "title": "Bulletin – July 2024 Finance The Australian Repo Market: A Short History and Recent Evolution - www.rba.gov.au"
-    },
-    "197957108352197bc7ddf3f46a44f791ac9832802ce90eb397c642d91f38cc18": {
-      "ts": "Sun, 09 Aug 2026 07:00:00 GMT",
-      "title": "ASX to set record high ahead of wild earnings, RBA decision - AFR"
-    },
-    "d18ee9cd9a17a44a98b19e8efeb584bc87d7c3deb83339e975a2034f50f1d3db": {
-      "ts": "Mon, 18 May 2026 07:00:00 GMT",
-      "title": "CommBank, J.P. Morgan, ASX and HQLAX complete RBA wholesale funding markets trial - CommBank"
-    },
-    "53c78b05d8daa93dee1bac5e5ad5eb4424db57610db10fd2c96c55d6a34cd007": {
-      "ts": "Mon, 07 Sep 2026 07:00:00 GMT",
-      "title": "Will RBA raise rates in September? These banks think so - TheBull.com.au"
-    },
-    "9d93076df59cc9395a0cdb954f1bfccd487b153b49634a0de57b89e5f9a95fab": {
-      "ts": "Mon, 02 Nov 2026 08:00:00 GMT",
-      "title": "Aussie shares drop ahead of interest rates decision - CommBank"
-    },
-    "d2b0c36cd06d6a99f5efe19cda77554fc6dc577c665f104a66fea9c081de2586": {
-      "ts": "Mon, 01 Dec 2025 08:00:00 GMT",
-      "title": "Aussie dollar stuck in low gear despite RBA rate hike talk - AFR"
-    },
-    "c3aa1e45835d1bd61ced89b8f38c7481b492c9ee8161f0fca3b5edb633195b53": {
-      "ts": "Fri, 30 Oct 2026 07:00:00 GMT",
-      "title": "Hotter inflation revives RBA tightening bets, lifting the Australian Dollar slightly - www.tmgm.com"
-    },
-    "48482c4fb1163c25bd3d02ab27f894b30652a5c5b902e48e0e9b0298d3084569": {
-      "ts": "Fri, 13 Mar 2026 07:00:00 GMT",
-      "title": "RBA Meeting: What To Expect For Rates As Policy Pivots to Tightening - thebull.com.au"
-    },
-    "9df257c623853438440569a034c7af20a5ec2532cfab6b9afe1d11454c88a567": {
-      "ts": "Fri, 01 May 2026 07:00:00 GMT",
-      "title": "What a Stronger AUD Means for Your Portfolio - Selfwealth"
     }
   },
   "state": {
